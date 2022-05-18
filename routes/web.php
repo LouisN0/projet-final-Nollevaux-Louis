@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,20 @@ Route::get('/teacher', function () {
 })->name('teacher');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('back.dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+
+
+
+
+// User
+Route::get('/back/users', [UserController::class, 'index'])->name('user.index');
+Route::get('/back/users/create', [UserController::class, 'create'])->name('user.create');
+Route::post('/back/users/store', [UserController::class, 'store'])->name('user.store');
+Route::get('/back/users/{id}/read', [UserController::class, 'read'])->name('user.read');
+Route::get('/back/users/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+Route::post('/back/users/{id}/update', [UserController::class, 'update'])->name('user.update');
+Route::post('/back/users/{id}/delete', [UserController::class, 'destroy'])->name('user.destroy');

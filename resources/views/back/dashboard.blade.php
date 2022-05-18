@@ -1,17 +1,32 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends("back.layouts.app")
+@section("content")
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged in!
-                </div>
+    <div class="page-heading">
+        <h3>Page Admin </h3>
+    </div>
+    <div class="page-content">
+        <h1> page admin</h1>
+        <div class="bg-light">
+            <div class="px-4">
+                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
             </div>
+
+            
+
+            {{-- <div class="mt-3 space-y-1">
+                <!-- Authentication -->
+                <form class='btn btn-warning' method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <div :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                    </div>
+                </form>
+                <a href="{{ route("logout") }}">Log out</a>
+            </div> --}}
         </div>
     </div>
-</x-app-layout>
+
+@endsection

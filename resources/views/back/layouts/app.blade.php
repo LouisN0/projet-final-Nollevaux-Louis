@@ -9,10 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset("css/bootstrap.css") }}">
-
-    <link rel="stylesheet" href="{{ asset("css/bold.css") }}">
-
-    <link rel="stylesheet" href="{{ asset("css/perfect-scrollbar.css") }}">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ asset("css/dashboard.css") }}">
 </head>
 
 <body>
@@ -20,20 +18,14 @@
 
         @include("back.partials.navbar")
 
-        <div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
+        <div id="main" class="home-section">
+            
 
             @yield("content")
 
         </div>
     </div>
-    <script src="{{ asset("js/perfect-scrollbar.min.js") }}"></script>
-    <script src="{{ asset("js/bootstrap.bundle.min.js") }}"></script>
-    <script src="{{ asset("js/main.js") }}"></script>
+    <script src="{{ asset("js/dashboard.js") }}"></script>
 </body>
 
 </html>

@@ -27,7 +27,7 @@
                     </li>
                     @if (Route::has('login'))
                             @auth
-                                <li><a href="{{ url('/admin') }}">Dashboard</a></li>
+                                <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
                             @else
                             
                             <li><a href="{{ route('register') }}">Register</a></li>
