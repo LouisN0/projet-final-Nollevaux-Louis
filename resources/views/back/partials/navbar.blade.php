@@ -73,8 +73,8 @@
          <div class="profile-details">
            <!--<img src="profile.jpg" alt="profileImg">-->
            <div class="name_job">
-             <div class="name">Prem Shahi</div>
-             <div class="job">Web designer</div>
+             <div class="name">{{ Auth::user()->nom }}</div>
+             <div class="job">{{ Auth::user()->role->role }}</div>
            </div>
          </div>
          <form method="POST" action="{{ route('logout') }}">

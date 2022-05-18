@@ -19,4 +19,8 @@ class User extends Authenticatable
     ]; // model_anchor
      
     protected $table = 'users';
+
+    function role() {
+        return $this->belongsTo(Role::class);
+    }
 }
