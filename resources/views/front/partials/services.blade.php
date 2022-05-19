@@ -10,6 +10,9 @@
                         <p>Twee Vice synth stumptown, distillery aesthetic slow-carb Intelligentsia bitters taxidermy<br>McSweeney's, flexitarian actually iPhone mlkshk brunch.</p>
                     </div>
                     <div class="row">
+                        @foreach ( as )
+                            
+                        @endforeach
                         <div class="col-md-6 col-sm-6">
                             <div class="service-item">
                                 <i class="fa fa-graduation-cap"></i>

@@ -14,8 +14,8 @@ class User extends Authenticatable
         'nom',
         'email',
         'password',
-        'role',
-        'img',
+        'role_id',
+        'image',
     ]; // model_anchor
      
     protected $table = 'users';

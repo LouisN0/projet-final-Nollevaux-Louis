@@ -11,7 +11,7 @@
                 </ul>
             </div>
         @endif
-        <form action='{{ route('user.store') }}' method='post'>
+        <form action='{{ route('user.store') }}' method='post' enctype="multipart/form-data">
             @csrf
             <div>
                 <label for=>nom</label>
@@ -25,13 +25,17 @@
                 <label for=>password</label>
                 <input type='text' name='password'>
             </div>
-            <div>
-                <label for=>role</label>
-                <input type='text' name='role'>
+            <div class='form-group'>
+                <label for='first-role-column'>role_id</label>
+                <select class='form-control' name='role_id'>
+                    @foreach ($roles as $role)
+                        <option value='{{ $role->id }}' {{ $user->role_id == $role->id ? 'selected' : '' }}>{{ $role->role }}</option>
+                    @endforeach
+                </select>
             </div>
             <div>
-                <label for=>img</label>
-                <input type='text' name='img'>
+                <label for="formFile" class="form-label">Image</label>
+	            <input class="form-control" name='image' type="file" id="formFile">
             </div>
             <button type='submit'>Create</button> {{-- create_blade_anchor --}} 
         </form>

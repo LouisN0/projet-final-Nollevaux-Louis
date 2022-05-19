@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class UserController extends Controller
     }
     public function create()
     {
-        return view("/back/users/create");
+        $roles = Role::all();
+        return view("/back/users/create", compact("roles"));
     }
     public function store(Request $request)
     {
@@ -24,15 +26,15 @@ class UserController extends Controller
          'nom'=> 'required',
          'email'=> 'required',
          'password'=> 'required',
-         'role'=> 'required',
-         'img'=> 'required',
         ]); // store_validated_anchor;
         $user->nom = $request->nom;
         $user->email = $request->email;
         $user->password = $request->password;
-        $user->role = $request->role;
-        $user->img = $request->img;
+        $user->role_id = 3;
+        $user->image = $request->default('default.jpg');
+
         $user->save(); // store_anchor
+        $request->file("image")->storePublicly("images", "public");
         return redirect()->route("user.index")->with('message', "Successful storage !");
     }
     public function read($id)

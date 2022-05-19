@@ -35,9 +35,9 @@
                                     <div class="col-sm-12">
                                         <h2 class="fw-bold mb-2 text-uppercase text-dark">Register</h2>
                                         <div class="form-outline form-white mb-4 form-floating">
-                                            <input type="name" id="name" class="form-control form-control-lg "
-                                                placeholder="name *" name="name" value="{{ old('name') }}"
-                                                autocomplete="name">
+                                            <input type="nom" id="nom" class="form-control form-control-lg "
+                                                placeholder="nom *" name="nom" value="{{ old('nom') }}"
+                                                autocomplete="nom">
                                             <label for="form-label text-dark">Name</label>
 
                                         </div>

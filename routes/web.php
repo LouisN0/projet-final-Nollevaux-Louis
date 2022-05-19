@@ -1,8 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Models\Banner;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +19,8 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $banners = Banner::all();
+    return view('welcome', compact('banners'));
 })->name('home');
 Route::get('/courses', function () {
     return view('front.pages.courses');
@@ -56,3 +60,19 @@ Route::post('/back/roles/store', [RoleController::class, 'store'])->name('role.s
 Route::get('/back/roles/{id}/edit', [RoleController::class, 'edit'])->name('role.edit');
 Route::post('/back/roles/{id}/update', [RoleController::class, 'update'])->name('role.update');
 Route::post('/back/roles/{id}/delete', [RoleController::class, 'destroy'])->name('role.destroy');
+// Banner
+Route::get('/back/banners', [BannerController::class, 'index'])->name('banner.index');
+Route::get('/back/banners/create', [BannerController::class, 'create'])->name('banner.create');
+Route::post('/back/banners/store', [BannerController::class, 'store'])->name('banner.store');
+Route::get('/back/banners/{id}/read', [BannerController::class, 'read'])->name('banner.read');
+Route::get('/back/banners/{id}/edit', [BannerController::class, 'edit'])->name('banner.edit');
+Route::post('/back/banners/{id}/update', [BannerController::class, 'update'])->name('banner.update');
+Route::post('/back/banners/{id}/delete', [BannerController::class, 'destroy'])->name('banner.destroy');
+// Service
+Route::get('/back/services', [ServiceController::class, 'index'])->name('service.index');
+Route::get('/back/services/create', [ServiceController::class, 'create'])->name('service.create');
+Route::post('/back/services/store', [ServiceController::class, 'store'])->name('service.store');
+Route::get('/back/services/{id}/read', [ServiceController::class, 'read'])->name('service.read');
+Route::get('/back/services/{id}/edit', [ServiceController::class, 'edit'])->name('service.edit');
+Route::post('/back/services/{id}/update', [ServiceController::class, 'update'])->name('service.update');
+Route::post('/back/services/{id}/delete', [ServiceController::class, 'destroy'])->name('service.destroy');
