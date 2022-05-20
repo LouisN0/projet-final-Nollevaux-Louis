@@ -34,8 +34,7 @@
                 </select>
             </div>
             <div>
-                <label for="formFile" class="form-label">Image</label>
-	            <input class="form-control" name='image' type="file" id="formFile">
+                C
             </div>
             <button type='submit'>Create</button> {{-- create_blade_anchor --}} 
         </form>

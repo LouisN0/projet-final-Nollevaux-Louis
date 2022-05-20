@@ -11,7 +11,7 @@
                 </ul>
             </div>
         @endif
-        <form action='{{ route('user.update' , $user->id) }}' method='post'>
+        <form action='{{ route('user.update' , $user->id) }}' method='post' enctype="multipart/form-data">
             @csrf
             <div>
                 <label for=>nom</label>
@@ -26,12 +26,15 @@
                 <input type='text' name='password' value='{{ $user->password }}'>
             </div>
             <div>
-                <label for=>role</label>
-                <input type='text' name='role' value='{{ $user->role }}'>
+                <select class='form-control' name='role_id'>
+                    @foreach ($roles as $role)
+                        <option value='{{ $role->id }}' {{ $user->role_id == $role->id ? 'selected' : '' }}>{{ $role->role }}</option>
+                    @endforeach
+                </select>
             </div>
             <div>
-                <label for=>img</label>
-                <input type='text' name='img' value='{{ $user->img }}'>
+                <label for="formFile" class="form-label">Image</label>
+	            <input class="form-control" name='image' type="file" id="formFile">
             </div>
             <button type='submit'>Update</button> {{-- update_blade_anchor --}}
         </form>

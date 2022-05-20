@@ -10,45 +10,23 @@
                         <p>Twee Vice synth stumptown, distillery aesthetic slow-carb Intelligentsia bitters taxidermy<br>McSweeney's, flexitarian actually iPhone mlkshk brunch.</p>
                     </div>
                     <div class="row">
-                        @foreach ( as )
-                            
+                        @foreach ($services as $service)
+                          <div class="col-md-6 col-sm-6">
+                            <div class="service-item">
+                                <i class="{{ $service->icone }}"></i>
+                                <h4>{{ $service->titre }}</h4>
+                                <div class="line-dec"></div>
+                                <p>{{ $service->description }}</p>
+                            </div>
+                        </div>  
                         @endforeach
-                        <div class="col-md-6 col-sm-6">
-                            <div class="service-item">
-                                <i class="fa fa-graduation-cap"></i>
-                                <h4>Graduated Steps</h4>
-                                <div class="line-dec"></div>
-                                <p>Photo booth Banksy YOLO mixtape post-ironic they sold out all.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="service-item">
-                                <i class="fa fa-globe"></i>
-                                <h4>Global Interested</h4>
-                                <div class="line-dec"></div>
-                                <p>Photo booth Banksy YOLO mixtape post-ironic they sold out all.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="service-item">
-                                <i class="fa fa-clock-o"></i>
-                                <h4>Circular Clock</h4>
-                                <div class="line-dec"></div>
-                                <p>Photo booth Banksy YOLO mixtape post-ironic they sold out all.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="service-item last-service">
-                                <i class="fa fa-book"></i>
-                                <h4>Open Book</h4>
-                                <div class="line-dec"></div>
-                                <p>Photo booth Banksy YOLO mixtape post-ironic they sold out all.</p>
-                            </div>
-                        </div>
+                        
+                        
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="request-information">
+                       
                         <div class="widget-heading">
                             <h4>Request Information</h4>
                         </div>
@@ -73,8 +51,14 @@
                                       <option>Profits</option>
                                 </select>
                             </div>
-                            <div class="accent-button">
+                            <div class="accent-button"> @if (Route::has('login'))
+                            @auth
                                 <a href="#">Submit Request</a>
+                            @else
+                            <a href="{{ route('login') }}">Log in</a> 
+                            @endauth
+                        @endif
+                                
                             </div>
                         </div>
                     </div>

@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CourController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Models\Banner;
+use App\Models\Service;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +21,16 @@ use App\Models\Banner;
 */
 
 Route::get('/', function () {
+    $services = Service::all();
     $banners = Banner::all();
-    return view('welcome', compact('banners'));
+    return view('welcome', compact('banners' , 'services'));
 })->name('home');
 Route::get('/courses', function () {
     return view('front.pages.courses');
 })->name('courses');
+Route::get('/course-single', function () {
+    return view('front.pages.coursesShow');
+})->name('courseShow');
 Route::get('/events', function () {
     return view('front.pages.events');
 })->name('events');
@@ -76,3 +82,11 @@ Route::get('/back/services/{id}/read', [ServiceController::class, 'read'])->name
 Route::get('/back/services/{id}/edit', [ServiceController::class, 'edit'])->name('service.edit');
 Route::post('/back/services/{id}/update', [ServiceController::class, 'update'])->name('service.update');
 Route::post('/back/services/{id}/delete', [ServiceController::class, 'destroy'])->name('service.destroy');
+// Cour
+Route::get('/back/cours', [CourController::class, 'index'])->name('cour.index');
+Route::get('/back/cours/create', [CourController::class, 'create'])->name('cour.create');
+Route::post('/back/cours/store', [CourController::class, 'store'])->name('cour.store');
+Route::get('/back/cours/{id}/read', [CourController::class, 'read'])->name('cour.read');
+Route::get('/back/cours/{id}/edit', [CourController::class, 'edit'])->name('cour.edit');
+Route::post('/back/cours/{id}/update', [CourController::class, 'update'])->name('cour.update');
+Route::post('/back/cours/{id}/delete', [CourController::class, 'destroy'])->name('cour.destroy');
