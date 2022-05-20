@@ -26,7 +26,6 @@ class CourController extends Controller
          'prix'=> 'required',
          'titre'=> 'required',
          'description'=> 'required',
-         'slide_id'=> 'required',
          'start'=> 'required',
          'temps'=> 'required',
          'niveau'=> 'required',
@@ -66,7 +65,6 @@ class CourController extends Controller
          'prix'=> 'required',
          'titre'=> 'required',
          'description'=> 'required',
-         'slide_id'=> 'required',
          'start'=> 'required',
          'temps'=> 'required',
          'niveau'=> 'required',
@@ -92,5 +90,10 @@ class CourController extends Controller
         $cour = Cour::find($id);
         $cour->delete();
         return redirect()->back()->with('message', "Successful delete !");
+    }
+    public function singleshow($id)
+    {
+        $cour = Cour::find($id);
+        return view("/front/pages/coursesShow",compact("cour"));
     }
 }

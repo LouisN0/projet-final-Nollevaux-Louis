@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('prof_id');
             $table->string('prix');
             $table->string('titre');
-            $table->string('description');
-            $table->string('slide_id');
+            $table->longText('description');
+            $table->foreignId('slide_id')->constrained('slides', 'id');
             $table->string('start');
             $table->string('temps');
             $table->string('niveau');

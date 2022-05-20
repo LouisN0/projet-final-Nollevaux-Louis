@@ -24,4 +24,8 @@ class Cour extends Model
     ]; // model_anchor
      
     protected $table = 'cours';
+
+    public function slides(){
+        return $this->hasOne(Slide::class);
+    }
 }

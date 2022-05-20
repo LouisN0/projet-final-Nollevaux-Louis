@@ -27,7 +27,7 @@
 										<div class="col-md-12">
 											<div class="item course-item">
 												<div class="up-content">
-													<a href="single-course.html"><h4>How to become a Powerful Speaker ?</h4></a>
+													<a href="single-course.html"><h4><?= str_replace(["<br>"], [""], $cour->titre) ?></h4></a>
 													<p>Plaid you probably haven't heard of them fashion axe meditation</p>
 													<img src="assets/images/course-author-1.jpg" alt="">
 													<h6>Ernest Byrd</h6>
@@ -55,7 +55,7 @@
 											</div>
 											<div class="description">
 												<h4>Description</h4>
-												<p>Banjo fanny pack mixtape austin meh portland fashion axe cardigan freegan 3 wolf moon. pop up viral letterpress next level ethical scenester trust funde chia. Chia tilde williamsburg etsy, craft beer banksy high life deep v fanny pack. Mlks Kickstarter Wes Anderson before they sold out. Health goth seitan hashtag, Thundercats McSweeney's quinoa Pitchfork Tumblr flannel. Gentrify flannel fanny pack retro.<br><br>McSweeney's Carles squid, Wes Anderson pork belly post-ironic pop-up cardigan tattooed Marfa listiclete small Godard locavore plaid, mlkshk mumblecore viral Pinterest fingerstache four loko ugh Neutra banh mi food truck fap authentic. Whatever ennui McSweeney's forage salvia trust fund.</p>
+												<p>{{ $cour->description }}</p>
 											</div>
 											<div class="topics">
 												<h4>Topics Included</h4>
@@ -142,11 +142,11 @@
 										<h4>Course Information</h4>
 									</div>
 									<ul>
-										<li><span>Starts:</span>14 November 2015</li>
-										<li><span>Duration:</span>1 Month / 4 Weeks</li>
-										<li><span>Study Level:</span>Post Graduate</li>
-										<li><span>Disipline</span>Account &amp; Finance</li>
-										<li><span>Price:</span>$45 / month</li>
+										<li><span>Starts:</span>{{ $cour->start }}</li>
+										<li><span>Duration:</span>{{ $cour->temps }}</li>
+										<li><span>Study Level:</span>{{ $cour->niveau }}</li>
+										<li><span>Disipline</span>{{ $cour->discipline }}</li>
+										<li><span>Price:</span>${{ $cour->prix }}</li>
 									</ul>
 								</div>
 								<div class="related-courses">
