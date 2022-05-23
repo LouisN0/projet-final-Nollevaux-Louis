@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SocialController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\CourController;
 use App\Http\Controllers\ServiceController;
@@ -11,6 +13,7 @@ use App\Models\Banner;
 use App\Models\Cour;
 use App\Models\Service;
 use App\Models\Slide;
+use App\Models\Teacher;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +31,10 @@ Route::get('/', function () {
     $cours = Cour::all();
     $services = Service::all();
     $banners = Banner::all();
-    return view('welcome', compact('banners' , 'services', 'cours'));
+    $teachers = Teacher::all();
+    return view('welcome', compact('banners' , 'services', 'cours', 'teachers'));
 })->name('home');
+
 Route::get('/courses', function () {
     return view('front.pages.courses');
 })->name('courses');
@@ -102,3 +107,22 @@ Route::get('/back/slides/{id}/read', [SlideController::class, 'read'])->name('sl
 Route::get('/back/slides/{id}/edit', [SlideController::class, 'edit'])->name('slide.edit');
 Route::post('/back/slides/{id}/update', [SlideController::class, 'update'])->name('slide.update');
 Route::post('/back/slides/{id}/delete', [SlideController::class, 'destroy'])->name('slide.destroy');
+// Teacher
+Route::get('/back/teachers', [TeacherController::class, 'index'])->name('teacher.index');
+Route::get('/back/teachers/create', [TeacherController::class, 'create'])->name('teacher.create');
+Route::post('/back/teachers/store', [TeacherController::class, 'store'])->name('teacher.store');
+Route::get('/back/teachers/{id}/read', [TeacherController::class, 'read'])->name('teacher.read');
+Route::get('/back/teachers/{id}/edit', [TeacherController::class, 'edit'])->name('teacher.edit');
+Route::post('/back/teachers/{id}/update', [TeacherController::class, 'update'])->name('teacher.update');
+Route::post('/back/teachers/{id}/delete', [TeacherController::class, 'destroy'])->name('teacher.destroy');
+Route::get('/front/pages/{id}/TeacherShow', [TeacherController::class, 'singleTeacher'])->name('teacher.singleshow');
+
+
+// Social
+Route::get('/back/socials', [SocialController::class, 'index'])->name('social.index');
+Route::get('/back/socials/create', [SocialController::class, 'create'])->name('social.create');
+Route::post('/back/socials/store', [SocialController::class, 'store'])->name('social.store');
+Route::get('/back/socials/{id}/read', [SocialController::class, 'read'])->name('social.read');
+Route::get('/back/socials/{id}/edit', [SocialController::class, 'edit'])->name('social.edit');
+Route::post('/back/socials/{id}/update', [SocialController::class, 'update'])->name('social.update');
+Route::post('/back/socials/{id}/delete', [SocialController::class, 'destroy'])->name('social.destroy');

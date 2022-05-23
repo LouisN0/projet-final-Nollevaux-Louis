@@ -49,11 +49,6 @@
                     </li>
                     <li><a href="{{ route('events') }}" >Events</a>
                     </li>
-                    <li><a href="#" class="has-submenu">Pages</a>
-                        <ul class="sub-menu">
-                            <li><a href="{{ route('teacher') }}">Our Teachers</a></li>
-                        </ul>
-                    </li>
                     <li><a href="{{ route('news') }}">News</a>
                     </li>
                     <li><a href="contact.html">Contact</a></li>
