@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Models\Banner;
 use App\Models\Cour;
 use App\Models\Service;
+use App\Models\Slide;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ use App\Models\Service;
 */
 
 Route::get('/', function () {
+    $slides = Slide::all();
     $cours = Cour::all();
     $services = Service::all();
     $banners = Banner::all();
@@ -31,9 +33,7 @@ Route::get('/', function () {
 Route::get('/courses', function () {
     return view('front.pages.courses');
 })->name('courses');
-Route::get('/course-single', function () {
-    return view('front.pages.coursesShow');
-})->name('courseShow');
+
 Route::get('/events', function () {
     return view('front.pages.events');
 })->name('events');

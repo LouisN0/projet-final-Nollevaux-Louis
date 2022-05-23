@@ -38,17 +38,17 @@
 												</div>
 												<div class="courses-slider">
 													<ul class="slides">
-													    <li data-thumb="http://placehold.it/140x100">
-													      <img src="http://placehold.it/770x380" alt="" />
+													    <li data-thumb="{{ asset("/images/". $cour->slide->image1) }}">
+													      <img src="{{ asset("/images/". $cour->slide->image1) }}" alt="" />
 													    </li>
-													    <li data-thumb="http://placehold.it/140x100">
-													      <img src="http://placehold.it/770x380" alt="" />
+													    <li data-thumb="{{ asset("/images/". $cour->slide->image2) }}">
+													      <img src="{{ asset("/images/". $cour->slide->image2) }}" alt="" />
 													    </li>
-													    <li data-thumb="http://placehold.it/140x100">
-													      <img src="http://placehold.it/770x380" alt="" />
+													    <li data-thumb="{{ asset("/images/". $cour->slide->image3) }}">
+													      <img src="{{ asset("/images/". $cour->slide->image3) }}" alt="" />
 													    </li>
-													    <li data-thumb="http://placehold.it/140x100">
-													      <img src="http://placehold.it/770x380" alt="" />
+													    <li data-thumb="{{ asset("/images/". $cour->slide->image4) }}">
+													      <img src="{{ asset("/images/". $cour->slide->image4) }}" alt="" />
 													    </li>
 													</ul>
 												</div>

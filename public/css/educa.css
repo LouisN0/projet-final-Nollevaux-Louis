@@ -4834,3 +4834,11 @@ html[xmlns] .flexslider .slides {
   margin-right: 2rem;
   background-color:rgb(245, 164, 37) ;
 }
+
+.slides > li >img {
+  width: 100%;
+}
+
+.flex-control-nav > li > img {
+  width: 100%;
+}

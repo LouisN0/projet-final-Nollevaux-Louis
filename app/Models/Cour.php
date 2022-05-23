@@ -25,7 +25,7 @@ class Cour extends Model
      
     protected $table = 'cours';
 
-    public function slides(){
-        return $this->hasOne(Slide::class);
+    public function slide(){
+        return $this->belongsTo(Slide::class);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cour;
+use App\Models\Slide;
 use Illuminate\Http\Request;
 
 class CourController extends Controller
@@ -93,7 +94,8 @@ class CourController extends Controller
     }
     public function singleshow($id)
     {
+        $slides = Slide::all();
         $cour = Cour::find($id);
-        return view("/front/pages/coursesShow",compact("cour"));
+        return view("/front/pages/coursesShow",compact("cour", "slides"));
     }
 }

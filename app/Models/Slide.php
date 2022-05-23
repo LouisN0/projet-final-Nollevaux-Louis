@@ -18,8 +18,8 @@ class Slide extends Model
      
     protected $table = 'slides';
 
-    public function cours()
+    public function cour()
     {
-        return $this->belongsTo(Cours::class);
+        return $this->hasOne(Cours::class);
     }
 }
