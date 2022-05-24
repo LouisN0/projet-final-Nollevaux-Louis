@@ -36,7 +36,9 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/courses', function () {
-    return view('front.pages.courses');
+    $cours = Cour::all();
+    $teachers = Teacher::all();
+    return view('front.pages.courses', compact('cours', 'teachers'));
 })->name('courses');
 
 Route::get('/events', function () {

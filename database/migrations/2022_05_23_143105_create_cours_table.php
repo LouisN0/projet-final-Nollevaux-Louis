@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('cours', function (Blueprint $table) {
             $table->id();
             $table->string('image');
-            $table->string('prof_id');
+            $table->foreignId('teacher_id')->constrained('teachers', 'id');
             $table->string('prix');
             $table->string('titre');
             $table->longText('description');

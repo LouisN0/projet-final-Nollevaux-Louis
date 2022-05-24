@@ -29,6 +29,11 @@ class Teacher extends Model
         return $this->hasOne(Social::class);
     
     }
+    public function cours()
+    {
+        return $this->hasMany(Cour::class);
+    
+    }
 
     
 }

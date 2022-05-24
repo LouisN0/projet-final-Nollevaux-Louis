@@ -11,7 +11,7 @@ class Cour extends Model
      
     protected $fillable = [
         'image',
-        'prof_id',
+        'teacher_id',
         'prix',
         'titre',
         'description',
@@ -28,4 +28,9 @@ class Cour extends Model
     public function slide(){
         return $this->belongsTo(Slide::class);
     }
+
+    public function teacher(){
+        return $this->belongsTo(Teacher::class);
+    }
+
 }
