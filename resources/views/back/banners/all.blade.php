@@ -16,7 +16,6 @@
                 </ul>
             </div>
         @endif
-        <a class='btn btn-success' href='{{ route('banner.create') }}' role='button'>Create</a>
         <table class='table'>
             <thead>
                 <tr>

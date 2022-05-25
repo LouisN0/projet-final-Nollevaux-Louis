@@ -1,7 +1,7 @@
 @extends('back.layouts.app')
 @section('content')
     <div class='container'>
-        <h1 class='my-5'>Roles</h1>
+        <h1 class='my-5'>Posts</h1>
         @if (session()->has('message'))
             <div class='alert alert-success'>
                 {{ session()->get('message') }}
@@ -16,26 +16,34 @@
                 </ul>
             </div>
         @endif
+        <a class='btn btn-success' href='{{ route('post.create') }}' role='button'>Create</a>
         <table class='table'>
             <thead>
                 <tr>
                     <th scope='col'>#</th>
                     <th scope='col'>Action</th>
-                    <th scope='col'>role</th>
+                    <th scope='col'>image</th>
+                    <th scope='col'>titre</th>
+                    <th scope='col'>texte</th>
+                    <th scope='col'>date</th>
                 </tr> {{-- all_tr_anchor --}}
             </thead>
             <tbody>
-                @foreach ($roles as $role)
+                @foreach ($posts as $post)
                     <tr>
-                        <th scope='row'>{{ $role->id }}</th>
-                        <td>{{ $role->role }}</td>
+                        <th scope='row'>{{ $post->id }}</th>
+                        <td>{{ $post->image }}</td>
+                        <td>{{ $post->titre }}</td>
+                        <td>{{ $post->texte }}</td>
+                        <td>{{ $post->date }}</td>
                         <td> {{-- all_td_anchor --}}
                             <div class='d-flex'>
-                                <form action='{{ route('role.destroy', $role->id) }}' method='post'>
+                                <form action='{{ route('post.destroy', $post->id) }}' method='post'>
                                     @csrf
                                     <button class=btn btn-danger type=submit>Delete</button>
                                 </form>
-                                <a class='btn btn-primary' href='{{ route('role.edit', $role->id) }}' role='button'>Edit</a>
+                                <a class='btn btn-primary' href='{{ route('post.edit', $post->id) }}' role='button'>Edit</a>
+                                <a class='btn btn-primary' href='{{ route('post.read', $post->id) }}' role='button'>Read</a>
                             </div>
                         </td>
                     </tr>

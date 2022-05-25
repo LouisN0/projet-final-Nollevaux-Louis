@@ -45,10 +45,6 @@
                 <label for=>rs</label>
                 <input type='text' name='rs' value='{{ $teacher->rs }}'>
             </div>
-            <div>
-                <label for=>[A[C[C[A[A[A[A[A[A[A[A[A[A[A[A[B[B[B[B[B[B[B[B[B[B[B[D[D[C[C[C[C[D[D[D[D[D[A[C[C[Ds_id</label>
-                <input type='text' name='[A[C[C[A[A[A[A[A[A[A[A[A[A[A[A[B[B[B[B[B[B[B[B[B[B[B[D[D[C[C[C[C[D[D[D[D[D[A[C[C[Ds_id' value='{{ $teacher->[A[C[C[A[A[A[A[A[A[A[A[A[A[A[A[B[B[B[B[B[B[B[B[B[B[B[D[D[C[C[C[C[D[D[D[D[D[A[C[C[Ds_id }}'>
-            </div>
             <button type='submit'>Update</button> {{-- update_blade_anchor --}}
         </form>
     </div>

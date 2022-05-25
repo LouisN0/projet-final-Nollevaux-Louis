@@ -15,7 +15,6 @@
                     <th scope='col'>telephone</th>
                     <th scope='col'>mail</th>
                     <th scope='col'>rs</th>
-                    <th scope='col'>[A[C[C[A[A[A[A[A[A[A[A[A[A[A[A[B[B[B[B[B[B[B[B[B[B[B[D[D[C[C[C[C[D[D[D[D[D[A[C[C[Ds_id</th>
                 </tr> {{-- read_tr_anchor --}}
             </thead>
             <tbody>
@@ -29,7 +28,6 @@
                     <td>{{ $teacher->telephone }}</td>
                     <td>{{ $teacher->mail }}</td>
                     <td>{{ $teacher->rs }}</td>
-                    <td>{{ $teacher->[A[C[C[A[A[A[A[A[A[A[A[A[A[A[A[B[B[B[B[B[B[B[B[B[B[B[D[D[C[C[C[C[D[D[D[D[D[A[C[C[Ds_id }}</td>
                     <td> {{-- read_td_anchor --}}
                         <a class='btn btn-primary' href='{{ route('teacher.index') }}' role='button'>Back</a>
                     </td>

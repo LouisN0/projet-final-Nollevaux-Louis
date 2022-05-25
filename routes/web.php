@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\EvenementController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\TeacherController;
@@ -51,7 +52,7 @@ Route::get('/teacher', function () {
     return view('front.pages.teacher');
 })->name('teacher');
 
-Route::get('/dashboard', function () {
+Route::get('/back/dashboard', function () {
     return view('back.dashboard');
 })->middleware(['auth'])->name('dashboard');
 
@@ -136,3 +137,11 @@ Route::post('/back/evenements/store', [EvenementController::class, 'store'])->na
 Route::get('/back/evenements/{id}/edit', [EvenementController::class, 'edit'])->name('evenement.edit');
 Route::post('/back/evenements/{id}/update', [EvenementController::class, 'update'])->name('evenement.update');
 Route::post('/back/evenements/{id}/delete', [EvenementController::class, 'destroy'])->name('evenement.destroy');
+// Post
+Route::get('/back/posts', [PostController::class, 'index'])->name('post.index');
+Route::get('/back/posts/create', [PostController::class, 'create'])->name('post.create');
+Route::post('/back/posts/store', [PostController::class, 'store'])->name('post.store');
+Route::get('/back/posts/{id}/read', [PostController::class, 'read'])->name('post.read');
+Route::get('/back/posts/{id}/edit', [PostController::class, 'edit'])->name('post.edit');
+Route::post('/back/posts/{id}/update', [PostController::class, 'update'])->name('post.update');
+Route::post('/back/posts/{id}/delete', [PostController::class, 'destroy'])->name('post.destroy');
