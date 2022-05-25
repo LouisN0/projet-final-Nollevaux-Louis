@@ -26,12 +26,7 @@
 		                                          <option>Important</option>
 		                                    </select>
 		                                </div>
-		                                <div class="grid-list">
-		                                	<ul>
-		                                		<li><a href="#"><i class="fa fa-list"></i></a></li>
-		                                		<li><a href="#"><i class="fa fa-th-large"></i></a></li>
-		                                	</ul>
-		                                </div>
+		                                
 									</div>
 								</div>
 							</div>
@@ -76,22 +71,10 @@
 									<div class="row">
 										<div class="col-md-6 col-xs-6">
 											<div class="pagination">
-												<ul>
-													<li><a href="#">1</a></li>
-													<li class="active"><a href="#">2</a></li>
-													<li><a href="#">3</a></li>
-													<li><a href="#">4</a></li>
-												</ul>
+												{!! $cours->links() !!}
 											</div>
 										</div>
-										<div class="col-md-6 col-xs-6">
-											<div class="navigation">
-												<ul>
-													<li><a href="#"><i class="fa fa-arrow-left"></i></a></li>
-													<li><a href="#"><i class="fa fa-arrow-right"></i></a></li>
-												</ul>
-											</div>
-										</div>
+										
 									</div>
 								</div>
 							</div>

@@ -4382,7 +4382,7 @@ section.testimonials-page #owl-testimonials .owl-buttons .owl-prev:hover:after {
   height: 40px;
   text-align: center;
   display: inline-block;
-  line-height: 40px;
+  line-height: 30px;
   color: #777777;
   background-color: #f2f5f6;
 }
@@ -4842,3 +4842,4 @@ html[xmlns] .flexslider .slides {
 .flex-control-nav > li > img {
   width: 100%;
 }
+

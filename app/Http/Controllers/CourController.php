@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cour;
 use App\Models\Slide;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class CourController extends Controller
@@ -97,5 +98,10 @@ class CourController extends Controller
         $slides = Slide::all();
         $cour = Cour::find($id);
         return view("/front/pages/coursesShow",compact("cour", "slides"));
+    }
+    public function allcour(){
+        $cours = Cour::paginate(2);
+        $teachers = Teacher::all();
+        return view('/front/pages/courses',compact("cours", "teachers"));
     }
 }

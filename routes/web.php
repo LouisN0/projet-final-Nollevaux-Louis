@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EvenementController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\SlideController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Models\Banner;
 use App\Models\Cour;
+use App\Models\Evenement;
 use App\Models\Service;
 use App\Models\Slide;
 use App\Models\Teacher;
@@ -35,15 +37,13 @@ Route::get('/', function () {
     return view('welcome', compact('banners' , 'services', 'cours', 'teachers'));
 })->name('home');
 
-Route::get('/courses', function () {
-    $cours = Cour::all();
-    $teachers = Teacher::all();
-    return view('front.pages.courses', compact('cours', 'teachers'));
-})->name('courses');
 
-Route::get('/events', function () {
-    return view('front.pages.events');
-})->name('events');
+
+Route::get('/courses', [CourController::class, 'allcour'])->name('courses');
+
+Route::get('/events', [EvenementController::class, 'allevent'])->name('events');
+
+
 Route::get('/news', function () {
     return view('front.pages.news');
 })->name('news');
@@ -128,3 +128,11 @@ Route::get('/back/socials/{id}/read', [SocialController::class, 'read'])->name('
 Route::get('/back/socials/{id}/edit', [SocialController::class, 'edit'])->name('social.edit');
 Route::post('/back/socials/{id}/update', [SocialController::class, 'update'])->name('social.update');
 Route::post('/back/socials/{id}/delete', [SocialController::class, 'destroy'])->name('social.destroy');
+
+// Evenement
+Route::get('/back/evenements', [EvenementController::class, 'index'])->name('evenement.index');
+Route::get('/back/evenements/create', [EvenementController::class, 'create'])->name('evenement.create');
+Route::post('/back/evenements/store', [EvenementController::class, 'store'])->name('evenement.store');
+Route::get('/back/evenements/{id}/edit', [EvenementController::class, 'edit'])->name('evenement.edit');
+Route::post('/back/evenements/{id}/update', [EvenementController::class, 'update'])->name('evenement.update');
+Route::post('/back/evenements/{id}/delete', [EvenementController::class, 'destroy'])->name('evenement.destroy');

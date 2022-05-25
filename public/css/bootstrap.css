@@ -4322,7 +4322,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   text-decoration: none;
   color: #222222;
   background-color: #ffffff;
-  border: 1px solid #dddddd;
   margin-left: -1px;
 }
 .pagination > li:first-child > a,
@@ -4352,8 +4351,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .pagination > .active > span:focus {
   z-index: 2;
   color: #ffffff;
-  background-color: #222222;
-  border-color: #222222;
+  background-color: #f5a425;
+  border-color: #f5a425;
   cursor: default;
 }
 .pagination > .disabled > span,
