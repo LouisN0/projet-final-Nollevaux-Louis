@@ -6,93 +6,35 @@
 						<div class="row">
 							<div class="col-md-8">
 								<div class="classic-posts">
+
+									@foreach ($posts as $post )
+										
+									
 									<div class="classic-item">
-										<a href="single-post.html"><img src="http://placehold.it/770x410" alt=""></a>
+										<a href="single-post.html"><img src="{{ asset('/images/'. $post->image) }}" alt=""></a>
 										<ul>
-											<li>Posted: <em>7 Oct 2015</em></li>
+											<li>Posted: <em>{{ $post->date }}</em></li>
 											<li>By: <em>Admin</em></li>
 											<li>Comments: <em>2</em></li>
 										</ul>
-										<a href="single-post.html"><h4>New University Finder: Compare</h4></a>
-										<p>Church-key ugh sriracha slow-carb, +1 you probably haven't heard of them put a bird on it single-origin coffee. Pork belly irony chia, fann pack taxidermy Intelligentsia Pitchfork cliche tote bag stumptown authentic umami asymetrical. Bitters rof party fanny pack, street art you probably haven't heard of them Echo Park disrupt.</p>
+										<a href="single-post.html"><h4>{{ $post->titre }}</h4></a>
+										<p>{!! (Str::words($post->texte, '50')) !!}</p>
 										<div class="buttons">
 											<div class="accent-button">
-												<a href="single-post.html">Continue Reading</a>
+												<a href="{{ route('singlepost', $post->id) }}">Continue Reading</a>
 											</div>
 											<div class="second-button">
 												<a href="#">Share <i class="fa fa-share-alt"></i></a>
 											</div>
 										</div>
 									</div>
-									<div class="classic-item">
-										<a href="single-post.html"><img src="http://placehold.it/770x410" alt=""></a>
-										<ul>
-											<li>Posted: <em>7 Oct 2015</em></li>
-											<li>By: <em>Admin</em></li>
-											<li>Comments: <em>2</em></li>
-										</ul>
-										<a href="single-post.html"><h4>How Do Students Use Rankings?</h4></a>
-										<p>Church-key ugh sriracha slow-carb, +1 you probably haven't heard of them put a bird on it single-origin coffee. Pork belly irony chia, fann pack taxidermy Intelligentsia Pitchfork cliche tote bag stumptown authentic umami asymetrical. Bitters rof party fanny pack, street art you probably haven't heard of them Echo Park disrupt.</p>
-										<div class="buttons">
-											<div class="accent-button">
-												<a href="single-post.html">Continue Reading</a>
-											</div>
-											<div class="second-button">
-												<a href="#">Share <i class="fa fa-share-alt"></i></a>
-											</div>
-										</div>
-									</div>
-									<div class="classic-item">
-										<a href="single-post.html"><img src="http://placehold.it/770x410" alt=""></a>
-										<ul>
-											<li>Posted: <em>7 Oct 2015</em></li>
-											<li>By: <em>Admin</em></li>
-											<li>Comments: <em>2</em></li>
-										</ul>
-										<a href="single-post.html"><h4>Thousands enjoy Brick City Weekend events</h4></a>
-										<p>Church-key ugh sriracha slow-carb, +1 you probably haven't heard of them put a bird on it single-origin coffee. Pork belly irony chia, fann pack taxidermy Intelligentsia Pitchfork cliche tote bag stumptown authentic umami asymetrical. Bitters rof party fanny pack, street art you probably haven't heard of them Echo Park disrupt.</p>
-										<div class="buttons">
-											<div class="accent-button">
-												<a href="single-post.html">Continue Reading</a>
-											</div>
-											<div class="second-button">
-												<a href="#">Share <i class="fa fa-share-alt"></i></a>
-											</div>
-										</div>
-									</div>
-									<div class="classic-item block-quote">
-										<i class="fa fa-quote-left"></i>
-										<p>Church key ugh sriracha slow-carb, you probably haven't heard of them put bird single origin coffee. Pork belly irony chia, fann pack taxidermy Intelligent tote bag.</p>
-										<h6>John Smith - Ceo Founder</h6>
-									</div>
-									<div class="classic-item">
-										<a href="single-post.html"><img src="http://placehold.it/770x410" alt=""></a>
-										<ul>
-											<li>Posted: <em>7 Oct 2015</em></li>
-											<li>By: <em>Admin</em></li>
-											<li>Comments: <em>2</em></li>
-										</ul>
-										<a href="single-post.html"><h4>visiting artists: giles bailey</h4></a>
-										<p>Church-key ugh sriracha slow-carb, +1 you probably haven't heard of them put a bird on it single-origin coffee. Pork belly irony chia, fann pack taxidermy Intelligentsia Pitchfork cliche tote bag stumptown authentic umami asymetrical. Bitters rof party fanny pack, street art you probably haven't heard of them Echo Park disrupt.</p>
-										<div class="buttons">
-											<div class="accent-button">
-												<a href="single-post.html">Continue Reading</a>
-											</div>
-											<div class="second-button">
-												<a href="#">Share <i class="fa fa-share-alt"></i></a>
-											</div>
-										</div>
-									</div>
+@endforeach
+									
 									<div class="pagination-navigation">
 										<div class="row">
 											<div class="col-md-6">
 												<div class="pagination">
-													<ul>
-														<li><a href="#">1</a></li>
-														<li class="active"><a href="#">2</a></li>
-														<li><a href="#">3</a></li>
-														<li><a href="#">4</a></li>
-													</ul>
+													{!! $posts->links() !!}
 												</div>
 											</div>
 											<div class="col-md-6">
@@ -117,12 +59,10 @@
 											<h4>Categories</h4>
 										</div>
 										<ul>
-											<li><a href="#"><i class="fa fa-angle-right"></i>Design</a></li>
-											<li><a href="#"><i class="fa fa-angle-right"></i>International</a></li>
-											<li><a href="#"><i class="fa fa-angle-right"></i>Learning</a></li>
-											<li><a href="#"><i class="fa fa-angle-right"></i>Read</a></li>
-											<li><a href="#"><i class="fa fa-angle-right"></i>Education</a></li>
-											<li><a href="#"><i class="fa fa-angle-right"></i>Finance</a></li>
+										@foreach ($categories as $categorie )
+											<li><a href="{{ url('/categorie/'. $categorie->id) }}"><i class="fa fa-angle-right"></i>{{ $categorie->nom }}</a></li>
+										@endforeach
+											
 										</ul>
 									</div>
 									<div class="recent-news">
@@ -152,15 +92,9 @@
 											<h4>Tags</h4>
 										</div>
 										<ul>
-											<li><a href="#">Photography</a></li>
-											<li><a href="#">Design</a></li>
-											<li><a href="#">Envanto</a></li>
-											<li><a href="#">Course</a></li>
-											<li><a href="#">Education</a></li>
-											<li><a href="#">College</a></li>
-											<li><a href="#">Teachers</a></li>
-											<li><a href="#">Read</a></li>
-											<li><a href="#">Excursions</a></li>
+										@foreach ($tags as $tag )
+											<li><a href="{{ url('/tag/'. $tag->id) }}">{{ $tag->nom }}</a></li>
+										@endforeach
 										</ul>
 									</div>
 									<div class="recent-tweets">

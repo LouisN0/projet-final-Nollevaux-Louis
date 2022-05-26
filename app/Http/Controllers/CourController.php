@@ -100,7 +100,7 @@ class CourController extends Controller
         return view("/front/pages/coursesShow",compact("cour", "slides"));
     }
     public function allcour(){
-        $cours = Cour::paginate(2);
+        $cours = Cour::paginate(9);
         $teachers = Teacher::all();
         return view('/front/pages/courses',compact("cours", "teachers"));
     }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -66,7 +68,52 @@ class PostController extends Controller
         return redirect()->back()->with('message', "Successful delete !");
     }
     public function singlepost($id){
+        $tags = Tag::all();
         $post = Post::find($id);
-        return view('')
+        return view('/front/pages/post' , compact('post', "tags"));
+    }
+    public function allpost(){
+        
+        $tags = Tag::all();
+        $categories = Categorie::all();
+
+        $posts = Post::paginate(9);
+        return view('/front/pages/news',compact("posts", "tags", "categories"));
+    }
+
+    //filter post by tags
+    public function filterTag($id)
+    {
+        $findTag = Tag::where('id', $id)->first();
+        
+        if($findTag){
+
+        $tags = Tag::all();
+        $categories = Categorie::all();
+
+        $posts = Post::where('id', $findTag->id)->paginate(9);
+
+        return view('/front/pages/news',compact("posts", "tags", "categories"));
+        
+        }else{
+            abort(404);
+        }
+    }
+    public function filterCategorie($id)
+    {
+        $findCategorie = Categorie::where('id', $id)->first();
+        
+        if($findCategorie){
+
+        $categories = Categorie::all();
+        $tags = Tag::all();
+
+        $posts = Post::where('id', $findCategorie->id)->paginate(9);
+
+        return view('/front/pages/news',compact("posts", "categories", "tags"));
+        
+        }else{
+            abort(404);
+        }
     }
 }

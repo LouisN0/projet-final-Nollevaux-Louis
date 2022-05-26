@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\EvenementController;
 use App\Http\Controllers\SocialController;
@@ -9,11 +11,13 @@ use App\Http\Controllers\SlideController;
 use App\Http\Controllers\CourController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Models\Banner;
 use App\Models\Cour;
 use App\Models\Evenement;
+use App\Models\Post;
 use App\Models\Service;
 use App\Models\Slide;
 use App\Models\Teacher;
@@ -45,9 +49,17 @@ Route::get('/courses', [CourController::class, 'allcour'])->name('courses');
 Route::get('/events', [EvenementController::class, 'allevent'])->name('events');
 
 
-Route::get('/news', function () {
-    return view('front.pages.news');
-})->name('news');
+
+
+Route::get('/news', [PostController::class, 'allpost'])->name('news');
+Route::get('/tag/{id}', [PostController::class, 'filterTag']);
+Route::get('/categorie/{id}', [PostController::class, 'filterCategorie']);
+Route::post('/comment/store', [CommentController::class, 'store'])->name('comment.add');
+Route::post('/reply/store', [CommentController::class, 'replyStore'])->name('reply.add');
+
+
+Route::get('/front/pages/{id}/post', [PostController::class, 'singlepost'])->name('singlepost');
+
 Route::get('/teacher', function () {
     return view('front.pages.teacher');
 })->name('teacher');
@@ -145,3 +157,17 @@ Route::get('/back/posts/{id}/read', [PostController::class, 'read'])->name('post
 Route::get('/back/posts/{id}/edit', [PostController::class, 'edit'])->name('post.edit');
 Route::post('/back/posts/{id}/update', [PostController::class, 'update'])->name('post.update');
 Route::post('/back/posts/{id}/delete', [PostController::class, 'destroy'])->name('post.destroy');
+// Tag
+Route::get('/back/tags', [TagController::class, 'index'])->name('tag.index');
+Route::get('/back/tags/create', [TagController::class, 'create'])->name('tag.create');
+Route::post('/back/tags/store', [TagController::class, 'store'])->name('tag.store');
+Route::get('/back/tags/{id}/edit', [TagController::class, 'edit'])->name('tag.edit');
+Route::post('/back/tags/{id}/update', [TagController::class, 'update'])->name('tag.update');
+Route::post('/back/tags/{id}/delete', [TagController::class, 'destroy'])->name('tag.destroy');
+// Categorie
+Route::get('/back/categories', [CategorieController::class, 'index'])->name('categorie.index');
+Route::get('/back/categories/create', [CategorieController::class, 'create'])->name('categorie.create');
+Route::post('/back/categories/store', [CategorieController::class, 'store'])->name('categorie.store');
+Route::get('/back/categories/{id}/edit', [CategorieController::class, 'edit'])->name('categorie.edit');
+Route::post('/back/categories/{id}/update', [CategorieController::class, 'update'])->name('categorie.update');
+Route::post('/back/categories/{id}/delete', [CategorieController::class, 'destroy'])->name('categorie.destroy');
