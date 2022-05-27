@@ -36,7 +36,7 @@
 								
 							<div class="col-md-4">
 								<div class="item course-item">
-									<a href="single-course.html"><img src="{{ asset("/images/". $cour->image) }}" alt=""></a>
+									<a href="{{ route('cour.singleshow', $cour->id) }}"><img src="{{ asset("/images/". $cour->image) }}" alt=""></a>
 									<div class="down-content">
 										<img src="{{ asset("/images/". $cour->teacher->photo) }}" alt="">
 										<h6>{{ $cour->teacher->nom }}</h6>
@@ -51,7 +51,7 @@
 											<div class="base"></div>
 										</div>
 									@endif
-									<a href="single-course.html"><h4><?= str_replace(["<br>"], ["<br>"], $cour->titre) ?></h4></a>
+									<a href="{{ route('cour.singleshow', $cour->id) }}"><h4><?= str_replace(["<br>"], ["<br>"], $cour->titre) ?></h4></a>
 									<p>
 										{!! (Str::words($cour->description, '12')) !!}</p>
 									<div class="text-button">
