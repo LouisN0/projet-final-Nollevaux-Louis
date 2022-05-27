@@ -12,6 +12,7 @@ use App\Http\Controllers\CourController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ConversationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Models\Banner;
@@ -49,6 +50,9 @@ Route::get('/courses', [CourController::class, 'allcour'])->name('courses');
 Route::get('/events', [EvenementController::class, 'allevent'])->name('events');
 
 
+Route::get('/back/conversations', [ConversationController::class, 'index'])->name('conversations');
+Route::get('/back/conversations/{user}', [ConversationController::class, 'show'])->name('conversations.show');
+Route::post('/back/conversations/{user}', [ConversationController::class, 'store'])->name('conversations.store');
 
 
 Route::get('/news', [PostController::class, 'allpost'])->name('news');
