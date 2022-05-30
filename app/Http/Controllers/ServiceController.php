@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Conversation;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
@@ -10,12 +11,14 @@ class ServiceController extends Controller
     //
     public function index()
     {
+        $conversations = Conversation::all();
         $services = Service::all();
-        return view("/back/services/all",compact("services"));
+        return view("/back/services/all",compact("services" , "conversations"));
     }
     public function create()
     {
-        return view("/back/services/create");
+        $conversations = Conversation::all();
+        return view("/back/services/create" , compact("conversations"));
     }
     public function store(Request $request)
     {
@@ -33,13 +36,15 @@ class ServiceController extends Controller
     }
     public function read($id)
     {
+        $conversations = Conversation::all();
         $service = Service::find($id);
-        return view("/back/services/read",compact("service"));
+        return view("/back/services/read",compact("service " , "conversations"));
     }
     public function edit($id)
     {
+        $conversations = Conversation::all();
         $service = Service::find($id);
-        return view("/back/services/edit",compact("service"));
+        return view("/back/services/edit",compact("service " , "conversations"));
     }
     public function update($id, Request $request)
     {

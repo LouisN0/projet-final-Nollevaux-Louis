@@ -16,6 +16,7 @@ use App\Http\Controllers\ConversationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Models\Banner;
+use App\Models\Conversation;
 use App\Models\Cour;
 use App\Models\Evenement;
 use App\Models\Post;
@@ -51,8 +52,8 @@ Route::get('/events', [EvenementController::class, 'allevent'])->name('events');
 
 
 Route::get('/back/conversations', [ConversationController::class, 'index'])->name('conversations');
-Route::get('/back/conversations/{user}', [ConversationController::class, 'show'])->name('conversations.show');
-Route::post('/back/conversations/{user}', [ConversationController::class, 'store'])->name('conversations.store');
+Route::get('/back/conversations/{user}', [ConversationController::class, 'show'])->name('conversations.show')->middleware('can:talkTo,user');
+Route::post('/back/conversations/{user}', [ConversationController::class, 'store'])->name('conversations.store')->middleware('can:talkTo,user');
 
 
 Route::get('/news', [PostController::class, 'allpost'])->name('news');
@@ -69,8 +70,9 @@ Route::get('/teacher', function () {
 })->name('teacher');
 
 Route::get('/back/dashboard', function () {
-    return view('back.dashboard');
-})->middleware(['auth'])->name('dashboard');
+    $conversations = Conversation::all();
+    return view('back.dashboard', compact('conversations'));
+})->middleware(['auth'], )->name('dashboard');
 
 require __DIR__.'/auth.php';
 

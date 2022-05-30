@@ -25,6 +25,11 @@
   <link rel="stylesheet" href="{{ asset('dashboard/css/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('dashboard/css/summernote-bs4.min.css') }}">
+
+  <link rel="stylesheet" href="{{ asset('dashboard/css/bootstrap.min.css') }}">
+
+  <link rel="stylesheet" href="{{ asset('dashboard/css/messages.css') }}">
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -45,8 +50,6 @@
     @yield('content')
 
   </div>
-
-  @include('back.partials.footer')
 
 </div>
 <!-- ./wrapper -->

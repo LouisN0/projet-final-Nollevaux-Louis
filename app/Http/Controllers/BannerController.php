@@ -3,19 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
+use App\Models\Conversation;
 use Illuminate\Http\Request;
 
 class BannerController extends Controller
 {
     //
     public function index()
-    {
+    {   $conversations = Conversation::all();
         $banners = Banner::all();
-        return view("/back/banners/all",compact("banners"));
+        return view("/back/banners/all",compact("banners", "conversations"));   
     }
     public function create()
     {
-        return view("/back/banners/create");
+        $conversations = Conversation::all();
+        return view("/back/banners/create",compact("conversations"));
     }
     public function store(Request $request)
     {

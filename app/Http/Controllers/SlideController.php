@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Conversation;
 use App\Models\Slide;
 use Illuminate\Http\Request;
 
@@ -10,12 +11,14 @@ class SlideController extends Controller
     //
     public function index()
     {
+        $conversations = Conversation::all();
         $slides = Slide::all();
-        return view("/back/slides/all",compact("slides"));
+        return view("/back/slides/all",compact("slides " , "conversations"));
     }
     public function create()
     {
-        return view("/back/slides/create");
+        $conversations = Conversation::all();
+        return view("/back/slides/create" , compact("conversations"));
     }
     public function store(Request $request)
     {
@@ -35,8 +38,9 @@ class SlideController extends Controller
     }
     public function read($id)
     {
+        $conversations = Conversation::all();
         $slide = Slide::find($id);
-        return view("/back/slides/read",compact("slide"));
+        return view("/back/slides/read",compact("slide" , "conversations"));
     }
     public function edit($id)
     {

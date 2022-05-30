@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Conversation;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 
@@ -10,12 +11,14 @@ class TeacherController extends Controller
     //
     public function index()
     {
+        $conversations = Conversation::all();
         $teachers = Teacher::all();
-        return view("/back/teachers/all",compact("teachers"));
+        return view("/back/teachers/all",compact("teachers" , "conversations"));
     }
     public function create()
     {
-        return view("/back/teachers/create");
+        $conversations = Conversation::all();
+        return view("/back/teachers/create" , compact("conversations"));
     }
     public function store(Request $request)
     {
@@ -43,13 +46,15 @@ class TeacherController extends Controller
     }
     public function read($id)
     {
+        $conversations = Conversation::all();
         $teacher = Teacher::find($id);
-        return view("/back/teachers/read",compact("teacher"));
+        return view("/back/teachers/read",compact("teacher" , "conversations"));
     }
     public function edit($id)
     {
+        $conversations = Conversation::all();
         $teacher = Teacher::find($id);
-        return view("/back/teachers/edit",compact("teacher"));
+        return view("/back/teachers/edit",compact("teacher" , "conversations"));
     }
     public function update($id, Request $request)
     {

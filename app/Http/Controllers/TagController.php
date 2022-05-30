@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Conversation;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
@@ -10,12 +11,14 @@ class TagController extends Controller
     //
     public function index()
     {
+        $conversations = Conversation::all();
         $tags = Tag::all();
-        return view("/back/tags/all",compact("tags"));
+        return view("/back/tags/all",compact("tags" , "conversations"));
     }
     public function create()
     {
-        return view("/back/tags/create");
+        $conversations = Conversation::all();
+        return view("/back/tags/create" , compact("conversations"));
     }
     public function store(Request $request)
     {
@@ -29,8 +32,9 @@ class TagController extends Controller
     }
     public function edit($id)
     {
+        $conversations = Conversation::all();
         $tag = Tag::find($id);
-        return view("/back/tags/edit",compact("tag"));
+        return view("/back/tags/edit",compact("tag" , "conversations"));
     }
     public function update($id, Request $request)
     {

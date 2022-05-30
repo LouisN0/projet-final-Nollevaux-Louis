@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreMessageRequest;
+use App\Models\Conversation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Repository\ConversationRepository;
@@ -26,23 +28,33 @@ class ConversationController extends Controller
 
     public function index()
     {
-        
+        $conversations = Conversation::all();
         return view('back/conversations/index', [
-            'users' => $this->r->getConversations($this->auth->user()->id)
-        ]);
+            'users' => $this->r->getConversations($this->auth->user()->id),
+            'unread' => $this->r->unreadCount($this->auth->user()->id)
+        ], compact('conversations'));
     }
 
     public function show(User $user)
     {
+        $conversations = Conversation::all();
+        $messages = $this->r->getMessagesFor($this->auth->user()->id, $user->id)->paginate(100);
+        $unread = $this->r->unreadCount($this->auth->user()->id);
+        if(isset($unread[$user->id]))
+        {
+            $this->r->readAllFrom($user->id, $this->auth->user()->id );
+            $unread[$user->id] = 0;
+        }
         
         return view('back/conversations/show', [
             'users' => $this->r->getConversations($this->auth->user()->id),
             'user' => $user,
-            'messages' => $this->r->getMessagesFor($this->auth->user()->id, $user->id)->get()->reverse()
-        ]);
+            'messages' => $messages,
+            'unread' => $unread,
+        ], compact('conversations'));
     }
 
-    public function store(User $user, Request $request) {
+    public function store(User $user, StoreMessageRequest $request) {
         $this->r->createMessage(
             $request->get('message'),
             $this->auth->user()->id,

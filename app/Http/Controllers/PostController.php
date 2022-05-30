@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categorie;
+use App\Models\Conversation;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -12,12 +13,14 @@ class PostController extends Controller
     //
     public function index()
     {
+        $conversations = Conversation::all();
         $posts = Post::all();
-        return view("/back/posts/all",compact("posts"));
+        return view("/back/posts/all",compact("posts ", "conversations"));
     }
     public function create()
     {
-        return view("/back/posts/create");
+        $conversations = Conversation::all();
+        return view("/back/posts/create" , compact("conversations"));
     }
     public function store(Request $request)
     {
@@ -37,13 +40,15 @@ class PostController extends Controller
     }
     public function read($id)
     {
+        $conversations = Conversation::all();
         $post = Post::find($id);
-        return view("/back/posts/read",compact("post"));
+        return view("/back/posts/read",compact("post" , "conversations"));
     }
     public function edit($id)
     {
+        $conversations = Conversation::all();
         $post = Post::find($id);
-        return view("/back/posts/edit",compact("post"));
+        return view("/back/posts/edit",compact("post" , "conversations"));
     }
     public function update($id, Request $request)
     {

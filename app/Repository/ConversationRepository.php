@@ -26,10 +26,13 @@ class ConversationRepository {
     }
 
     public function getConversations($userId) {
-        return $this->user->newQuery()
-        ->select('nom', 'id')
+        $conversations = $this->user->newQuery()
+        ->select('nom', 'id', 'image')
         ->where('id', '!=', $userId)
         ->get();
+
+        return $conversations;
+
         
     }
 
@@ -48,6 +51,15 @@ class ConversationRepository {
         return $this->conversation->newQuery()
             ->whereRaw("((from_id = $from AND to_id = $to) OR (from_id = $to AND to_id = $from))")
             ->orderBy('created_at', 'DESC');
+    }
+
+    public function unreadCount($userId){
+        return $this->conversation->newQuery()->where('to_id', $userId)->groupBy('from_id')->selectRaw('from_id, COUNT(id) as count')->whereRaw('read_at IS NULL')->get()->pluck('count', 'from_id');
+    }
+
+    public function readAllFrom($from, $to)
+    {
+        $this->conversation->where('from_id', $from)->where('to_id', $to)->update(['read_at' => Carbon::now()]);
     }
 
 }

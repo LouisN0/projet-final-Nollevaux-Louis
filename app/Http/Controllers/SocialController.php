@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Conversation;
 use App\Models\Social;
 use Illuminate\Http\Request;
 
@@ -10,12 +11,14 @@ class SocialController extends Controller
     //
     public function index()
     {
+        $conversations = Conversation::all();
         $socials = Social::all();
-        return view("/back/socials/all",compact("socials"));
+        return view("/back/socials/all",compact("socials" , "conversations"));
     }
     public function create()
     {
-        return view("/back/socials/create");
+        $conversations = Conversation::all();
+        return view("/back/socials/create" , compact("conversations"));
     }
     public function store(Request $request)
     {
@@ -39,13 +42,15 @@ class SocialController extends Controller
     }
     public function read($id)
     {
+        $conversations = Conversation::all();
         $social = Social::find($id);
-        return view("/back/socials/read",compact("social"));
+        return view("/back/socials/read",compact("social" , "conversations"));
     }
     public function edit($id)
     {
+        $conversations = Conversation::all();
         $social = Social::find($id);
-        return view("/back/socials/edit",compact("social"));
+        return view("/back/socials/edit",compact("social" , "conversations"));
     }
     public function update($id, Request $request)
     {

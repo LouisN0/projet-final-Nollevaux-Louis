@@ -3067,3 +3067,8 @@
 
 }));
 //# sourceMappingURL=adminlte.js.map
+
+//my code
+//scroll bottom text box
+$('.chat-box').scrollTop($('.chat-box')[0].scrollHeight);
+

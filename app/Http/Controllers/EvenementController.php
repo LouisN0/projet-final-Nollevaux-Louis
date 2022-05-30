@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Conversation;
 use App\Models\Evenement;
 use Illuminate\Http\Request;
 
@@ -10,12 +11,14 @@ class EvenementController extends Controller
     //
     public function index()
     {
+        $conversations = Conversation::all();
         $evenements = Evenement::all();
-        return view("/back/evenements/all",compact("evenements"));
+        return view("/back/evenements/all",compact("evenements" , "conversations"));
     }
     public function create()
     {
-        return view("/back/evenements/create");
+        $conversations = Conversation::all();
+        return view("/back/evenements/create" , compact("conversations"));
     }
     public function store(Request $request)
     {
@@ -39,8 +42,9 @@ class EvenementController extends Controller
     }
     public function edit($id)
     {
+        $conversations = Conversation::all();
         $evenement = Evenement::find($id);
-        return view("/back/evenements/edit",compact("evenement"));
+        return view("/back/evenements/edit",compact("evenement" , "conversations"));
     }
     public function update($id, Request $request)
     {

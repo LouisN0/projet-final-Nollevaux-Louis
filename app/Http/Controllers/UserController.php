@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Conversation;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,13 +13,15 @@ class UserController extends Controller
     //
     public function index()
     {
+        $conversations = Conversation::all();
         $users = User::all();
-        return view("/back/users/all",compact("users"));
+        return view("/back/users/all",compact("users" , "conversations"));
     }
     public function create()
     {
+        $conversations = Conversation::all();
         $roles = Role::all();
-        return view("/back/users/create", compact("roles"));
+        return view("/back/users/create", compact("roles" , "conversations"));
     }
     public function store(Request $request)
     {
@@ -40,14 +43,16 @@ class UserController extends Controller
     }
     public function read($id)
     {
+        $conversations = Conversation::all();
         $user = User::find($id);
-        return view("/back/users/read",compact("user"));
+        return view("/back/users/read",compact("user " , "conversations"));
     }
     public function edit($id)
     {
+        $conversations = Conversation::all();
         $roles = Role::all();
         $user = User::find($id);
-        return view("/back/users/edit",compact("user", "roles"));
+        return view("/back/users/edit",compact("user", "roles" , "conversations"));
     }
     public function update($id, Request $request)
     {

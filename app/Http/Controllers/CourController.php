@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Conversation;
 use App\Models\Cour;
 use App\Models\Slide;
 use App\Models\Teacher;
@@ -12,12 +13,14 @@ class CourController extends Controller
     //
     public function index()
     {
+        $conversations = Conversation::all();
         $cours = Cour::all();
-        return view("/back/cours/all",compact("cours"));
+        return view("/back/cours/all",compact("cours" , "conversations"));
     }
     public function create()
     {
-        return view("/back/cours/create");
+        $conversations = Conversation::all();
+        return view("/back/cours/create" , compact("conversations"));
     }
     public function store(Request $request)
     {
@@ -50,13 +53,15 @@ class CourController extends Controller
     }
     public function read($id)
     {
+        $conversations = Conversation::all();
         $cour = Cour::find($id);
-        return view("/back/cours/read",compact("cour"));
+        return view("/back/cours/read",compact("cour" , "conversations"));
     }
     public function edit($id)
     {
+        $conversations = Conversation::all();
         $cour = Cour::find($id);
-        return view("/back/cours/edit",compact("cour"));
+        return view("/back/cours/edit",compact("cour" , "conversations"));
     }
     public function update($id, Request $request)
     {
