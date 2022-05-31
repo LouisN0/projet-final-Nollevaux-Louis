@@ -24,9 +24,9 @@ class UserSeeder extends Seeder
             'image' => 'default.jpg',
         ]);
         DB::table('users')->insert([
-            'nom' => 'a',
-            'email' => 'a@gmail.com',
-            'password' => Hash::make('a@gmail.com'),
+            'nom' => 'Samuel Delossantos',
+            'email' => 'samuel@gmail.com',
+            'password' => Hash::make('samuel@gmail.com'),
             'role_id' => 1,
             'image' => 'default.jpg',
         ]);

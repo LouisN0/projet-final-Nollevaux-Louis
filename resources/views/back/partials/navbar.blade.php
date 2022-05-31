@@ -35,7 +35,7 @@
         </li>
         <li class="nav-item ">
           <a href="{{ route('conversations') }}" class="nav-link {{ request()->routeIs("conversations") ? "active" : "" }}">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <i class="nav-icon far fa-envelope"></i>
             <p>
               Messages
             </p>

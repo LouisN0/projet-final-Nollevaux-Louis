@@ -16,6 +16,7 @@ class TeacherSeeder extends Seeder
     public function run()
     {
         DB::table('teachers')->insert([
+            'user_id' => 2,
             'photo' => 'teacher1.jpg',
             'nom' => 'Samuel Delossantos',
             'discipline' => 'Math Teacher',

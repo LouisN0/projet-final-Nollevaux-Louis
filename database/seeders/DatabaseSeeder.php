@@ -22,14 +22,14 @@ class DatabaseSeeder extends Seeder
             CategoriepostSeeder::class,
             PostTagSeeder::class,
             EvenementSeeder::class,
-            TeacherSeeder::class,
-            SocialSeeder::class,
             SlideSeeder::class,
-            CourSeeder::class,
             ServiceSeeder::class,
             BannerSeeder::class,
             RoleSeeder::class,
             UserSeeder::class,
+            TeacherSeeder::class,
+            SocialSeeder::class,
+            CourSeeder::class,
             
             
             

@@ -36,7 +36,14 @@ class ConversationController extends Controller
     }
 
     public function show(User $user)
-    {
+    {   
+
+
+        
+        $previousURL = url()->previous();
+        $explodetURL = explode('/', $previousURL);
+        
+        
         $conversations = Conversation::all();
         $messages = $this->r->getMessagesFor($this->auth->user()->id, $user->id)->paginate(100);
         $unread = $this->r->unreadCount($this->auth->user()->id);
@@ -45,13 +52,18 @@ class ConversationController extends Controller
             $this->r->readAllFrom($user->id, $this->auth->user()->id );
             $unread[$user->id] = 0;
         }
+        if($explodetURL[3] === "front" ){
+            return redirect()->back();
+        }
         
-        return view('back/conversations/show', [
+            return view('back/conversations/show', [
             'users' => $this->r->getConversations($this->auth->user()->id),
             'user' => $user,
             'messages' => $messages,
             'unread' => $unread,
         ], compact('conversations'));
+        
+        
     }
 
     public function store(User $user, StoreMessageRequest $request) {
