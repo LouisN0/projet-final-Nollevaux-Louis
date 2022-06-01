@@ -38,11 +38,8 @@ class ConversationController extends Controller
     public function show(User $user)
     {   
 
-
-        
         $previousURL = url()->previous();
         $explodetURL = explode('/', $previousURL);
-        
         
         $conversations = Conversation::all();
         $messages = $this->r->getMessagesFor($this->auth->user()->id, $user->id)->paginate(100);
@@ -73,6 +70,10 @@ class ConversationController extends Controller
             $user->id
 
         );
+        
         return redirect(route('conversations.show', $user->id));
     }
+
+    
+    
 }

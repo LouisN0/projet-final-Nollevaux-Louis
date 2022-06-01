@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\Conversation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class BannerController extends Controller
 {
@@ -23,51 +24,77 @@ class BannerController extends Controller
     {
         $banner = new Banner;
         $request->validate([
-         'image'=> 'required',
+        'image'=> 'required',
          'titre'=> 'required',
          'motsCle'=> 'required',
          'description'=> 'required',
          'btn'=> 'required',
+         'first'=> 'required',
+         
         ]); // store_validated_anchor;
-        $banner->image = $request->image;
         $banner->titre = $request->titre;
         $banner->motsCle = $request->motsCle;
         $banner->description = $request->description;
         $banner->btn = $request->btn;
-        $banner->save(); // store_anchor
+        $banner->first = $request->first;
+        
+        $banner->image = $request->file("image")->hashName();
+        $banner->save(); // update_anchor
+        $request->file('image')->storePublicly('images/', 'public');
+        
         return redirect()->route("banner.index")->with('message', "Successful storage !");
     }
     public function read($id)
     {
+        $conversations = Conversation::all();
         $banner = Banner::find($id);
-        return view("/back/banners/read",compact("banner"));
+        return view("/back/banners/read",compact("banner" , "conversations"));
     }
     public function edit($id)
     {
+        $conversations = Conversation::all();
         $banner = Banner::find($id);
-        return view("/back/banners/edit",compact("banner"));
+        return view("/back/banners/edit",compact("banner" , "conversations"));
     }
     public function update($id, Request $request)
     {
         $banner = Banner::find($id);
         $request->validate([
-         'image'=> 'required',
          'titre'=> 'required',
          'motsCle'=> 'required',
          'description'=> 'required',
          'btn'=> 'required',
         ]); // update_validated_anchor;
-        $banner->image = $request->image;
+        // $banner->image = $request->file('image')->hashName();
         $banner->titre = $request->titre;
         $banner->motsCle = $request->motsCle;
         $banner->description = $request->description;
         $banner->btn = $request->btn;
-        $banner->save(); // update_anchor
+        $banner->first = $request->first;
+        // $banner->save(); // update_anchor
+        // $request->file("image")->storePublicly("images", "public");
+
+        if ($request->file('image') == "") {
+            $banner->image = $banner->image;
+            $banner->save(); // update_anchor
+        }else{
+            $banner->image = $request->file("image")->hashName();
+            $banner->save(); // update_anchor
+            $request->file('image')->storePublicly('images/', 'public');
+        }
+
         return redirect()->route("banner.index")->with('message', "Successful update !");
     }
     public function destroy($id)
     {
         $banner = Banner::find($id);
+
+        $destination = "images" . $banner->img;
+        if (File::exists($destination)) 
+        {
+            File::delete($destination);
+        }
+
         $banner->delete();
         return redirect()->back()->with('message', "Successful delete !");
     }

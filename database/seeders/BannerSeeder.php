@@ -21,6 +21,7 @@ class BannerSeeder extends Seeder
             'motsCle' => 'Solution',
             'description' => 'Nunc eget tempor neque. Aenean non ex sed nibh euismod<br>ornare. Nam congue nisi purus, sed luctus risus.',
             'btn' => '#',
+            'first' => true,
         ]);
         DB::table('banners')->insert([
             'image' => 'banner2.jpg',
@@ -28,6 +29,7 @@ class BannerSeeder extends Seeder
             'motsCle' => 'Features',
             'description' => 'Nunc eget tempor neque. Aenean non ex sed nibh euismod<br>ornare. Nam congue nisi purus, sed luctus risus.',
             'btn' => '#',
+            'first' => false,
         ]);
         //
     }

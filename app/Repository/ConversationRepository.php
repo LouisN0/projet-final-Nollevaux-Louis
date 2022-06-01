@@ -46,6 +46,8 @@ class ConversationRepository {
         ]);
     }
 
+    
+
     public function getMessagesFor($from, $to ): Builder
     {   
         return $this->conversation->newQuery()

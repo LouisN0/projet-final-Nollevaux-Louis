@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('banners', function (Blueprint $table) {
+        Schema::create('requests', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
-            $table->string('titre');
-            $table->string('motsCle');
-            $table->string('description');
-            $table->string('btn');
-            $table->boolean('first')->default(false);
+            $table->foreignId('user_id')->constrained('users', 'id');
+            $table->foreignId('teacher_id')->constrained('teachers', 'id');
+            $table->string('cour_id');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('banners');
+        Schema::dropIfExists('requests');
     }
 };

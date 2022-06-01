@@ -5,18 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Banner extends Model
+class Request extends Model
 {
     use HasFactory;
      
     protected $fillable = [
-        'image',
-        'titre',
-        'motsCle',
-        'description',
-        'btn',
-        'first',
+        'user_id',
+        'teacher_id',
+        'cour_id',
     ]; // model_anchor
      
-    protected $table = 'banners';
+    protected $table = 'requests';
 }

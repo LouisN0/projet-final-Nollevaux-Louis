@@ -11,29 +11,40 @@
                 </ul>
             </div>
         @endif
-        <form action='{{ route('banner.store') }}' method='post'>
+        <form action='{{ route('banner.store') }}' method='post' enctype="multipart/form-data">
             @csrf
-            <div>
-                <label for=>image</label>
-                <input type='text' name='image'>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">image</label>
+                <input class="form-control" id="formFile" type='file' name='image'>
             </div>
-            <div>
-                <label for=>titre</label>
-                <input type='text' name='titre'>
+            <div class="mb-3">
+                <label class="form-label" for=>titre</label>
+                <input class="form-control" type='text' name='titre'>
             </div>
-            <div>
-                <label for=>motsCle</label>
-                <input type='text' name='motsCle'>
+            <div class="mb-3">
+                <label class="form-label" for=>motsCle</label>
+                <input class="form-control" type='text' name='motsCle'>
             </div>
-            <div>
-                <label for=>description</label>
-                <input type='text' name='description'>
+            <div class="mb-3">
+                <label class="form-label" for=>description</label>
+                <input class="form-control" type='text' name='description'>
             </div>
-            <div>
-                <label for=>btn</label>
-                <input type='text' name='btn'>
+            <div class="mb-3">
+                <label class="form-label" for=>btn</label>
+                <input class="form-control" type='text' name='btn'>
             </div>
-            <button type='submit'>Create</button> {{-- create_blade_anchor --}} 
+            <div class="mb-3">
+                <label for="" class="form-label">first</label>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="first" id="check 2" value="1">
+                <label for="check-2">yes</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check 2" name="first" value="0">
+                <label for="check-2">no</label>
+            </div>
+            </div>
+            <button class="btn btn-primary" type='submit'>Create</button> {{-- create_blade_anchor --}} 
         </form>
     </div>
 @endsection

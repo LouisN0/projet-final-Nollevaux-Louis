@@ -31,6 +31,7 @@ class ServiceController extends Controller
         $service->icone = $request->icone;
         $service->titre = $request->titre;
         $service->description = $request->description;
+        
         $service->save(); // store_anchor
         return redirect()->route("service.index")->with('message', "Successful storage !");
     }
@@ -38,25 +39,31 @@ class ServiceController extends Controller
     {
         $conversations = Conversation::all();
         $service = Service::find($id);
-        return view("/back/services/read",compact("service " , "conversations"));
+        return view("/back/services/read",compact("service" , "conversations"));
     }
     public function edit($id)
     {
         $conversations = Conversation::all();
         $service = Service::find($id);
-        return view("/back/services/edit",compact("service " , "conversations"));
+        return view("/back/services/edit",compact("service" , "conversations"));
     }
     public function update($id, Request $request)
     {
         $service = Service::find($id);
         $request->validate([
-         'icone'=> 'required',
+         
          'titre'=> 'required',
          'description'=> 'required',
         ]); // update_validated_anchor;
-        $service->icone = $request->icone;
+        
         $service->titre = $request->titre;
         $service->description = $request->description;
+        if ($request->icone == "") {
+            $service->icone = $service->icone;
+            $service->save(); // update_anchor
+        }else{
+            $service->icone = $request->icone;
+        }
         $service->save(); // update_anchor
         return redirect()->route("service.index")->with('message', "Successful update !");
     }

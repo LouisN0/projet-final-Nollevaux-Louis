@@ -11,29 +11,55 @@
                 </ul>
             </div>
         @endif
-        <form action='{{ route('banner.update' , $banner->id) }}' method='post'>
+        <form action='{{ route('banner.update' , $banner->id) }}' method='post' enctype="multipart/form-data">
             @csrf
-            <div>
-                <label for=>image</label>
-                <input type='text' name='image' value='{{ $banner->image }}'>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">image</label>
+                <input class="form-control" id="formFile" type='file' name='image' value='{{ $banner->image }}'>
             </div>
-            <div>
-                <label for=>titre</label>
-                <input type='text' name='titre' value='{{ $banner->titre }}'>
+            <div class="mb-3">
+                <label for="" class="form-label">titre</label>
+                <input class="form-control"  type='text' name='titre' value='{{ $banner->titre }}'>
             </div>
-            <div>
-                <label for=>motsCle</label>
-                <input type='text' name='motsCle' value='{{ $banner->motsCle }}'>
+            <div class="mb-3">
+                <label for="" class="form-label">motsCle</label>
+                <input class="form-control"  type='text' name='motsCle' value='{{ $banner->motsCle }}'>
             </div>
-            <div>
-                <label for=>description</label>
-                <input type='text' name='description' value='{{ $banner->description }}'>
+            <div class="mb-3">
+                <label for="" class="form-label">description</label>
+                <input class="form-control"  type='text' name='description' value='{{ $banner->description }}'>
             </div>
-            <div>
-                <label for=>btn</label>
-                <input type='text' name='btn' value='{{ $banner->btn }}'>
+            <div class="mb-3">
+                <label for="" class="form-label">btn</label>
+                <input class="form-control"  type='text' name='btn' value='{{ $banner->btn }}'>
             </div>
-            <button type='submit'>Update</button> {{-- update_blade_anchor --}}
+            @if ($banner->first == 1)
+            <div>
+                <label for="" class="form-label">first</label>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="first" id="check 2" value="1" checked>
+                <label for="check-2">yes</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check 2" name="first" value="0">
+                <label for="check-2">no</label>
+            </div>
+            </div>
+            @else
+            <div>
+                <label for="" class="form-label">first</label>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="first" id="check 2" value="1">
+                <label for="check-2">yes</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check 2" name="first" value="0" checked>
+                <label for="check-2">no</label>
+            </div>
+            </div>
+
+            @endif
+            <button class="btn btn-primary" type='submit'>Update</button> {{-- update_blade_anchor --}}
         </form>
     </div>
 @endsection

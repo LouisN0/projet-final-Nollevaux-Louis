@@ -1,6 +1,6 @@
 @extends('back.layouts.app')
 @section('content')
-    <div class='container'>
+    <div class='mx-5'>
         <h1 class='my-5'>Banners</h1>
         @if (session()->has('message'))
             <div class='alert alert-success'>
@@ -16,16 +16,17 @@
                 </ul>
             </div>
         @endif
-        <table class='table'>
+        <table class='table table-striped'>
             <thead>
                 <tr>
                     <th scope='col'>#</th>
-                    <th scope='col'>Action</th>
                     <th scope='col'>image</th>
                     <th scope='col'>titre</th>
                     <th scope='col'>motsCle</th>
                     <th scope='col'>description</th>
                     <th scope='col'>btn</th>
+                    <th scope='col'>first</th>
+                    <th scope='col'>Action</th>
                 </tr> {{-- all_tr_anchor --}}
             </thead>
             <tbody>
@@ -37,14 +38,15 @@
                         <td>{{ $banner->motsCle }}</td>
                         <td>{{ $banner->description }}</td>
                         <td>{{ $banner->btn }}</td>
+                        <td>{{ $banner->first }}</td>
                         <td> {{-- all_td_anchor --}}
                             <div class='d-flex'>
                                 <form action='{{ route('banner.destroy', $banner->id) }}' method='post'>
                                     @csrf
-                                    <button class=btn btn-danger type=submit>Delete</button>
+                                    <button class="btn btn-outline-dark" type="submit">Delete</button>
                                 </form>
-                                <a class='btn btn-primary' href='{{ route('banner.edit', $banner->id) }}' role='button'>Edit</a>
-                                <a class='btn btn-primary' href='{{ route('banner.read', $banner->id) }}' role='button'>Read</a>
+                                <a class='btn btn-outline-dark' href='{{ route('banner.edit', $banner->id) }}' role='button'>Edit</a>
+                                <a class='btn btn-outline-dark' href='{{ route('banner.read', $banner->id) }}' role='button'>Read</a>
                             </div>
                         </td>
                     </tr>

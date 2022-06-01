@@ -1,7 +1,7 @@
 @extends('back.layouts.app')
 @section('content')
-    <div class='mx-5'>
-        <h1 class='my-5'>Services</h1>
+    <div class='container'>
+        <h1 class='my-5'>Contacts</h1>
         @if (session()->has('message'))
             <div class='alert alert-success'>
                 {{ session()->get('message') }}
@@ -16,31 +16,32 @@
                 </ul>
             </div>
         @endif
-        <table class='table table-striped'>
+        <table class='table'>
             <thead>
                 <tr>
                     <th scope='col'>#</th>
-                    <th scope='col'>icone</th>
-                    <th scope='col'>titre</th>
-                    <th scope='col'>description</th>
                     <th scope='col'>Action</th>
+                    <th scope='col'>adress</th>
+                    <th scope='col'>email</th>
+                    <th scope='col'>phone</th>
+                    <th scope='col'>map</th>
                 </tr> {{-- all_tr_anchor --}}
             </thead>
             <tbody>
-                @foreach ($services as $service)
+                @foreach ($contacts as $contact)
                     <tr>
-                        <th scope='row'>{{ $service->id }}</th>
-                        <td><li class='{{ $service->icone }}'></li></td>
-                        <td>{{ $service->titre }}</td>
-                        <td>{{ $service->description }}</td>
+                        <th scope='row'>{{ $contact->id }}</th>
+                        <td>{{ $contact->adress }}</td>
+                        <td>{{ $contact->email }}</td>
+                        <td>{{ $contact->phone }}</td>
+                        <td>{{ $contact->map }}</td>
                         <td> {{-- all_td_anchor --}}
                             <div class='d-flex'>
-                                <form action='{{ route('service.destroy', $service->id) }}' method='post'>
+                                <form action='{{ route('contact.destroy', $contact->id) }}' method='post'>
                                     @csrf
-                                    <button class="btn btn-outline-dark" type="submit">Delete</button>
+                                    <button class=btn btn-danger type=submit>Delete</button>
                                 </form>
-                                <a class='btn btn-outline-dark' href='{{ route('service.edit', $service->id) }}' role='button'>Edit</a>
-                                <a class='btn btn-outline-dark' href='{{ route('service.read', $service->id) }}' role='button'>Read</a>
+                                <a class='btn btn-primary' href='{{ route('contact.edit', $contact->id) }}' role='button'>Edit</a>
                             </div>
                         </td>
                     </tr>

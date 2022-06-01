@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RequestController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\PostController;
@@ -47,6 +49,11 @@ Route::get('/', function () {
 
 
 Route::get('/courses', [CourController::class, 'allcour'])->name('courses');
+
+Route::get('/contact', function () {
+    
+    return view('front/pages/contact');
+})->name('contact');
 
 Route::get('/events', [EvenementController::class, 'allevent'])->name('events');
 
@@ -177,3 +184,14 @@ Route::post('/back/categories/store', [CategorieController::class, 'store'])->na
 Route::get('/back/categories/{id}/edit', [CategorieController::class, 'edit'])->name('categorie.edit');
 Route::post('/back/categories/{id}/update', [CategorieController::class, 'update'])->name('categorie.update');
 Route::post('/back/categories/{id}/delete', [CategorieController::class, 'destroy'])->name('categorie.destroy');
+// Contact
+Route::get('/back/contacts', [ContactController::class, 'index'])->name('contact.index');
+Route::get('/back/contacts/{id}/edit', [ContactController::class, 'edit'])->name('contact.edit');
+Route::post('/back/contacts/{id}/update', [ContactController::class, 'update'])->name('contact.update');
+Route::post('/back/contacts/{id}/delete', [ContactController::class, 'destroy'])->name('contact.destroy');
+// Request
+Route::get('/back/requests', [RequestController::class, 'index'])->name('request.index');
+Route::get('/back/requests/create', [RequestController::class, 'create'])->name('request.create');
+Route::post('/back/requests/store', [RequestController::class, 'store'])->name('request.store');
+Route::get('/back/requests/{id}/read', [RequestController::class, 'read'])->name('request.read');
+Route::post('/back/requests/{id}/delete', [RequestController::class, 'destroy'])->name('request.destroy');

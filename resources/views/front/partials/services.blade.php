@@ -34,21 +34,17 @@
                             <input type="text" id="name" name="s" placeholder="Full Name" value="">
                             <input type="text" id="address" name="s" placeholder="E-mail Address" value="">
                             <div class="select">
-                                <select name="mark" id="campus">
-                                    <option value="-1">Campus of Interests</option>
-                                      <option>Nearby</option>
-                                      <option>High Classes</option>
-                                      <option>Short Time</option>
-                                      <option>Long Time</option>
+                                <select name="to" id="campus">
+                                    @foreach ($teachers as $teacher )
+                                     <option value="{{ $teacher->id }}">{{ $teacher->nom }}</option>   
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="select">
-                                <select name="mark" id="program">
-                                    <option value="-1">Program of Interests</option>
-                                      <option>Wroking Process</option>
-                                      <option>Archivements</option>
-                                      <option>Social</option>
-                                      <option>Profits</option>
+                                <select name="message" id="program">
+                                    @foreach ($cours as $cour)
+                                        <option value="{{ $cour->id }}">{!! $cour->titre !!}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="accent-button"> @if (Route::has('login'))

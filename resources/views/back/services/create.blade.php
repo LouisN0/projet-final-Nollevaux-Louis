@@ -13,19 +13,74 @@
         @endif
         <form action='{{ route('service.store') }}' method='post'>
             @csrf
-            <div>
-                <label for=>icone</label>
-                <input type='text' name='icone'>
+            <div class='d-flex mt-5 mb-3'>
+                <label for="">Icones</label>
+                <div class="form-check mx-3">
+                    <input class="form-check-input" type="radio" name="icone"
+                        id="flexRadioDefault1" value="fa fa-graduation-cap">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        <li class="fa fa-graduation-cap"></li>
+                    </label>
+                </div>
+                <div class="form-check mx-3">
+                    <input class="form-check-input" type="radio" name="icone"
+                        id="flexRadioDefault2" value="fa fa-globe">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        <li class="fa fa-globe"></li>
+                    </label>
+                </div>
+                <div class="form-check mx-3">
+                    <input class="form-check-input" type="radio" name="icone"
+                        id="flexRadioDefault3" value="fa fa-clock-o">
+                    <label class="form-check-label" for="flexRadioDefault3">
+                        <li class="fa fa-clock-o"></li>
+                    </label>
+                </div>
+                <div class="form-check mx-3">
+                    <input class="form-check-input" type="radio" name="icone"
+                        id="flexRadioDefault4" value="fa fa-book">
+                    <label class="form-check-label" for="flexRadioDefault4">
+                        <li class="fa fa-book"></li>
+                    </label>
+                </div>
+                <div class="form-check mx-3">
+                    <input class="form-check-input" type="radio" name="icone"
+                        id="flexRadioDefault4" value="fa fa-archive">
+                    <label class="form-check-label" for="flexRadioDefault4">
+                        <li class="fa fa-archive"></li>
+                    </label>
+                </div>
+                <div class="form-check mx-3">
+                    <input class="form-check-input" type="radio" name="icone"
+                        id="flexRadioDefault4" value="fa fa-briefcase">
+                    <label class="form-check-label" for="flexRadioDefault4">
+                        <li class="fa fa-briefcase"></li>
+                    </label>
+                </div>
+                <div class="form-check mx-3">
+                    <input class="form-check-input" type="radio" name="icone"
+                        id="flexRadioDefault4" value="fa fa-camera">
+                    <label class="form-check-label" for="flexRadioDefault4">
+                        <li class="fa fa-camera"></li>
+                    </label>
+                </div>
+                <div class="form-check mx-3">
+                    <input class="form-check-input" type="radio" name="icone"
+                        id="flexRadioDefault4" value="fa fa-car">
+                    <label class="form-check-label" for="flexRadioDefault4">
+                        <li class="fa fa-car"></li>
+                    </label>
+                </div>
             </div>
-            <div>
-                <label for=>titre</label>
-                <input type='text' name='titre'>
+            <div class="mb-3">
+                <label class="form-label" for=>titre</label>
+                <input class="form-control" type='text' name='titre'>
             </div>
-            <div>
-                <label for=>description</label>
-                <input type='text' name='description'>
+            <div class="mb-3">
+                <label class="form-label" for=>description</label>
+                <input class="form-control" type='text' name='description'>
             </div>
-            <button type='submit'>Create</button> {{-- create_blade_anchor --}} 
+            <button class="btn btn-primary"type='submit'>Create</button> {{-- create_blade_anchor --}} 
         </form>
     </div>
 @endsection
