@@ -73,6 +73,8 @@ class ConversationController extends Controller
         
         return redirect(route('conversations.show', $user->id));
     }
+    
+    
 
     
     

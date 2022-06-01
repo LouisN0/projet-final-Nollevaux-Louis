@@ -45,7 +45,7 @@ class ConversationRepository {
             'created_at' => Carbon::now(),
         ]);
     }
-
+   
     
 
     public function getMessagesFor($from, $to ): Builder

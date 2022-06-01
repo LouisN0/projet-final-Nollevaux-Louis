@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\TagController;
@@ -43,7 +42,8 @@ Route::get('/', function () {
     $services = Service::all();
     $banners = Banner::all();
     $teachers = Teacher::all();
-    return view('welcome', compact('banners' , 'services', 'cours', 'teachers'));
+    $posts = Post::all();
+    return view('welcome', compact('banners' , 'services', 'cours', 'teachers', 'posts'));
 })->name('home');
 
 
@@ -61,6 +61,7 @@ Route::get('/events', [EvenementController::class, 'allevent'])->name('events');
 Route::get('/back/conversations', [ConversationController::class, 'index'])->name('conversations');
 Route::get('/back/conversations/{user}', [ConversationController::class, 'show'])->name('conversations.show')->middleware('can:talkTo,user');
 Route::post('/back/conversations/{user}', [ConversationController::class, 'store'])->name('conversations.store')->middleware('can:talkTo,user');
+
 
 
 Route::get('/news', [PostController::class, 'allpost'])->name('news');
@@ -189,9 +190,4 @@ Route::get('/back/contacts', [ContactController::class, 'index'])->name('contact
 Route::get('/back/contacts/{id}/edit', [ContactController::class, 'edit'])->name('contact.edit');
 Route::post('/back/contacts/{id}/update', [ContactController::class, 'update'])->name('contact.update');
 Route::post('/back/contacts/{id}/delete', [ContactController::class, 'destroy'])->name('contact.destroy');
-// Request
-Route::get('/back/requests', [RequestController::class, 'index'])->name('request.index');
-Route::get('/back/requests/create', [RequestController::class, 'create'])->name('request.create');
-Route::post('/back/requests/store', [RequestController::class, 'store'])->name('request.store');
-Route::get('/back/requests/{id}/read', [RequestController::class, 'read'])->name('request.read');
-Route::post('/back/requests/{id}/delete', [RequestController::class, 'destroy'])->name('request.destroy');
+

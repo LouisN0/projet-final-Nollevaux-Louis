@@ -34,16 +34,19 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
+                    @foreach ($posts->orderBy('created_at', 'DESC') as $post )
                         <div class="news-item">
-                            <a href="single-post.html"><img src="http://placehold.it/175x130" alt=""></a>
+                            <a href="single-post.html"><img src="{{ asset('/images/'. $post->image) }}" alt=""></a>
                             <ul>
-                                <li>7 Oct 2015</li>
+                                <li>{{ $post->date }}</li>
                                 <li>By Admin</li>
                                 <li>2 Comments</li>
                             </ul>
-                            <a href="single-post.html"><h4>New University Finder: Compare</h4></a>
-                            <p>Ugh chambray lumbersexual food truc artisan meditation sartorial post-ironic.</p>
+                            <a href="single-post.html"><h4>{{ $post->titre }}</h4></a>
+                            <p>{!! (Str::words($post->texte, '12')) !!}</p>
                         </div>
+                    @endforeach
+
                         <div class="news-item">
                             <a href="single-post.html"><img src="http://placehold.it/175x130" alt=""></a>
                             <ul>
