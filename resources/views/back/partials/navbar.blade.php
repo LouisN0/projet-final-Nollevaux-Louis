@@ -33,15 +33,7 @@
           </a>
           
         </li>
-        <li class="nav-item ">
-          <a href="{{ route('demande.index') }}" class="nav-link {{ request()->routeIs("demande.index") ? "active" : "" }}">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>
-              Demandes
-            </p>
-          </a>
-          
-        </li>
+        
         <li class="nav-item ">
           <a href="{{ route('conversations') }}" class="nav-link {{ request()->routeIs("conversations") ? "active" : "" }}">
             <i class="nav-icon far fa-envelope"></i>

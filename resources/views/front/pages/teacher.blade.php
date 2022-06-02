@@ -12,10 +12,19 @@
                                     <form action="{{ route('conversations.store', $teacher->user->id) }}" method="post">
 										@csrf
                                         <h4>Contact me</h4>
-                                        <input type="text" id="name" name="s" placeholder="Full Name"
-                                            value="">
-                                        <input type="text" id="address" name="s" placeholder="E-mail Address"
-                                            value="">
+                                        @if (Route::has('login'))
+                                                @auth
+                                                <input type="text" id="name" name="s" placeholder=""
+                                                value="{{ Auth::user()->nom }}">
+                                            <input type="text" id="address" name="s" placeholder=""
+                                                value="{{ Auth::user()->email }}">
+                                                @else
+                                                <input type="text" id="name" name="s" placeholder="Full Name"
+                                                value="">
+                                            <input type="text" id="address" name="s" placeholder="E-mail Address"
+                                                value="">
+                                                @endauth
+                                            @endif
                                         <textarea id="message" class="message {{ $errors->has('message') ? 'is-invalid' : '' }}" name="message" placeholder="Write message"></textarea>
                                         <div class="accent-button">
 

@@ -34,7 +34,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                    @foreach ($posts->orderBy('created_at', 'DESC') as $post )
+                    @foreach ($posts as $post )
                         <div class="news-item">
                             <a href="single-post.html"><img src="{{ asset('/images/'. $post->image) }}" alt=""></a>
                             <ul>

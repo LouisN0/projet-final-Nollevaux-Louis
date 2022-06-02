@@ -14,6 +14,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ConversationController;
+use App\Http\Controllers\NewslettreController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Models\Banner;
@@ -85,7 +86,8 @@ Route::get('/back/dashboard', function () {
 require __DIR__.'/auth.php';
 
 
-
+//mail
+Route::post('/newsletter', [NewslettreController::class, 'storeNewsletter'])->name('newsLetter.store');
 
 
 // User
