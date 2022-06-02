@@ -149,31 +149,7 @@
 										<li><span>Price:</span>${{ $cour->prix }}</li>
 									</ul>
 								</div>
-								<div class="related-courses">
-									<div class="widget-heading">
-										<h4>Related Courses</h4>
-									</div>
-									<ul>
-										<li>
-											<a href="single-course.html"><img src="http://placehold.it/70x70" alt=""></a>
-											<span>John Smith</span>
-											<a href="single-course.html"><h6>History of Art Architecture</h6></a>
-											<p>Price: <em>$39.99</em></p>
-										</li>
-										<li>
-											<a href="single-course.html"><img src="http://placehold.it/70x70" alt=""></a>
-											<span>John Smith</span>
-											<a href="single-course.html"><h6>Fashion Buying Managment</h6></a>
-											<p>Price: <em>$29.99</em></p>
-										</li>
-										<li>
-											<a href="single-course.html"><img src="http://placehold.it/70x70" alt=""></a>
-											<span>John Smith</span>
-											<a href="single-course.html"><h6>Electronic Engineering</h6></a>
-											<p>Price: <em>$19.99</em></p>
-										</li>
-									</ul>
-								</div>
+								
 								<div class="categories">
 									<div class="widget-heading">
 										<h4>Categories</h4>

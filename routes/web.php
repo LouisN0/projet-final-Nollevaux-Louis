@@ -16,6 +16,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ConversationController;
 use App\Http\Controllers\NewslettreController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\UserController;
 use App\Models\Banner;
 use App\Models\Conversation;
@@ -87,7 +88,7 @@ require __DIR__.'/auth.php';
 
 
 //mail
-Route::post('/newsletter', [NewslettreController::class, 'storeNewsletter'])->name('newsLetter.store');
+Route::get('/back/subscriber', [SubscriberController::class, 'index'])->name('subscriber');
 
 
 // User
@@ -130,6 +131,7 @@ Route::get('/back/cours/{id}/edit', [CourController::class, 'edit'])->name('cour
 Route::post('/back/cours/{id}/update', [CourController::class, 'update'])->name('cour.update');
 Route::post('/back/cours/{id}/delete', [CourController::class, 'destroy'])->name('cour.destroy');
 Route::get('/front/pages/{id}/coursesShow', [CourController::class, 'singleshow'])->name('cour.singleshow');
+Route::get('/categorie/{id}', [CourController::class, 'filterCategorie']);
 // Slide
 Route::get('/back/slides', [SlideController::class, 'index'])->name('slide.index');
 Route::get('/back/slides/create', [SlideController::class, 'create'])->name('slide.create');
@@ -192,4 +194,5 @@ Route::get('/back/contacts', [ContactController::class, 'index'])->name('contact
 Route::get('/back/contacts/{id}/edit', [ContactController::class, 'edit'])->name('contact.edit');
 Route::post('/back/contacts/{id}/update', [ContactController::class, 'update'])->name('contact.update');
 Route::post('/back/contacts/{id}/delete', [ContactController::class, 'destroy'])->name('contact.destroy');
+
 

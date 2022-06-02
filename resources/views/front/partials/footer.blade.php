@@ -63,7 +63,8 @@
                         <h2>Newsletters</h2>
                         <div class="line-dec"></div>
                         <p>Subsrcibe to our newsletter for latest updates about our site for universe.</p>
-                        <form action="{{ Route('newsLetter.store') }}" method="post" enctype="multipart/form-data">
+                        
+                        <form action="{{ Route("subscribe") }}" method="post" enctype="multipart/form-data">
                             @csrf
                         <input type="text" class="email" name="email" placeholder="Email Address..." value="">
                         <div class="accent-button">

@@ -80,6 +80,7 @@
                                                 Register</button>
                                             <a href="/" class="btn btn-light btn-lg px-5 mt-5">Cancel</a>
                                         </div>
+                                        <p>*by registering you automatically accept to have mail send by us to you/p>
                                     </div>
                                 </div>
                             </form>

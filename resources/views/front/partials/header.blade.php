@@ -1,4 +1,9 @@
 <header class="site-header">
+    @if (session()->has('message'))
+            <div class='alert alert-success'>
+                {{ session()->get('message') }}
+            </div>
+        @endif
     <div id="main-header" class="main-header header-sticky">
         <div class="inner-header container clearfix">
             <div class="logo">

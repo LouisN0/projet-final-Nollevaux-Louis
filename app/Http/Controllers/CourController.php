@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use App\Models\Conversation;
 use App\Models\Cour;
 use App\Models\Slide;
@@ -105,8 +106,24 @@ class CourController extends Controller
         return view("/front/pages/coursesShow",compact("cour", "slides"));
     }
     public function allcour(){
+        $categories = Categorie::all();
         $cours = Cour::paginate(9);
         $teachers = Teacher::all();
-        return view('/front/pages/courses',compact("cours", "teachers"));
+        return view('/front/pages/courses',compact("cours", "teachers", "categories"));
+    }
+    public function filterCategorie($id)
+    {
+        $findCategorie = Categorie::where('id', $id)->first();
+        
+        if($findCategorie){
+
+        $categories = Categorie::all();
+
+        $cours = Cour::where('id', $findCategorie->id)->paginate(9);   
+        return view('/front/pages/courses',compact("cours", "categories"));
+        
+        }else{
+            abort(404);
+        }
     }
 }

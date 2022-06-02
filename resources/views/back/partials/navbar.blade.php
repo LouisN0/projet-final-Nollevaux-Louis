@@ -52,6 +52,14 @@
             </p>
           </a>
         </li>
+        <li class="nav-item ">
+          <a href="{{ route('subscriber') }}" class="nav-link {{ request()->routeIs("subscriber") ? "active" : "" }}">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Newsletter
+            </p>
+          </a>
+        </li>
         <li class="nav-item {{ request()->routeIs("role.index")||request()->routeIs("role.create")  ? "menu-open" : "" }}">
           <a href="" class="nav-link">
             <i class="nav-icon fas fa-copy"></i>

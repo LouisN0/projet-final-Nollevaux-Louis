@@ -32,5 +32,10 @@ class Cour extends Model
     public function teacher(){
         return $this->belongsTo(Teacher::class);
     }
+    public function categories(){
+
+        return $this->belongsToMany(Categorie::class);
+        
+    }
 
 }

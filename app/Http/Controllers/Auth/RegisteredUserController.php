@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Subscriber;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules;
-
+use Illuminate\Support\Facades\Validator;
+use App\Mail\Subscribe;
 class RegisteredUserController extends Controller
 {
     /**
@@ -49,6 +52,24 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|unique:subscribers'
+       ]);
+   
+       if ($validator->fails()) {
+           return redirect()->back()->with('message', 'You are already subscribed');
+       }  
+   
+       $email = $request->all()['email'];
+           $subscriber = Subscriber::create([
+               'email' => $email
+           ]
+       ); 
+   
+       if ($subscriber) {
+           Mail::to($email)->send(new Subscribe($email));
+           
+       }
 
         Auth::login($user);
 

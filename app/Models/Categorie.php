@@ -10,13 +10,17 @@ class Categorie extends Model
     use HasFactory;
      
     protected $fillable = [
-        'nom',
     ]; // model_anchor
      
     protected $table = 'categories';
+     
+   
     
     public function posts()
     {
         $this->belongsToMany(Post::class);
+    }
+    public function cours(){
+        $this->belongsToMany(Cour::class);
     }
 }
