@@ -24,7 +24,6 @@ class BannerController extends Controller
     {
         $banner = new Banner;
         $request->validate([
-        'image'=> 'required',
          'titre'=> 'required',
          'motsCle'=> 'required',
          'description'=> 'required',

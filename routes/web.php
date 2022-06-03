@@ -91,6 +91,7 @@ require __DIR__.'/auth.php';
 Route::get('/back/subscriber', [SubscriberController::class, 'index'])->name('subscriber');
 
 
+
 // User
 Route::get('/back/users', [UserController::class, 'index'])->name('user.index');
 Route::get('/back/users/create', [UserController::class, 'create'])->name('user.create');

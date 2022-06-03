@@ -65,28 +65,7 @@
 											
 										</ul>
 									</div>
-									<div class="recent-news">
-										<div class="widget-heading">
-											<h4>Recent News</h4>
-										</div>
-										<ul>
-											<li>
-												<a href="single-post.html"><img src="http://placehold.it/70x70" alt=""></a>
-												<a href="single-post.html"><h6>Visiting Artists: Giles Bailey</h6></a>
-												<span>7 October 2015</span>
-											</li>
-											<li>
-												<a href="single-post.html"><img src="http://placehold.it/70x70" alt=""></a>
-												<a href="single-post.html"><h6>How Students use Rankings?</h6></a>
-												<span>7 October 2015</span>
-											</li>
-											<li>
-												<a href="single-post.html"><img src="http://placehold.it/70x70" alt=""></a>
-												<a href="single-post.html"><h6>University Finder: Compare</h6></a>
-												<span>7 October 2015</span>
-											</li>
-										</ul>
-									</div>
+									
 									<div class="tags">
 										<div class="widget-heading">
 											<h4>Tags</h4>
@@ -97,50 +76,8 @@
 										@endforeach
 										</ul>
 									</div>
-									<div class="recent-tweets">
-										<div class="widget-heading">
-											<h4>Recents Tweets</h4>
-										</div>
-										<ul>
-											<li>
-												<i class="fa fa-twitter"></i>
-												<p>Tote bag post-ironic messenger bag bespoke cray wolf moon key ready.</p>
-												<a href="#">https://olark.recruiterbox.com/jobs/fk0h</a>
-												<span>21 minutes ago.</span>
-											</li>
-											<li>
-												<i class="fa fa-twitter"></i>
-												<p>Tote bag post-ironic messenger bag bespoke cray wolf moon key ready.</p>
-												<a href="#">https://olark.recruiterbox.com/jobs/fk0h</a>
-												<span>21 minutes ago.</span>
-											</li>
-										</ul>
-									</div>
-									<div class="instagram-feeds">
-										<div class="widget-heading">
-											<h4>Instagram</h4>
-										</div>
-										<div class="instagram-items">
-											<div class="instagram-item">
-												<a href="#"><img src="http://placehold.it/90x80" alt=""></a>
-											</div>
-											<div class="instagram-item">
-												<a href="#"><img src="http://placehold.it/90x80" alt=""></a>
-											</div>
-											<div class="instagram-item">
-												<a href="#"><img src="http://placehold.it/90x80" alt=""></a>
-											</div>
-											<div class="instagram-item">
-												<a href="#"><img src="http://placehold.it/90x80" alt=""></a>
-											</div>
-											<div class="instagram-item">
-												<a href="#"><img src="http://placehold.it/90x80" alt=""></a>
-											</div>
-											<div class="instagram-item">
-												<a href="#"><img src="http://placehold.it/90x80" alt=""></a>
-											</div>
-										</div>
-									</div>
+									
+									
 								</div>
 							</div>
 						</div>

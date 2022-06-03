@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('start');
             $table->string('titre');
             $table->longtext('description');
+            $table->foreignId('teacher_id')->constrained('teachers', 'id');
             $table->timestamps();
         });
     }

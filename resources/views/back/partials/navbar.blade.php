@@ -159,6 +159,30 @@
             
           </ul>
         </li>
+        <li class="nav-item {{ request()->routeIs("evenement.index")||request()->routeIs("evenement.create")  ? "menu-open" : "" }}">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-book"></i>
+            <p>
+              Events
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('evenement.index') }}" class="nav-link {{ request()->routeIs("evenement.index") ? "active" : "" }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Database</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('evenement.create') }}" class="nav-link {{ request()->routeIs("evenement.create") ? "active" : "" }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Create</p>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
         <li class="nav-header">CONTROLS</li>
         <li class="nav-item {{ request()->routeIs("logout") ? "active" : "" }}">
           <a href="" class="nav-link ">

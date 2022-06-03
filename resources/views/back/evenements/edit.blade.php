@@ -11,11 +11,11 @@
                 </ul>
             </div>
         @endif
-        <form action='{{ route('evenement.update' , $evenement->id) }}' method='post'>
+        <form action='{{ route('evenement.update' , $evenement->id) }}' method='post' enctype="multipart/form-data">
             @csrf
-            <div>
-                <label for=>image</label>
-                <input type='text' name='image' value='{{ $evenement->image }}'>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">image</label>
+                <input class="form-control" id="formFile" type='file' name='image' value='{{ $evenement->image }}'>
             </div>
             <div>
                 <label for=>lieu</label>

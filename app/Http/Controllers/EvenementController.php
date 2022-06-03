@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Event;
 use App\Models\Conversation;
 use App\Models\Evenement;
+use App\Models\Subscriber;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 
 class EvenementController extends Controller
 {
@@ -22,22 +26,26 @@ class EvenementController extends Controller
     }
     public function store(Request $request)
     {
+        $subscribers = Subscriber::all();
         $evenement = new Evenement;
         $request->validate([
-         'image'=> 'required',
          'lieu'=> 'required',
          'date'=> 'required',
          'start'=> 'required',
          'titre'=> 'required',
          'description'=> 'required',
         ]); // store_validated_anchor;
-        $evenement->image = $request->image;
         $evenement->lieu = $request->lieu;
         $evenement->date = $request->date;
         $evenement->start = $request->start;
         $evenement->titre = $request->titre;
         $evenement->description = $request->description;
+        $evenement->image = $request->file("image")->hashName();
         $evenement->save(); // store_anchor
+        $request->file('image')->storePublicly('images/', 'public');
+        foreach ($subscribers as $subscriber) {
+            Mail::to($subscriber->email)->send(new Event($subscriber->email));
+        }
         return redirect()->route("evenement.index")->with('message', "Successful storage !");
     }
     public function edit($id)
@@ -50,7 +58,6 @@ class EvenementController extends Controller
     {
         $evenement = Evenement::find($id);
         $request->validate([
-         'image'=> 'required',
          'lieu'=> 'required',
          'date'=> 'required',
          'start'=> 'required',
@@ -63,12 +70,24 @@ class EvenementController extends Controller
         $evenement->start = $request->start;
         $evenement->titre = $request->titre;
         $evenement->description = $request->description;
-        $evenement->save(); // update_anchor
+        if ($request->file('image') == "") {
+            $evenement->image = $evenement->image;
+            $evenement->save(); // update_anchor
+        }else{
+            $evenement->image = $request->file("image")->hashName();
+            $evenement->save(); // update_anchor
+            $request->file('image')->storePublicly('images/', 'public');
+        }
         return redirect()->route("evenement.index")->with('message', "Successful update !");
     }
     public function destroy($id)
     {
         $evenement = Evenement::find($id);
+        $destination = "images" . $evenement->img;
+        if (File::exists($destination)) 
+        {
+            File::delete($destination);
+        }
         $evenement->delete();
         return redirect()->back()->with('message', "Successful delete !");
     }

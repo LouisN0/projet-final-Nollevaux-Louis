@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Event;
 use App\Mail\Subscribe;
 use App\Models\Conversation;
 use App\Models\Subscriber;
@@ -41,4 +42,5 @@ class SubscriberController extends Controller
     }
     
     }
+    
 }

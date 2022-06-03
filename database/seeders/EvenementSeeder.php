@@ -22,6 +22,7 @@ class EvenementSeeder extends Seeder
             'start' => '18<span>Dec',
             'titre' => 'The name of a great<br>band',
             'description' => 'Ugh chambray lumbersexual food truc artisan meditation sartorial post-ironic Wes Anderson fap tattooed.',
+            'teacher_id' => 1,
         ]);
         DB::table('evenements')->insert([
             'image' => 'events-1.jpg',
@@ -30,6 +31,7 @@ class EvenementSeeder extends Seeder
             'start' => '18<span>Dec',
             'titre' => 'The name of a great<br>band',
             'description' => 'Ugh chambray lumbersexual food truc artisan meditation sartorial post-ironic Wes Anderson fap tattooed.',
+            'teacher_id' => 1,
         ]);
         //
     }

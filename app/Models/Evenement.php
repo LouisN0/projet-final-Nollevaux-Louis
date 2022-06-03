@@ -16,7 +16,14 @@ class Evenement extends Model
         'start',
         'titre',
         'description',
+        'teacher_id',
     ]; // model_anchor
      
     protected $table = 'evenements';
+
+    public function teacher(){
+
+        return $this->belongsTo(Teacher::class);
+        
+    }
 }

@@ -16,18 +16,17 @@
                 </ul>
             </div>
         @endif
-        <a class='btn btn-success' href='{{ route('evenement.create') }}' role='button'>Create</a>
         <table class='table'>
             <thead>
                 <tr>
                     <th scope='col'>#</th>
-                    <th scope='col'>Action</th>
                     <th scope='col'>image</th>
                     <th scope='col'>lieu</th>
                     <th scope='col'>date</th>
                     <th scope='col'>start</th>
                     <th scope='col'>titre</th>
                     <th scope='col'>description</th>
+                    <th scope='col'>Action</th>
                 </tr> {{-- all_tr_anchor --}}
             </thead>
             <tbody>

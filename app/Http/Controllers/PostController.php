@@ -82,7 +82,7 @@ class PostController extends Controller
         $tags = Tag::all();
         $categories = Categorie::all();
 
-        $posts = Post::paginate(9);
+        $posts = Post::paginate(4);
         return view('/front/pages/news',compact("posts", "tags", "categories"));
     }
 
