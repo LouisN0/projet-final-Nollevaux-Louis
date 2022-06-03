@@ -16,10 +16,9 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([ 
-            CategorieSeeder::class,
             ContactSeeder::class,
-            CategorieSeeder::class,
             TagSeeder::class,
+            CategorieSeeder::class,
             PostSeeder::class,
             CategoriepostSeeder::class,
             PostTagSeeder::class,
@@ -32,6 +31,7 @@ class DatabaseSeeder extends Seeder
             EvenementSeeder::class,
             SocialSeeder::class,
             CourSeeder::class,
+            CategoriecourSeeder::class,
             
             
             

@@ -96,7 +96,10 @@ class PostController extends Controller
         $tags = Tag::all();
         $categories = Categorie::all();
 
-        $posts = Post::where('id', $findTag->id)->paginate(9);
+        $posts = Post::whereHas('tags',function($q) use ($id){
+            $q->where('tags.id', $id);
+        }) ->paginate(9);
+       
 
         return view('/front/pages/news',compact("posts", "tags", "categories"));
         
@@ -114,7 +117,7 @@ class PostController extends Controller
         $tags = Tag::all();
 
         $posts = Post::where('id', $findCategorie->id)->paginate(9);
-
+        
         return view('/front/pages/news',compact("posts", "categories", "tags"));
         
         }else{

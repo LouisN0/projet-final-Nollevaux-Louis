@@ -21,6 +21,7 @@ class Cour extends Model
         'niveau',
         'discipline',
         'date',
+        'categorie_id',
     ]; // model_anchor
      
     protected $table = 'cours';

@@ -114,12 +114,15 @@ class CourController extends Controller
     public function filterCategorie($id)
     {
         $findCategorie = Categorie::where('id', $id)->first();
-        
         if($findCategorie){
 
+        $cours = Cour::whereHas('categories',function($q) use ($id){
+            $q->where('categories.id', $id);
+        })->paginate(9);   
         $categories = Categorie::all();
 
-        $cours = Cour::where('id', $findCategorie->id)->paginate(9);   
+
+        
         return view('/front/pages/courses',compact("cours", "categories"));
         
         }else{

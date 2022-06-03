@@ -27,6 +27,7 @@ class CourSeeder extends Seeder
             'niveau' => 'Post Graduate',
             'discipline' => 'Account & Finance',
             'date' => '',
+            'categorie_id' => 1,
         ]);
         DB::table('cours')->insert([
             'image' => 'cours.jpg',
@@ -40,6 +41,7 @@ class CourSeeder extends Seeder
             'niveau' => 'Post Graduate',
             'discipline' => 'Account & Finance',
             'date' => '',
+            'categorie_id' => 1,
         ]);
         DB::table('cours')->insert([
             'image' => 'cours.jpg',
@@ -53,6 +55,7 @@ class CourSeeder extends Seeder
             'niveau' => 'Post Graduate',
             'discipline' => 'Account & Finance',
             'date' => '',
+            'categorie_id' => 1,
         ]);
         DB::table('cours')->insert([
             'image' => 'cours.jpg',
@@ -66,6 +69,7 @@ class CourSeeder extends Seeder
             'niveau' => 'Post Graduate',
             'discipline' => 'Account & Finance',
             'date' => '',
+            'categorie_id' => 2,
         ]);
         DB::table('cours')->insert([
             'image' => 'cours.jpg',
@@ -79,6 +83,7 @@ class CourSeeder extends Seeder
             'niveau' => 'Post Graduate',
             'discipline' => 'Account & Finance',
             'date' => '',
+            'categorie_id' => 2,
         ]);
         //
     }

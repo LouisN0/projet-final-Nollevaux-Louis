@@ -16,24 +16,23 @@ class CategoriecourSeeder extends Seeder
     public function run()
     {
         DB::table('categorie_cour')->insert([
-            'cour_id' => '1',
-            'categorie_id' => '1',
+            'cour_id' => 1,
+            'categorie_id' => 1,
         ]);
         DB::table('categorie_cour')->insert([
-            'cour_id' => '2',
-            'categorie_id' => '2',
+            'cour_id' => 2,
+            'categorie_id' => 2,
         ]);
         DB::table('categorie_cour')->insert([
-            'cour_id' => '3',
-            'categorie_id' => '1',
+            'cour_id' => 3,
+            'categorie_id' => 1,
         ]);
         DB::table('categorie_cour')->insert([
-            'cour_id' => '4',
-            'categorie_id' => '2',
-        ]);
-        DB::table('categorie_cour')->insert([
-            'cour_id' => '5',
-            'categorie_id' => '2',
+            'cour_id' => 4,
+            'categorie_id' => 2,
+        ]);DB::table('categorie_cour')->insert([
+            'cour_id' => 5,
+            'categorie_id' => 1,
         ]);
     }
 }
