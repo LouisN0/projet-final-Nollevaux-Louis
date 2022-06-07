@@ -45,9 +45,9 @@
         </li>
         <li class="nav-item ">
           <a href="{{ route('demande.index') }}" class="nav-link {{ request()->routeIs("demande.index") ? "active" : "" }}">
-            <i class="fa-solid fa-satellite-dish"></i>
+            <i class="fa-solid fa-clipboard-list-check"></i>
             <p>
-              Dashboard
+              Demande
             </p>
           </a>
           
@@ -69,30 +69,6 @@
               Newsletter
             </p>
           </a>
-        </li>
-        <li class="nav-item {{ request()->routeIs("role.index")||request()->routeIs("role.create")  ? "menu-open" : "" }}">
-          <a href="" class="nav-link">
-            <i class="nav-icon fas fa-copy"></i>
-            <p>
-              Roles
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="{{ route('role.index') }}" class="nav-link {{ request()->routeIs("role.index") ? "active" : "" }}">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Database</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ route('role.create') }}" class="nav-link {{ request()->routeIs("role.create") ? "active" : "" }}">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Create</p>
-              </a>
-            </li>
-            
-          </ul>
         </li>
         <li class="nav-item {{ request()->routeIs("teacher.index")||request()->routeIs("teacher.create")  ? "menu-open" : "" }}">
           <a href="#" class="nav-link">
@@ -118,8 +94,79 @@
             
           </ul>
         </li>
-        
+        <li class="nav-header">OTHER</li>
+        <li class="nav-item {{ request()->routeIs("role.index")||request()->routeIs("role.create")  ? "menu-open" : "" }}">
+          <a href="" class="nav-link">
+            <i class="nav-icon fas fa-copy"></i>
+            <p>
+              Roles
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('role.index') }}" class="nav-link {{ request()->routeIs("role.index") ? "active" : "" }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Database</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('role.create') }}" class="nav-link {{ request()->routeIs("role.create") ? "active" : "" }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Create</p>
+              </a>
+            </li>
             
+          </ul>
+        </li>
+        <li class="nav-item {{ request()->routeIs("tag.index")||request()->routeIs("tag.create")  ? "menu-open" : "" }}">
+          <a href="" class="nav-link">
+            <i class="nav-icon fas fa-copy"></i>
+            <p>
+              Tags
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('tag.index') }}" class="nav-link {{ request()->routeIs("tag.index") ? "active" : "" }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Database</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('tag.create') }}" class="nav-link {{ request()->routeIs("tag.create") ? "active" : "" }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Create</p>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+        <li class="nav-item {{ request()->routeIs("categorie.index")||request()->routeIs("categorie.create")  ? "menu-open" : "" }}">
+          <a href="" class="nav-link">
+            <i class="nav-icon fas fa-copy"></i>
+            <p>
+              Categories
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('categorie.index') }}" class="nav-link {{ request()->routeIs("categorie.index") ? "active" : "" }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Database</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('categorie.create') }}" class="nav-link {{ request()->routeIs("categorie.create") ? "active" : "" }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Create</p>
+              </a>
+            </li>
+            
+          </ul>
+        </li> 
         
         <li class="nav-header">FRONT</li>
         <li class="nav-item {{ request()->routeIs("banner.index")||request()->routeIs("banner.create")  ? "menu-open" : "" }}">

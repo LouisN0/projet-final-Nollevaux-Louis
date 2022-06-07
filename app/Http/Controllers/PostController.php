@@ -7,6 +7,7 @@ use App\Models\Conversation;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
@@ -23,24 +24,34 @@ class PostController extends Controller
         if(! Gate::allows('create-post')){
             abort(403);
         }
+        $categories = Categorie::all();
+        $tags = Tag::all();
         $conversations = Conversation::all();
-        return view("/back/posts/create" , compact("conversations"));
+        return view("/back/posts/create" , compact("conversations", "tags", "categories"));
     }
     public function store(Request $request)
     {
         $post = new Post;
         $this->authorize('create', \App\Model\Post::class);
         $request->validate([
-         'image'=> 'required',
          'titre'=> 'required',
          'texte'=> 'required',
          'date'=> 'required',
-        ]); // store_validated_anchor;
-        $post->image = $request->image;
+        ]); // store_validated_anchor
         $post->titre = $request->titre;
         $post->texte = $request->texte;
         $post->date = $request->date;
+        $post->status = 0;
+        $post->user_id = Auth::user()->id;
+        $post->image = $request->file("image")->hashName();
         $post->save(); // store_anchor
+        $request->file('image')->storePublicly('images/', 'public');
+        $post->categories()->attach($request->categories, [
+            'post_id' => $post->id,
+        ]);
+        $post->tags()->attach($request->tags, [
+            'post_id' => $post->id,
+        ]);
         return redirect()->route("post.index")->with('message', "Successful storage !");
     }
     public function read($id)
@@ -127,7 +138,9 @@ class PostController extends Controller
         $categories = Categorie::all();
         $tags = Tag::all();
 
-        $posts = Post::where('id', $findCategorie->id)->paginate(9);
+        $posts = Post::whereHas('categories',function($q) use ($id){
+            $q->where('categories.id', $id);
+        })->paginate(9);
         
         return view('/front/pages/news',compact("posts", "categories", "tags"));
         

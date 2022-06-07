@@ -36,6 +36,13 @@
                         <td>{{ $post->titre }}</td>
                         <td>{!! (Str::words($post->texte, '12')) !!}</td>
                         <td>{{ $post->date }}</td>
+                        <td>
+                            @if ($post->status == false)
+                                <span class='badge badge-danger'>Pending</span>
+                            @elseif ($post->status == true)
+                                <span class='badge badge-success'>Accepted</span>
+                            @endif
+                        </td>
                         <td> {{-- all_td_anchor --}}
                             <div class='d-flex'>
                                 @can ('delete', $post)

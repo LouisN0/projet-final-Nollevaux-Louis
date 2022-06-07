@@ -37,14 +37,14 @@
                             <th scope='row'>{{ $demande->id }}</th>
                             <td>
                                 @if ($demande->status == false)
-                                    <span class='text-danger'>Pending</span>
+                                    <span class='badge badge-danger'>Pending</span>
                                 @elseif ($demande->status == true)
-                                    <span class='text-success'>Accepted</span>
+                                    <span class='badge badge-success'>Accepted</span>
                                 @endif
                             </td>
                             <td>
                                 @if ($demande->date == null)
-                                    <span>Pending</span>
+                                    <span class="badge badge-danger">Pending</span>
                                 @else
                                     {{ $demande->date }}
                                 @endif
@@ -72,14 +72,14 @@
                             <th scope='row'>{{ $demande->id }}</th>
                             <td>
                                 @if ($demande->status == false)
-                                    <span class='text-danger'>Pending</span>
+                                    <span class='badge badge-danger'>Pending</span>
                                 @elseif ($demande->status == true)
-                                    <span class='text-success'>Accepted</span>
+                                    <span class='badge badge-success'>Accepted</span>
                                 @endif
                             </td>
                             <td>
                                 @if ($demande->date == null)
-                                    <span class='text-danger'>Pending</span>
+                                    <span class='badge badge-danger'>Pending</span>
                                 @else
                                     {{ $demande->date }}
                                 @endif

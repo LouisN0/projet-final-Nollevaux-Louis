@@ -14,10 +14,10 @@
         <form action='{{ route('categorie.store') }}' method='post'>
             @csrf
             <div>
-                <label for=>nom</label>
-                <input type='text' name='nom'>
+                <label class="form-label"  for=>nom</label>
+                <input class="form-control"  type='text' name='nom'>
             </div>
-            <button type='submit'>Create</button> {{-- create_blade_anchor --}} 
+            <button class="btn btn-primary"type='submit'>Create</button> {{-- create_blade_anchor --}} 
         </form>
     </div>
 @endsection

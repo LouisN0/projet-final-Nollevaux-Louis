@@ -14,8 +14,8 @@
 										<a href="single-post.html"><img src="{{ asset('/images/'. $post->image) }}" alt=""></a>
 										<ul>
 											<li>Posted: <em>{{ $post->date }}</em></li>
-											<li>By: <em>Admin</em></li>
-											<li>Comments: <em>2</em></li>
+											<li>By: <em> {{ $post->user->nom }}</em></li>
+											<li>Comments: <em>{{ $post->comments->count() }}</em></li>
 										</ul>
 										<a href="single-post.html"><h4>{{ $post->titre }}</h4></a>
 										<p>{!! (Str::words($post->texte, '50')) !!}</p>

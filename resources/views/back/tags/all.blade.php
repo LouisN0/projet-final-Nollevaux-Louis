@@ -16,8 +16,7 @@
                 </ul>
             </div>
         @endif
-        <a class='btn btn-success' href='{{ route('tag.create') }}' role='button'>Create</a>
-        <table class='table'>
+        <table class='table table-striped'>
             <thead>
                 <tr>
                     <th scope='col'>#</th>
@@ -35,10 +34,10 @@
                                 @can ('delete', $tag)
                                 <form action='{{ route('tag.destroy', $tag->id) }}' method='post'>
                                     @csrf
-                                    <button class=btn btn-danger type=submit>Delete</button>
+                                    <button class="btn btn-outline-dark" type=submit>Delete</button>
                                 </form>
                                 @endcan
-                                <a class='btn btn-primary' href='{{ route('tag.edit', $tag->id) }}' role='button'>Edit</a>
+                                <a class='btn btn-outline-dark' href='{{ route('tag.edit', $tag->id) }}' role='button'>Edit</a>
                             </div>
                         </td>
                     </tr>

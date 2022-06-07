@@ -14,10 +14,10 @@
         <form action='{{ route('tag.update' , $tag->id) }}' method='post'>
             @csrf
             <div>
-                <label for=>nom</label>
-                <input type='text' name='nom' value='{{ $tag->nom }}'>
+                <label class="form-label"  for=>nom</label>
+                <input class="form-control"  type='text' name='nom' value='{{ $tag->nom }}'>
             </div>
-            <button type='submit'>Update</button> {{-- update_blade_anchor --}}
+            <button class="btn btn-primary"  type='submit'>Update</button> {{-- update_blade_anchor --}}
         </form>
     </div>
 @endsection

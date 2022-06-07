@@ -75,6 +75,9 @@ class CourController extends Controller
         $request->file('image2')->storePublicly('images/', 'public');
         $request->file('image3')->storePublicly('images/', 'public');
         $request->file('image4')->storePublicly('images/', 'public');
+        $cour->categories()->attach($request->categories, [
+            'cour_id' => $cour->id,
+        ]);
         return redirect()->route("cour.index")->with('message', "Successful storage !");
     }
     public function read($id)
@@ -87,9 +90,10 @@ class CourController extends Controller
     {
         $conversations = Conversation::all();
         $cour = Cour::find($id);
+        $categories = Categorie::all();
         if(Auth::user()->id === $cour->teacher->user->id || Auth::user()->role_id === 1){
             
-            return view("/back/cours/edit",compact("cour" , "conversations"));
+            return view("/back/cours/edit",compact("cour" , "conversations", "categories"));
         }
         abort(403);
     }
@@ -120,7 +124,7 @@ class CourController extends Controller
         $slide->image2 = $slide->image2;
         $slide->image3 = $slide->image3;
         $slide->image4 = $slide->image4;
-        $cour->save(); // update_anchor
+        
         if ($request->file('image') == "") {
             $cour->image = $cour->image;
             $cour->save(); // update_anchor
@@ -129,6 +133,9 @@ class CourController extends Controller
             $cour->save(); // update_anchor // update_anchor
             $request->file('image')->storePublicly('images/', 'public');
         }
+        $cour->categories()->sync($request->categories, [
+            'cour_id' => $cour->id,
+        ]);
         return redirect()->route("cour.index")->with('message', "Successful update !");
     }
     public function destroy($id)
@@ -140,7 +147,7 @@ class CourController extends Controller
         {
             File::delete($destination);
         }
-
+        $cour->categories()->detach();
         $cour->delete();
         return redirect()->back()->with('message', "Successful delete !");
     }

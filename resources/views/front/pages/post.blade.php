@@ -28,7 +28,7 @@
                             <ul>
                                 <li>Posted: <em>{{ $post->date }}</em></li>
                                 <li>By: <em>{{ $post->user->nom }}</em></li>
-                                <li>Comments: <em>2</em></li>
+                                <li>Comments: <em>{{ $post->comments->count() }}</em></li>
                             </ul>
                             <a href="single-post.html">
                                 <h4>{{ $post->titre }}</h4>

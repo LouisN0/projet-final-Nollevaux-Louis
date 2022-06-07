@@ -51,7 +51,7 @@ class TagPolicy
      * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Tag $tag)
+    public function update(User $user)
     {
         return $user->role_id == 1;
     }
