@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('titre');
             $table->longtext('texte');
             $table->string('date');
+            $table->string('status');
+            $table->foreignId('user_id')->constrained("users", "id"); 
             $table->timestamps();
         });
     }

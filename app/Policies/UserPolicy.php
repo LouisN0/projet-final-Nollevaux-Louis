@@ -40,7 +40,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->role_id == 1;
     }
 
     /**
@@ -50,9 +50,10 @@ class UserPolicy
      * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, User $model)
+    public function update(User $user)
     {
-        //
+        
+        return in_array($user->role_id, [1,2,3,4]);
     }
 
     /**
@@ -64,7 +65,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
-        //
+        return $user->role_id == 1;
     }
 
     /**
@@ -90,10 +91,4 @@ class UserPolicy
     {
         //
     }
-
-    public function talkTo (User $user, User $to)
-    {
-        return $user->id !== $to->id;
-    }
-
 }

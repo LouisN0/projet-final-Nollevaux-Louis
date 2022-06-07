@@ -7,6 +7,7 @@ use App\Models\Conversation;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -15,16 +16,20 @@ class PostController extends Controller
     {
         $conversations = Conversation::all();
         $posts = Post::all();
-        return view("/back/posts/all",compact("posts ", "conversations"));
+        return view("/back/posts/all",compact("posts", "conversations"));
     }
     public function create()
     {
+        if(! Gate::allows('create-post')){
+            abort(403);
+        }
         $conversations = Conversation::all();
         return view("/back/posts/create" , compact("conversations"));
     }
     public function store(Request $request)
     {
         $post = new Post;
+        $this->authorize('create', \App\Model\Post::class);
         $request->validate([
          'image'=> 'required',
          'titre'=> 'required',
@@ -46,6 +51,9 @@ class PostController extends Controller
     }
     public function edit($id)
     {
+        if(! Gate::allows('update-post')){
+            abort(403);
+        }
         $conversations = Conversation::all();
         $post = Post::find($id);
         return view("/back/posts/edit",compact("post" , "conversations"));
@@ -53,6 +61,7 @@ class PostController extends Controller
     public function update($id, Request $request)
     {
         $post = Post::find($id);
+        $this->authorize('update', \App\Model\Post::class);
         $request->validate([
          'image'=> 'required',
          'titre'=> 'required',
@@ -69,13 +78,15 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+        $this->authorize('delete', \App\Model\Post::class);
         $post->delete();
         return redirect()->back()->with('message', "Successful delete !");
     }
     public function singlepost($id){
         $tags = Tag::all();
+        $categories = Categorie::all();
         $post = Post::find($id);
-        return view('/front/pages/post' , compact('post', "tags"));
+        return view('/front/pages/post' , compact('post', "tags", "categories"));
     }
     public function allpost(){
         
@@ -123,5 +134,27 @@ class PostController extends Controller
         }else{
             abort(404);
         }
+    }
+    public function search(Request $request){
+
+        $tags = Tag::all();
+        $categories = Categorie::all();
+        $search = $request->input('search');
+        $posts = Post::where('titre', 'like', '%'.$search.'%')->paginate(9);
+        return view('/front/pages/news',compact("posts", "tags", "categories"));
+    }
+    public function publish($id)
+    {
+        $post = Post::find($id);
+        $post->status = 1;
+        $post->save();
+        return redirect()->back()->with("message", "Successful publish !");
+    }
+    public function unpublish($id)
+    {
+        $post = Post::find($id);
+        $post->status = 0;
+        $post->save();
+        return redirect()->back()->with("message", "Successful unpublish !");
     }
 }

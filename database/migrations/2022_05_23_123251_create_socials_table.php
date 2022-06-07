@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('socials', function (Blueprint $table) {
             $table->id();
-            $table->string('facebook');
-            $table->string('twitter');
-            $table->string('dribble');
-            $table->string('insta');
-            $table->string('skype');
-            $table->string('linkedink');
+            $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('dribble')->nullable();
+            $table->string('insta')->nullable();
+            $table->string('skype')->nullable();
+            $table->string('linkedink')->nullable();
             $table->foreignId('teacher_id')->constrained('teachers', 'id');
             $table->timestamps();
         });

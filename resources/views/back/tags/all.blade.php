@@ -32,10 +32,12 @@
                         <td>{{ $tag->nom }}</td>
                         <td> {{-- all_td_anchor --}}
                             <div class='d-flex'>
+                                @can ('delete', $tag)
                                 <form action='{{ route('tag.destroy', $tag->id) }}' method='post'>
                                     @csrf
                                     <button class=btn btn-danger type=submit>Delete</button>
                                 </form>
+                                @endcan
                                 <a class='btn btn-primary' href='{{ route('tag.edit', $tag->id) }}' role='button'>Edit</a>
                             </div>
                         </td>

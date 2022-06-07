@@ -13,7 +13,6 @@ class Contact extends Model
         'adress',
         'email',
         'phone',
-        'map',
     ]; // model_anchor
      
     protected $table = 'contacts';

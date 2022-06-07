@@ -13,23 +13,19 @@
         @endif
         <form action='{{ route('contact.update' , $contact->id) }}' method='post'>
             @csrf
-            <div>
-                <label for=>adress</label>
-                <input type='text' name='adress' value='{{ $contact->adress }}'>
+            <div class="mb-3">
+                <label class="form-label" for=>adress</label>
+                <input class="form-control" type='text' name='adress' value='{{ $contact->adress }}'>
             </div>
-            <div>
-                <label for=>email</label>
-                <input type='text' name='email' value='{{ $contact->email }}'>
+            <div class="mb-3">
+                <label class="form-label" for=>email</label>
+                <input class="form-control" type='text' name='email' value='{{ $contact->email }}'>
             </div>
-            <div>
-                <label for=>phone</label>
-                <input type='text' name='phone' value='{{ $contact->phone }}'>
+            <div class="mb-3">
+                <label class="form-label" for=>phone</label>
+                <input class="form-control" type='text' name='phone' value='{{ $contact->phone }}'>
             </div>
-            <div>
-                <label for=>map</label>
-                <input type='text' name='map' value='{{ $contact->map }}'>
-            </div>
-            <button type='submit'>Update</button> {{-- update_blade_anchor --}}
+            <button  class="btn btn-primary" type='submit'>Update</button> {{-- update_blade_anchor --}}
         </form>
     </div>
 @endsection

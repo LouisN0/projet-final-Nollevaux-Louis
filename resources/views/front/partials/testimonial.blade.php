@@ -36,27 +36,18 @@
                     <div class="col-md-12">
                     @foreach ($posts as $post )
                         <div class="news-item">
-                            <a href="single-post.html"><img src="{{ asset('/images/'. $post->image) }}" alt=""></a>
+                            <a href="{{ route('singlepost', $post->id) }}"><img style="width: 40%" src="{{ asset('/images/'. $post->image) }}" alt=""></a>
                             <ul>
                                 <li>{{ $post->date }}</li>
                                 <li>By Admin</li>
                                 <li>2 Comments</li>
                             </ul>
-                            <a href="single-post.html"><h4>{{ $post->titre }}</h4></a>
+                            <a href="{{ route('singlepost', $post->id) }}"><h4>{{ $post->titre }}</h4></a>
                             <p>{!! (Str::words($post->texte, '12')) !!}</p>
                         </div>
                     @endforeach
 
-                        <div class="news-item">
-                            <a href="single-post.html"><img src="http://placehold.it/175x130" alt=""></a>
-                            <ul>
-                                <li>7 Oct 2015</li>
-                                <li>By Admin</li>
-                                <li>2 Comments</li>
-                            </ul>
-                            <a href="single-post.html"><h4>How Do Students Use Rankings?</h4></a>
-                            <p>Ugh chambray lumbersexual food truc artisan meditation sartorial post-ironic.</p>
-                        </div>
+                       
                     </div>
                 </div>
             </div>

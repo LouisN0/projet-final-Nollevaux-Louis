@@ -13,7 +13,7 @@
         <img src="{{ asset("/images/". Auth::user()->image) }}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">{{ Auth::user()->nom }}</a>
+        <a href="{{ route('user.edit', Auth::user()->id) }}" class="d-block">{{ Auth::user()->nom }}</a>
       </div>
     </div>
 
@@ -26,7 +26,7 @@
              with font-awesome or any other icon font library -->
         <li class="nav-item ">
           <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs("dashboard") ? "active" : "" }}">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <i class="fa-solid fa-satellite-dish"></i>
             <p>
               Dashboard
             </p>
@@ -43,6 +43,16 @@
           </a>
           
         </li>
+        <li class="nav-item ">
+          <a href="{{ route('demande.index') }}" class="nav-link {{ request()->routeIs("demande.index") ? "active" : "" }}">
+            <i class="fa-solid fa-satellite-dish"></i>
+            <p>
+              Dashboard
+            </p>
+          </a>
+          
+        </li>
+        @if (Auth::user()->role_id != 4)
         <li class="nav-header">DATA</li>
         <li class="nav-item ">
           <a href="{{ route('user.index') }}" class="nav-link {{ request()->routeIs("user.index") ? "active" : "" }}">
@@ -109,6 +119,7 @@
           </ul>
         </li>
         
+            
         
         <li class="nav-header">FRONT</li>
         <li class="nav-item {{ request()->routeIs("banner.index")||request()->routeIs("banner.create")  ? "menu-open" : "" }}">
@@ -183,6 +194,74 @@
             
           </ul>
         </li>
+        <li class="nav-item {{ request()->routeIs("post.index")||request()->routeIs("post.create")  ? "menu-open" : "" }}">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-book"></i>
+            <p>
+              Posts
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('post.index') }}" class="nav-link {{ request()->routeIs("post.index") ? "active" : "" }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Database</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('post.create') }}" class="nav-link {{ request()->routeIs("post.create") ? "active" : "" }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Create</p>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+        <li class="nav-item {{ request()->routeIs("contact.index")||request()->routeIs("contact.create")  ? "menu-open" : "" }}">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-book"></i>
+            <p>
+              Contact
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('contact.index') }}" class="nav-link {{ request()->routeIs("contact.index") ? "active" : "" }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Database</p>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+        <li class="nav-item {{ request()->routeIs("cour.index")||request()->routeIs("cour.create")  ? "menu-open" : "" }}">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-book"></i>
+            <p>
+              cours
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('cour.index') }}" class="nav-link {{ request()->routeIs("cour.index") ? "active" : "" }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Database</p>
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              <a href="{{ route('cour.create') }}" class="nav-link {{ request()->routeIs("cour.create") ? "active" : "" }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Create</p>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+        @endif
         <li class="nav-header">CONTROLS</li>
         <li class="nav-item {{ request()->routeIs("logout") ? "active" : "" }}">
           <a href="" class="nav-link ">

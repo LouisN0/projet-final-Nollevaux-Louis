@@ -11,12 +11,12 @@
             <div id="owl-courses">
 
                 @foreach ($cours as $cour )
-                    
+                @if ($cour->status == 1)
                 <div class="item course-item">
                     <a href="single-course.html"><img src="{{ asset("/images/". $cour->image) }}" alt="{{ $cour->image }}"></a>
                     <div class="down-content">
-                        <img src="http://placehold.it/44x44" alt="">
-                        <h6>Ernest Byrd</h6>
+                        <img src="{{ asset("/images/". $cour->teacher->photo) }}" alt="">
+                        <h6>{{ $cour->teacher->nom }}</h6>
                         @if ($cour->prix == "free" || $cour->prix == 0)
                             <div class="price-yellow">
                                 <span>Free</span>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                 </div>
-
+                @endif
                 @endforeach
                
             </div>

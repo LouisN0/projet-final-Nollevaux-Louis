@@ -11,53 +11,74 @@
                 </ul>
             </div>
         @endif
-        <form action='{{ route('cour.store') }}' method='post'>
+        <form action='{{ route('cour.store') }}' method='post' enctype="multipart/form-data">
             @csrf
             <div>
-                <label for=>image</label>
-                <input type='text' name='image'>
+                <label for="formFile" class="form-label">image</label>
+                <input class="form-control" id="formFile" type='file' name='image'>
+            </div>
+            @if(Auth::user()->role_id == 1)
+            <div class="mb-3">
+                <label for="">Teacher</label>
+                <select class="form-control" name="teacher_id" id="about">
+                    @foreach ($teachers as $teacher )
+                        <option value="{{ $teacher->id }}">{{ $teacher->nom }}</option>
+                    @endforeach
+                </select>
+            </div>
+            @else
+            <input class='form-control' type='hidden' name='prof_id' value={{ Auth::user()->teacher->id }}>
+            @endif
+            <div>
+                <label class='form-label' for=>prix</label>
+                <input class='form-control' type='text' name='prix'>
             </div>
             <div>
-                <label for=>prof_id</label>
-                <input type='text' name='prof_id'>
+                <label class='form-label' for=>titre</label>
+                <input class='form-control' type='text' name='titre'>
             </div>
             <div>
-                <label for=>prix</label>
-                <input type='text' name='prix'>
+                <label class='form-label' for=>description</label>
+                <input class='form-control' type='text' name='description'>
             </div>
             <div>
-                <label for=>titre</label>
-                <input type='text' name='titre'>
+                <label class='form-label' for=>start</label>
+                <input class='form-control' type='text' name='start'>
             </div>
             <div>
-                <label for=>description</label>
-                <input type='text' name='description'>
+                <label class='form-label' for=>temps</label>
+                <input class='form-control' type='text' name='temps'>
             </div>
             <div>
-                <label for=>slide_id</label>
-                <input type='text' name='slide_id'>
+                <label class='form-label' for=>niveau</label>
+                <input class='form-control' type='text' name='niveau'>
             </div>
             <div>
-                <label for=>start</label>
-                <input type='text' name='start'>
+                <label class='form-label' for=>discipline</label>
+                <input class='form-control' type='text' name='discipline'>
             </div>
+            <label class="form-label" for="">slide</label>
             <div>
-                <label for=>temps</label>
-                <input type='text' name='temps'>
+                <ul>
+                    <li>
+                        <label for="formFile" class="form-label">image1</label>
+                        <input class="form-control" id="formFile" type='file' name='image1'>
+                    </li>
+                    <li>
+                        <label for="formFile" class="form-label">image2</label>
+                        <input class="form-control" id="formFile" type='file' name='image2'>
+                    </li>
+                    <li>
+                        <label for="formFile" class="form-label">image3</label>
+                        <input class="form-control" id="formFile" type='file' name='image3'>
+                    </li>
+                    <li>
+                        <label for="formFile" class="form-label">image4</label>
+                        <input class="form-control" id="formFile" type='file' name='image4'>
+                    </li>
+                </ul>
             </div>
-            <div>
-                <label for=>niveau</label>
-                <input type='text' name='niveau'>
-            </div>
-            <div>
-                <label for=>discipline</label>
-                <input type='text' name='discipline'>
-            </div>
-            <div>
-                <label for=>date</label>
-                <input type='text' name='date'>
-            </div>
-            <button type='submit'>Create</button> {{-- create_blade_anchor --}} 
+            <button class='btn btn-primary'type='submit'>Create</button> {{-- create_blade_anchor --}} 
         </form>
     </div>
 @endsection

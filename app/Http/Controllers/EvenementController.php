@@ -8,6 +8,7 @@ use App\Models\Evenement;
 use App\Models\Subscriber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 
 class EvenementController extends Controller
@@ -21,6 +22,10 @@ class EvenementController extends Controller
     }
     public function create()
     {
+        if(! Gate::allows('create-evenement')){
+            abort(403);
+        }
+        
         $conversations = Conversation::all();
         return view("/back/evenements/create" , compact("conversations"));
     }
@@ -28,6 +33,7 @@ class EvenementController extends Controller
     {
         $subscribers = Subscriber::all();
         $evenement = new Evenement;
+        $this->authorize('create', \App\Model\Evenement::class);
         $request->validate([
          'lieu'=> 'required',
          'date'=> 'required',
@@ -50,6 +56,9 @@ class EvenementController extends Controller
     }
     public function edit($id)
     {
+        if(! Gate::allows('update-evenement')){
+            abort(403);
+        }
         $conversations = Conversation::all();
         $evenement = Evenement::find($id);
         return view("/back/evenements/edit",compact("evenement" , "conversations"));
@@ -57,6 +66,7 @@ class EvenementController extends Controller
     public function update($id, Request $request)
     {
         $evenement = Evenement::find($id);
+        $this->authorize('update', $evenement);
         $request->validate([
          'lieu'=> 'required',
          'date'=> 'required',
@@ -70,6 +80,7 @@ class EvenementController extends Controller
         $evenement->start = $request->start;
         $evenement->titre = $request->titre;
         $evenement->description = $request->description;
+        $evenement->teacher_id = $request->teacher_id;
         if ($request->file('image') == "") {
             $evenement->image = $evenement->image;
             $evenement->save(); // update_anchor
@@ -83,6 +94,7 @@ class EvenementController extends Controller
     public function destroy($id)
     {
         $evenement = Evenement::find($id);
+        $this->authorize('delete', $evenement);
         $destination = "images" . $evenement->img;
         if (File::exists($destination)) 
         {

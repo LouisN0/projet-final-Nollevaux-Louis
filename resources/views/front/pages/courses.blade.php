@@ -29,6 +29,7 @@
             </div>
             <div class="row">
                 @foreach ($cours as $cour)
+                @if ($cour->status == 1)
                     <div class="col-md-4">
                         <div class="item course-item">
                             <a href="{{ route('cour.singleshow', $cour->id) }}"><img
@@ -59,6 +60,7 @@
                             </div>
                         </div>
                     </div>
+                @endif
                 @endforeach
 
 

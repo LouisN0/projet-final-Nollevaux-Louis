@@ -14,50 +14,63 @@
         <form action='{{ route('cour.update' , $cour->id) }}' method='post'>
             @csrf
             <div>
-                <label for=>image</label>
-                <input type='text' name='image' value='{{ $cour->image }}'>
+                <label class="form-label"  for=>image</label>
+                <input class="form-control" id="formFile" type='file' name='image'>
             </div>
             <div>
-                <label for=>prof_id</label>
-                <input type='text' name='prof_id' value='{{ $cour->prof_id }}'>
+                <label class="form-label"  for=>prix</label>
+                <input class='form-control'  type='text' name='prix' value='{{ $cour->prix }}'>
             </div>
             <div>
-                <label for=>prix</label>
-                <input type='text' name='prix' value='{{ $cour->prix }}'>
+                <label class="form-label"  for=>titre</label>
+                <input class='form-control'  type='text' name='titre' value='{{ $cour->titre }}'>
             </div>
             <div>
-                <label for=>titre</label>
-                <input type='text' name='titre' value='{{ $cour->titre }}'>
+                <label class="form-label"  for=>description</label>
+                <input class='form-control'  type='text' name='description' value='{{ $cour->description }}'>
             </div>
             <div>
-                <label for=>description</label>
-                <input type='text' name='description' value='{{ $cour->description }}'>
+                <label class="form-label"  for=>slide_id</label>
+                <input class='form-control'  type='text' name='slide_id' value='{{ $cour->slide_id }}'>
             </div>
             <div>
-                <label for=>slide_id</label>
-                <input type='text' name='slide_id' value='{{ $cour->slide_id }}'>
+                <label class="form-label"  for=>start</label>
+                <input class='form-control'  type='text' name='start' value='{{ $cour->start }}'>
             </div>
             <div>
-                <label for=>start</label>
-                <input type='text' name='start' value='{{ $cour->start }}'>
+                <label class="form-label"  for=>temps</label>
+                <input class='form-control'  type='text' name='temps' value='{{ $cour->temps }}'>
             </div>
             <div>
-                <label for=>temps</label>
-                <input type='text' name='temps' value='{{ $cour->temps }}'>
+                <label class="form-label"  for=>niveau</label>
+                <input class='form-control'  type='text' name='niveau' value='{{ $cour->niveau }}'>
             </div>
             <div>
-                <label for=>niveau</label>
-                <input type='text' name='niveau' value='{{ $cour->niveau }}'>
+                <label class="form-label"  for=>discipline</label>
+                <input class='form-control'  type='text' name='discipline' value='{{ $cour->discipline }}'>
             </div>
+            <label class="form-label" for="">slide</label>
             <div>
-                <label for=>discipline</label>
-                <input type='text' name='discipline' value='{{ $cour->discipline }}'>
+                <ul>
+                    <li>
+                        <label for="formFile" class="form-label">image1</label>
+                        <input class="form-control" id="formFile" type='file' name='image1'>
+                    </li>
+                    <li>
+                        <label for="formFile" class="form-label">image2</label>
+                        <input class="form-control" id="formFile" type='file' name='image2'>
+                    </li>
+                    <li>
+                        <label for="formFile" class="form-label">image3</label>
+                        <input class="form-control" id="formFile" type='file' name='image3'>
+                    </li>
+                    <li>
+                        <label for="formFile" class="form-label">image4</label>
+                        <input class="form-control" id="formFile" type='file' name='image4'>
+                    </li>
+                </ul>
             </div>
-            <div>
-                <label for=>date</label>
-                <input type='text' name='date' value='{{ $cour->date }}'>
-            </div>
-            <button type='submit'>Update</button> {{-- update_blade_anchor --}}
+            <button class='btn btn-primary' type='submit'>Update</button> {{-- update_blade_anchor --}}
         </form>
     </div>
 @endsection

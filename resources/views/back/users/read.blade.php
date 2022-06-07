@@ -6,12 +6,13 @@
             <thead>
                 <tr>
                     <th scope='col'>#</th>
-                    <th scope='col'>Action</th>
                     <th scope='col'>nom</th>
                     <th scope='col'>email</th>
                     <th scope='col'>password</th>
                     <th scope='col'>role</th>
                     <th scope='col'>img</th>
+                    <th scope='col'>social</th>
+                    <th scope='col'>Action</th>
                 </tr> {{-- read_tr_anchor --}}
             </thead>
             <tbody>

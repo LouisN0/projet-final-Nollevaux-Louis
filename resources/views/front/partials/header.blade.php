@@ -57,17 +57,10 @@
                     <li><a href="{{ route('news') }}">News</a>
                     </li>
                     <li><a href="{{ route('contact') }}">Contact</a></li>
-                    <li><a href="#search"><i class="fa fa-search"></i></a></li>
+                    <li><a href=""></a></li>
                 </ul>
             </nav>
         </div>
     </div>
 </header>
 
-<div id="search">
-    <button type="button" class="close">×</button>
-    <form>
-        <input type="search" value="" placeholder="type keyword(s) here" />
-        <button type="submit" class="btn btn-primary"><span>Search</span></button>
-    </form>
-</div>

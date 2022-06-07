@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('niveau');
             $table->string('discipline');
             $table->string('date');
-            $table->foreignId('categorie_id')->constrained('categories', 'id');
+            $table->string('status') ;
             $table->timestamps();
         });
     }

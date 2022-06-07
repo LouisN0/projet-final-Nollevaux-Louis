@@ -10,23 +10,7 @@
 										<h4>showing 1-9 of 40 courses</h4>
 									</div>
 									<div class="right-content">
-										<div class="input-select">
-		                                    <select name="mark" id="mark">
-		                                        <option value="-1">Select Category</option>
-		                                          <option>Free</option>
-		                                          <option>Timing</option>
-		                                          <option>Mostly</option>
-		                                          <option>Latest</option>
-		                                    </select>
-		                                </div>
-		                                <div class="input-select">
-		                                    <select name="mark" id="mark">
-		                                        <option value="-1">Sorted by</option>
-		                                          <option>Price</option>
-		                                          <option>Useless</option>
-		                                          <option>Important</option>
-		                                    </select>
-		                                </div>
+										
 		                                <div class="grid-list">
 		                                	<ul>
 		                                		<li><a href="#"><i class="fa fa-list"></i></a></li>
@@ -67,7 +51,7 @@
 										<div class="date">
 											<p>{!! $evenement->start !!}</span></p>
 										</div>
-										<a href="{{ route('teacher.singleshow', $evenement->teacher->id) }}"><h4>{!! $evenement->titre !!}</h4></a>
+										<a href=""><h4>{!! $evenement->titre !!}</h4></a>
 										<p>{!! $evenement->description !!}</p>
 									</div>
 								</div>

@@ -1,6 +1,6 @@
 @extends('back.layouts.app')
 @section('content')
-    <div class='container'>
+    <div class='mx-5'>
         <h1 class='my-5'>Contacts</h1>
         @if (session()->has('message'))
             <div class='alert alert-success'>
@@ -16,15 +16,14 @@
                 </ul>
             </div>
         @endif
-        <table class='table'>
+        <table class='table table-striped'>
             <thead>
                 <tr>
                     <th scope='col'>#</th>
-                    <th scope='col'>Action</th>
                     <th scope='col'>adress</th>
                     <th scope='col'>email</th>
                     <th scope='col'>phone</th>
-                    <th scope='col'>map</th>
+                    <th scope='col'>Action</th>
                 </tr> {{-- all_tr_anchor --}}
             </thead>
             <tbody>
@@ -34,14 +33,17 @@
                         <td>{{ $contact->adress }}</td>
                         <td>{{ $contact->email }}</td>
                         <td>{{ $contact->phone }}</td>
-                        <td>{{ $contact->map }}</td>
                         <td> {{-- all_td_anchor --}}
                             <div class='d-flex'>
+                                @can ('delete', $contact)
                                 <form action='{{ route('contact.destroy', $contact->id) }}' method='post'>
                                     @csrf
-                                    <button class=btn btn-danger type=submit>Delete</button>
+                                    <button class="btn btn-outline-dark" type="submit">Delete</button>
                                 </form>
-                                <a class='btn btn-primary' href='{{ route('contact.edit', $contact->id) }}' role='button'>Edit</a>
+                                @endcan
+                                @can ('update', $contact)
+                                <a class='btn btn-outline-dark' href='{{ route('contact.edit', $contact->id) }}' role='button'>Edit</a>
+                                @endcan
                             </div>
                         </td>
                     </tr>

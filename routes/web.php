@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DemandeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\TagController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\UserController;
 use App\Models\Banner;
+use App\Models\Contact;
 use App\Models\Conversation;
 use App\Models\Cour;
 use App\Models\Evenement;
@@ -44,7 +46,7 @@ Route::get('/', function () {
     $services = Service::all();
     $banners = Banner::all();
     $teachers = Teacher::all();
-    $posts = Post::all();
+    $posts = Post::orderBy('created_at', 'DESC')->paginate(2);
     return view('welcome', compact('banners' , 'services', 'cours', 'teachers', 'posts'));
 })->name('home');
 
@@ -53,8 +55,8 @@ Route::get('/', function () {
 Route::get('/courses', [CourController::class, 'allcour'])->name('courses');
 
 Route::get('/contact', function () {
-    
-    return view('front/pages/contact');
+    $contact = Contact::first();
+    return view('front/pages/contact', compact('contact'));
 })->name('contact');
 
 Route::get('/events', [EvenementController::class, 'allevent'])->name('events');
@@ -67,11 +69,12 @@ Route::post('/back/conversations/{user}', [ConversationController::class, 'store
 
 
 Route::get('/news', [PostController::class, 'allpost'])->name('news');
-Route::get('/tag/{id}', [PostController::class, 'filterTag']);
-Route::get('/categorie/{id}', [PostController::class, 'filterCategorie']);
+Route::get('/tag/post/{id}', [PostController::class, 'filterTag']);
+Route::get('/categorie/post/{id}', [PostController::class, 'filterCategorie']);
 Route::post('/comment/store', [CommentController::class, 'store'])->name('comment.add');
 Route::post('/reply/store', [CommentController::class, 'replyStore'])->name('reply.add');
 
+Route::get('/news/search', [PostController::class, 'search'])->name('post.search');
 
 Route::get('/front/pages/{id}/post', [PostController::class, 'singlepost'])->name('singlepost');
 
@@ -133,6 +136,9 @@ Route::post('/back/cours/{id}/update', [CourController::class, 'update'])->name(
 Route::post('/back/cours/{id}/delete', [CourController::class, 'destroy'])->name('cour.destroy');
 Route::get('/front/pages/{id}/coursesShow', [CourController::class, 'singleshow'])->name('cour.singleshow');
 Route::get('/categorie/{id}', [CourController::class, 'filterCategorie']);
+Route::post('/back/cours/{id}/publish', [CourController::class, 'publish'])->name('cour.publish');
+Route::post('/back/cours/{id}/unpublish', [CourController::class, 'unpublish'])->name('cour.unpublish');
+
 // Slide
 Route::get('/back/slides', [SlideController::class, 'index'])->name('slide.index');
 Route::get('/back/slides/create', [SlideController::class, 'create'])->name('slide.create');
@@ -176,6 +182,8 @@ Route::get('/back/posts/{id}/read', [PostController::class, 'read'])->name('post
 Route::get('/back/posts/{id}/edit', [PostController::class, 'edit'])->name('post.edit');
 Route::post('/back/posts/{id}/update', [PostController::class, 'update'])->name('post.update');
 Route::post('/back/posts/{id}/delete', [PostController::class, 'destroy'])->name('post.destroy');
+Route::post('/back/posts/{id}/publish', [PostController::class, 'publish'])->name('post.publish');
+Route::post('/back/posts/{id}/unpublish', [PostController::class, 'unpublish'])->name('post.unpublish');
 // Tag
 Route::get('/back/tags', [TagController::class, 'index'])->name('tag.index');
 Route::get('/back/tags/create', [TagController::class, 'create'])->name('tag.create');
@@ -197,3 +205,11 @@ Route::post('/back/contacts/{id}/update', [ContactController::class, 'update'])-
 Route::post('/back/contacts/{id}/delete', [ContactController::class, 'destroy'])->name('contact.destroy');
 
 
+// Demande
+Route::get('/back/demandes', [DemandeController::class, 'index'])->name('demande.index');
+Route::get('/back/demandes/create', [DemandeController::class, 'create'])->name('demande.create');
+Route::post('/back/demandes/store', [DemandeController::class, 'store'])->name('demande.store');
+Route::get('/back/demandes/{id}/read', [DemandeController::class, 'read'])->name('demande.read');
+Route::get('/back/demandes/{id}/edit', [DemandeController::class, 'edit'])->name('demande.edit');
+Route::post('/back/demandes/{id}/update', [DemandeController::class, 'update'])->name('demande.update');
+Route::post('/back/demandes/{id}/delete', [DemandeController::class, 'destroy'])->name('demande.destroy');

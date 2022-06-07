@@ -13,30 +13,35 @@
         @endif
         <form action='{{ route('user.update' , $user->id) }}' method='post' enctype="multipart/form-data">
             @csrf
-            <div>
-                <label for=>nom</label>
-                <input type='text' name='nom' value='{{ $user->nom }}'>
+            <div class="mb-3">
+                <label class='form-label' for=>nom</label>
+                <input class='form-control' type='text' name='nom' value='{{ $user->nom }}'>
             </div>
-            <div>
-                <label for=>email</label>
-                <input type='text' name='email' value='{{ $user->email }}'>
+            <div class="mb-3">
+                <label class='form-label' for=>email</label>
+                <input class='form-control' type='text' name='email' value='{{ $user->email }}'>
             </div>
-            <div>
-                <label for=>password</label>
-                <input type='text' name='password' value='{{ $user->password }}'>
+            <div class="mb-3">
+                <label class='form-label' for=>password</label>
+                <input class='form-control' type='text' name='password' value='{{ $user->password }}'>
             </div>
-            <div>
+            @if (Auth::user()->role_id == 1)
+                
+            
+            <div class="mb-3">
+                <label class='form-label' for=>role</label>
                 <select class='form-control' name='role_id'>
                     @foreach ($roles as $role)
                         <option value='{{ $role->id }}' {{ $user->role_id == $role->id ? 'selected' : '' }}>{{ $role->role }}</option>
                     @endforeach
                 </select>
             </div>
-            <div>
+            @endif
+            <div class="mb-3">
                 <label for="formFile" class="form-label">Image</label>
 	            <input class="form-control" name='image' type="file" id="formFile">
             </div>
-            <button type='submit'>Update</button> {{-- update_blade_anchor --}}
+            <button class="btn btn-primary"type='submit'>Update</button> {{-- update_blade_anchor --}}
         </form>
     </div>
 @endsection

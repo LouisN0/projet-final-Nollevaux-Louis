@@ -23,6 +23,7 @@ class SocialController extends Controller
     public function store(Request $request)
     {
         $social = new Social;
+        $this->authorize('create', \App\Model\Social::class);
         $request->validate([
          'facebook'=> 'required',
          'twitter'=> 'required',
@@ -55,6 +56,7 @@ class SocialController extends Controller
     public function update($id, Request $request)
     {
         $social = Social::find($id);
+        $this->authorize('update', \App\Model\Social::class);
         $request->validate([
          'facebook'=> 'required',
          'twitter'=> 'required',
@@ -75,6 +77,7 @@ class SocialController extends Controller
     public function destroy($id)
     {
         $social = Social::find($id);
+        $this->authorize('delete', \App\Model\Social::class);
         $social->delete();
         return redirect()->back()->with('message', "Successful delete !");
     }

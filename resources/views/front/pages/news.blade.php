@@ -8,7 +8,7 @@
 								<div class="classic-posts">
 
 									@foreach ($posts as $post )
-										
+									@if ($post->status == 1)
 									
 									<div class="classic-item">
 										<a href="single-post.html"><img src="{{ asset('/images/'. $post->image) }}" alt=""></a>
@@ -28,6 +28,7 @@
 											</div>
 										</div>
 									</div>
+									@endif
 @endforeach
 									
 									<div class="pagination-navigation">
@@ -51,16 +52,21 @@
 							</div>
 							<div class="col-md-4">
 								<div class="side-bar">
-									<div class="search-box">
-										<input type="text" class="search" name="s" placeholder="Search..." value="">
-									</div>
+									
+									<form action="{{ route('post.search') }}">
+										@csrf
+										<div class="search-box">
+											<input type="text" class="search" name="search"  placeholder="Search..." value="">
+
+										</div>
+									</form>
 									<div class="categories">
 										<div class="widget-heading">
 											<h4>Categories</h4>
 										</div>
 										<ul>
 										@foreach ($categories as $categorie )
-											<li><a href="{{ url('/categorie/'. $categorie->id) }}"><i class="fa fa-angle-right"></i>{{ $categorie->nom }}</a></li>
+											<li><a href="{{ url('/categorie/post/'. $categorie->id) }}"><i class="fa fa-angle-right"></i>{{ $categorie->nom }}</a></li>
 										@endforeach
 											
 										</ul>
@@ -72,7 +78,7 @@
 										</div>
 										<ul>
 										@foreach ($tags as $tag )
-											<li><a href="{{ url('/tag/'. $tag->id) }}">{{ $tag->nom }}</a></li>
+											<li><a href="{{ url('/tag/post/'. $tag->id) }}">{{ $tag->nom }}</a></li>
 										@endforeach
 										</ul>
 									</div>

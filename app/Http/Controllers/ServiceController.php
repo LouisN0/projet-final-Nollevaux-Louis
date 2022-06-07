@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Conversation;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ServiceController extends Controller
 {
@@ -17,12 +18,16 @@ class ServiceController extends Controller
     }
     public function create()
     {
+        if(! Gate::allows('create-service')){
+            abort(403);
+        }
         $conversations = Conversation::all();
         return view("/back/services/create" , compact("conversations"));
     }
     public function store(Request $request)
     {
         $service = new Service;
+        $this->authorize('create', \App\Model\Service::class);
         $request->validate([
          'icone'=> 'required',
          'titre'=> 'required',
@@ -43,6 +48,9 @@ class ServiceController extends Controller
     }
     public function edit($id)
     {
+        if(! Gate::allows('update-service')){
+            abort(403);
+        }
         $conversations = Conversation::all();
         $service = Service::find($id);
         return view("/back/services/edit",compact("service" , "conversations"));
@@ -50,6 +58,7 @@ class ServiceController extends Controller
     public function update($id, Request $request)
     {
         $service = Service::find($id);
+        $this->authorize('update', \App\Model\Service::class);
         $request->validate([
          
          'titre'=> 'required',
@@ -70,6 +79,7 @@ class ServiceController extends Controller
     public function destroy($id)
     {
         $service = Service::find($id);
+        $this->authorize('delete', \App\Model\Service::class);
         $service->delete();
         return redirect()->back()->with('message', "Successful delete !");
     }

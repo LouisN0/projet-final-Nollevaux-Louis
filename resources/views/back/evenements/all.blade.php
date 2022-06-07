@@ -41,11 +41,15 @@
                         <td>{{ $evenement->description }}</td>
                         <td> {{-- all_td_anchor --}}
                             <div class='d-flex'>
+                                @can ('delete', $evenement)
                                 <form action='{{ route('evenement.destroy', $evenement->id) }}' method='post'>
                                     @csrf
                                     <button class=btn btn-danger type=submit>Delete</button>
                                 </form>
+                                @endcan
+                                @can ('update', $evenement)
                                 <a class='btn btn-primary' href='{{ route('evenement.edit', $evenement->id) }}' role='button'>Edit</a>
+                                @endcan
                             </div>
                         </td>
                     </tr>

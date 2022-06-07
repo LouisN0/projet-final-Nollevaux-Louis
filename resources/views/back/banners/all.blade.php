@@ -41,11 +41,15 @@
                         <td>{{ $banner->first }}</td>
                         <td> {{-- all_td_anchor --}}
                             <div class='d-flex'>
+                                @can ('delete', $banner)
                                 <form action='{{ route('banner.destroy', $banner->id) }}' method='post'>
                                     @csrf
                                     <button class="btn btn-outline-dark" type="submit">Delete</button>
                                 </form>
+                                @endcan
+                                @can ('update', $banner)
                                 <a class='btn btn-outline-dark' href='{{ route('banner.edit', $banner->id) }}' role='button'>Edit</a>
+                                @endcan
                                 <a class='btn btn-outline-dark' href='{{ route('banner.read', $banner->id) }}' role='button'>Read</a>
                             </div>
                         </td>

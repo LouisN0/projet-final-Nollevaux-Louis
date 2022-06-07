@@ -7,7 +7,11 @@ use App\Models\Conversation;
 use App\Models\Cour;
 use App\Models\Slide;
 use App\Models\Teacher;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Gate;
 
 class CourController extends Controller
 {
@@ -20,15 +24,21 @@ class CourController extends Controller
     }
     public function create()
     {
+        if(! Gate::allows('create-cour')){
+            abort(403);
+        }
+        $categories = Categorie::all();
         $conversations = Conversation::all();
-        return view("/back/cours/create" , compact("conversations"));
+        $teachers = Teacher::all();
+        return view("/back/cours/create" , compact("conversations", "teachers", "categories"));
     }
     public function store(Request $request)
-    {
+    {   
+        $existingS = Slide::all();
+        $slide = new Slide;
         $cour = new Cour;
+        $this->authorize('create', \App\Model\Cour::class);
         $request->validate([
-         'image'=> 'required',
-         'prof_id'=> 'required',
          'prix'=> 'required',
          'titre'=> 'required',
          'description'=> 'required',
@@ -36,20 +46,35 @@ class CourController extends Controller
          'temps'=> 'required',
          'niveau'=> 'required',
          'discipline'=> 'required',
-         'date'=> 'required',
+         'image1'=> 'required',
+         'image2'=> 'required',
+         'image3'=> 'required',
+         'image4'=> 'required',
+         
         ]); // store_validated_anchor;
-        $cour->image = $request->image;
-        $cour->prof_id = $request->prof_id;
+        $cour->teacher_id = $request->teacher_id;
+        $cour->status = 0;
         $cour->prix = $request->prix;
         $cour->titre = $request->titre;
         $cour->description = $request->description;
-        $cour->slide_id = $request->slide_id;
         $cour->start = $request->start;
         $cour->temps = $request->temps;
         $cour->niveau = $request->niveau;
         $cour->discipline = $request->discipline;
-        $cour->date = $request->date;
+        $cour->slide_id = $existingS->last()->id + 1;
+        $cour->date = Carbon::now()->format('Y-m-d');
+        $slide->image1 = $request->file("image1")->hashName();
+        $slide->image2 = $request->file("image2")->hashName();
+        $slide->image3 = $request->file("image3")->hashName();
+        $slide->image4 = $request->file("image4")->hashName();
+        $cour->image = $request->file("image")->hashName();
+        $slide->save();
         $cour->save(); // store_anchor
+        $request->file('image')->storePublicly('images/', 'public');
+        $request->file('image1')->storePublicly('images/', 'public');
+        $request->file('image2')->storePublicly('images/', 'public');
+        $request->file('image3')->storePublicly('images/', 'public');
+        $request->file('image4')->storePublicly('images/', 'public');
         return redirect()->route("cour.index")->with('message', "Successful storage !");
     }
     public function read($id)
@@ -62,40 +87,60 @@ class CourController extends Controller
     {
         $conversations = Conversation::all();
         $cour = Cour::find($id);
-        return view("/back/cours/edit",compact("cour" , "conversations"));
+        if(Auth::user()->id === $cour->teacher->user->id || Auth::user()->role_id === 1){
+            
+            return view("/back/cours/edit",compact("cour" , "conversations"));
+        }
+        abort(403);
     }
     public function update($id, Request $request)
     {
+        $slide = Slide::find($id);
         $cour = Cour::find($id);
+        $this->authorize('update', $cour);
         $request->validate([
-         'image'=> 'required',
-         'prof_id'=> 'required',
-         'prix'=> 'required',
-         'titre'=> 'required',
-         'description'=> 'required',
-         'start'=> 'required',
-         'temps'=> 'required',
-         'niveau'=> 'required',
-         'discipline'=> 'required',
-         'date'=> 'required',
+            'prix'=> 'required',
+            'titre'=> 'required',
+            'description'=> 'required',
+            'start'=> 'required',
+            'temps'=> 'required',
+            'niveau'=> 'required',
+            'discipline'=> 'required',
         ]); // update_validated_anchor;
-        $cour->image = $request->image;
-        $cour->prof_id = $request->prof_id;
+        $cour->status = 0;
         $cour->prix = $request->prix;
         $cour->titre = $request->titre;
         $cour->description = $request->description;
-        $cour->slide_id = $request->slide_id;
         $cour->start = $request->start;
         $cour->temps = $request->temps;
         $cour->niveau = $request->niveau;
         $cour->discipline = $request->discipline;
-        $cour->date = $request->date;
+        $cour->date = Carbon::now()->format('Y-m-d');
+        $slide->image1 = $slide->image1;
+        $slide->image2 = $slide->image2;
+        $slide->image3 = $slide->image3;
+        $slide->image4 = $slide->image4;
         $cour->save(); // update_anchor
+        if ($request->file('image') == "") {
+            $cour->image = $cour->image;
+            $cour->save(); // update_anchor
+        }else{
+            $cour->image = $request->file("image")->hashName();
+            $cour->save(); // update_anchor // update_anchor
+            $request->file('image')->storePublicly('images/', 'public');
+        }
         return redirect()->route("cour.index")->with('message', "Successful update !");
     }
     public function destroy($id)
     {
         $cour = Cour::find($id);
+        $this->authorize('delete', $cour);
+        $destination = "img/portfolio/" . $cour->image;
+        if (File::exists($destination)) 
+        {
+            File::delete($destination);
+        }
+
         $cour->delete();
         return redirect()->back()->with('message', "Successful delete !");
     }
@@ -128,5 +173,19 @@ class CourController extends Controller
         }else{
             abort(404);
         }
+    }
+    public function publish($id)
+    {
+        $cour = cour::find($id);
+        $cour->status = 1;
+        $cour->save();
+        return redirect()->back()->with("message", "Successful publish !");
+    }
+    public function unpublish($id)
+    {
+        $cour = cour::find($id);
+        $cour->status = 0;
+        $cour->save();
+        return redirect()->back()->with("message", "Successful unpublish !");
     }
 }

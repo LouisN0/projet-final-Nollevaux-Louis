@@ -32,11 +32,15 @@
                         <td>{{ $categorie->nom }}</td>
                         <td> {{-- all_td_anchor --}}
                             <div class='d-flex'>
+                                @can ('delete', $categorie)
                                 <form action='{{ route('categorie.destroy', $categorie->id) }}' method='post'>
                                     @csrf
                                     <button class=btn btn-danger type=submit>Delete</button>
                                 </form>
+                                @endcan
+                                @can ('update', $categorie)
                                 <a class='btn btn-primary' href='{{ route('categorie.edit', $categorie->id) }}' role='button'>Edit</a>
+                                @endcan
                             </div>
                         </td>
                     </tr>

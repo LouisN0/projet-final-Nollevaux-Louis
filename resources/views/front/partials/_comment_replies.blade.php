@@ -2,7 +2,7 @@
     <div class="comment-item replied-comment">
         <img src="{{ asset('/images/'. $comment->user->image)  }}" alt="" style="width:10%">
         <h4>{{ $comment->user->nom }}</h4>
-        <span>1 hour ago</span>
+        <span>{{ $comment->created_at->diffForHumans() }}</span>
         
         <p>{{$comment->body}}</p>
         
@@ -14,8 +14,12 @@
                 <input type="hidden" name="comment_id" value="{{ $comment->id }}" />
             </div>
             <div class="form-group">
-                 
+            @if (Route::has('login'))
+                @auth
                 <input type="submit" class="btn btn-warning" value="Reply" />
+                @else
+                @endauth
+            @endif
             </div>
         </form>
         @include('front.partials._comment_replies', ['comments' => $comment->replies])

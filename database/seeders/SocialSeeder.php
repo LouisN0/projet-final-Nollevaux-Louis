@@ -16,7 +16,7 @@ class SocialSeeder extends Seeder
     public function run()
     {
         DB::table('socials')->insert([
-            'facebook' => '#',
+            'facebook' => 'test',
             'twitter' => '#',
             'dribble' => '#',
             'insta' => '#',

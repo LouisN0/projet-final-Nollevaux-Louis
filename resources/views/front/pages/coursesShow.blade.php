@@ -28,9 +28,9 @@
 											<div class="item course-item">
 												<div class="up-content">
 													<a href="single-course.html"><h4><?= str_replace(["<br>"], [""], $cour->titre) ?></h4></a>
-													<p>Plaid you probably haven't heard of them fashion axe meditation</p>
-													<img src="assets/images/course-author-1.jpg" alt="">
-													<h6>Ernest Byrd</h6>
+													<p>{!! (Str::words($cour->description, '12')) !!}</p>
+													<img src="{{ asset('/images/'. $cour->teacher->photo) }}" alt="">
+													<h6>{{ $cour->teacher->nom }}</h6>
 													<div class="price-red">
 														<span>Free</span>
 														<div id="base"></div>

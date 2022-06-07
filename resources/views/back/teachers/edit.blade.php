@@ -11,41 +11,68 @@
                 </ul>
             </div>
         @endif
-        <form action='{{ route('teacher.update' , $teacher->id) }}' method='post'>
+        <form action='{{ route('teacher.update', $teacher->id) }}' method='post'>
             @csrf
-            <div>
-                <label for=>photo</label>
-                <input type='text' name='photo' value='{{ $teacher->photo }}'>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">image</label>
+                <input class="form-control" id="formFile" type='file' name='photo' value='{{ $teacher->photo }}'>
             </div>
             <div>
-                <label for=>nom</label>
-                <input type='text' name='nom' value='{{ $teacher->nom }}'>
+                <label class='control-label' for=>nom</label>
+                <input class="form-control"  type='text' name='nom' value='{{ $teacher->nom }}'>
             </div>
             <div>
-                <label for=>discipline</label>
-                <input type='text' name='discipline' value='{{ $teacher->discipline }}'>
+                <label class="form-label" for=>discipline</label>
+                <input class="form-control" type='text' name='discipline' value='{{ $teacher->discipline }}'>
             </div>
             <div>
-                <label for=>description</label>
-                <input type='text' name='description' value='{{ $teacher->description }}'>
+                <label class="form-label" for=>description</label>
+                <input class="form-control" type='text' name='description' value='{{ $teacher->description }}'>
             </div>
             <div>
-                <label for=>biographie</label>
-                <input type='text' name='biographie' value='{{ $teacher->biographie }}'>
+                <label class="form-label" for=>biographie</label>
+                <input class="form-control" type='text' name='biographie' value='{{ $teacher->biographie }}'>
             </div>
             <div>
-                <label for=>telephone</label>
-                <input type='text' name='telephone' value='{{ $teacher->telephone }}'>
+                <label class="form-label" for=>telephone</label>
+                <input class="form-control" class="form-control" type='text' name='telephone'
+                    value='{{ $teacher->telephone }}'>
             </div>
             <div>
-                <label for=>mail</label>
-                <input type='text' name='mail' value='{{ $teacher->mail }}'>
+                <label class="form-label" for=>mail</label>
+                <input class="form-control" type='text' name='mail' value='{{ $teacher->mail }}'>
             </div>
+            <label class="form-label" for="">social media</label>
             <div>
-                <label for=>rs</label>
-                <input type='text' name='rs' value='{{ $teacher->rs }}'>
+                <ul>
+                    <li>
+                        <label class="form-label" for=>facebook</label>
+                        <input class="form-control" type='text' name='facebook' value='{{ $teacher->social->facebook }}'>
+                    </li>
+                    <li>
+                        <label class="form-label" for=>twitter</label>
+                        <input class="form-control" type='text' name='twitter' value='{{ $teacher->social->twitter }}'>
+                    </li>
+                    <li>
+                        <label class="form-label" for=>instagram</label>
+                        <input class="form-control" type='text' name='insta' value='{{ $teacher->social->insta }}'>
+                    </li>
+                    <li>
+                        <label class="form-label" for=>dribble</label>
+                        <input class="form-control" type='text' name='dribble' value='{{ $teacher->social->dribble }}'>
+                    </li>
+                    <li>
+                        <label class="form-label" for=>skype</label>
+                        <input class="form-control" type='text' name='skype' value='{{ $teacher->social->skype }}'>
+                    </li>
+                    <li>
+                        <label class="form-label" for=>linkedink</label>
+                        <input class="form-control" type='text' name='linkedink' value='{{ $teacher->social->linkedink }}'>
+                    </li>
+                </ul>
+
             </div>
-            <button type='submit'>Update</button> {{-- update_blade_anchor --}}
+            <button class="btn btn-primary mb-3" type='submit'>Update</button> {{-- update_blade_anchor --}}
         </form>
     </div>
 @endsection

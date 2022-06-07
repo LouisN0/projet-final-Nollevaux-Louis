@@ -31,37 +31,59 @@
                         <div class="widget-heading">
                             <h4>Request Information</h4>
                         </div>
+                        @if (Route::has('login'))
+                        @auth
                         <div class="search-form">
-                            <form action="" method="post">
+                            <form action="{{ route('demande.store') }}" method='POST'>
                                 @csrf
-                                <input type="text" id="name" name="s" placeholder="Full Name" value="">
-                                <input type="text" id="address" name="s" placeholder="E-mail Address" value="">
-                                <div class="select">
-                                    <select name="to" id="campus">
-                                        @foreach ($teachers as $teacher)
-                                            <option name="to" value="{{ $teacher->id }}">{{ $teacher->nom }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="select">
-                                    <select name="message" id="program">
-                                        @foreach ($cours as $cour)
-                                            <option name="message" value="{{ $cour->id }}">{!! $cour->titre !!}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="accent-button">
-                                    @if (Route::has('login'))
-                                        @auth
-                                        <button type="submit">Submit request</button>
-                                        @else
-                                            <a href="{{ route('login') }}">Log in</a>
-                                        @endauth
+                                <div class="search-form">
+                                    @if (session()->has('message'))
+                                        <div class='alert alert-success'
+                                            style='display:flex !important; align-items:center !important; justify-content:center !important;'>
+                                            {{ session()->get('message') }}
+                                        </div>
                                     @endif
-
+                                    @if (session()->has('error'))
+                                        <div class='alert alert-danger'
+                                            style='display:flex !important; align-items:center !important; justify-content:center !important;'>
+                                            {{ session()->get('error') }}
+                                        </div>
+                                    @endif
+                                    <input style='margin-bottom: 10px !important;' type="text" name="from" placeholder="Full Name"
+                                        value="{{ Auth::user()->nom }}">
+                                    <input type="text" id="address" name="email" placeholder="E-mail Address"
+                                        value="{{ Auth::user()->email }}">
+                                    <div class="select" style='margin-bottom: 10px !important;' >
+                                        <select name="contenu" id="about">
+                                            <option value="-1">Cours</option>
+                                            @foreach ($cours as $cour)
+                                                <option value="{{ $cour->titre }}">{{ $cour->titre }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="select">
+                                        <select name="to" id="to">
+                                            <option value="-1">teachers</option>
+                                            @foreach ($teachers as $teacher)
+                                                
+                                                <option value="{{ $teacher->nom }}">{{ $teacher->nom }}
+                                                </option>
+                                                
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="accent-button">
+                                        <button type="submit" style='border: none !important; margin-top: 20px !important;'>Submit Request</button>
+                                    </div>
                                 </div>
                             </form>
-                        </div>
+                            </div>
+                            @else
+                            <div class="accent-button">
+                                <a href="{{ route('login') }}">Log in</a>
+                            </div>
+                            @endauth
+                        @endif
                     </div>
                 </div>
             </div>
