@@ -46,8 +46,13 @@ Route::get('/', function () {
     $services = Service::all();
     $banners = Banner::all();
     $teachers = Teacher::all();
+    
+    $teacher2 = Teacher::find('2') ;
+    $teacher3 = Teacher::find('3') ;
+    $teacher1 = Teacher::where('id', '!=', 3)->where('id', '!=', 2)->get()->random(1);
+    $teacher4 = Teacher::where('id', '!=', $teacher1[0]->id)->where('id', '!=', 3)->where('id', '!=', 2)->get()->random(1);
     $posts = Post::orderBy('created_at', 'DESC')->paginate(2);
-    return view('welcome', compact('banners' , 'services', 'cours', 'teachers', 'posts'));
+    return view('welcome', compact('banners' , 'services', 'cours', 'teachers', 'posts', "slides", "teacher1", "teacher2", "teacher3", "teacher4"));
 })->name('home');
 
 
@@ -63,9 +68,9 @@ Route::get('/events', [EvenementController::class, 'allevent'])->name('events');
 
 
 Route::get('/back/conversations', [ConversationController::class, 'index'])->name('conversations');
-Route::get('/back/conversations/{user}', [ConversationController::class, 'show'])->name('conversations.show')->middleware('can:talkTo,user');
-Route::post('/back/conversations/{user}', [ConversationController::class, 'store'])->name('conversations.store')->middleware('can:talkTo,user');
-
+Route::get('/back/conversations/{user}', [ConversationController::class, 'show'])->name('conversations.show');
+Route::post('/back/conversations/{user}', [ConversationController::class, 'store'])->name('conversations.store');
+// ->middleware('can:talkTo,user')
 
 
 Route::get('/news', [PostController::class, 'allpost'])->name('news');

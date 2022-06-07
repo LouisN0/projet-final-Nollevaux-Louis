@@ -9,13 +9,10 @@
         </div>
         <div class="row">
 
-            @foreach ($teachers as $teacher)
-                
-            
             <div class="col-md-3 col-sm-6">
                 <div class="teacher-item">
                     <div class="thumb-holder">
-                        <a href="single-teacher.html"><img src="{{ asset("/images/". $teacher->photo) }}" alt=""></a>
+                        <a href="single-teacher.html"><img src="{{ asset("/images/". $teacher1[0]->photo) }}" alt=""></a>
                         <div class="hover-content">
                             <ul>
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -26,14 +23,76 @@
                         </div>
                     </div>
                     <div class="down-content">
-                        <a href="{{ route('teacher.singleshow', $teacher->id) }}"><h4>{{ $teacher->nom }}</h4></a>
-                        <span>{{ $teacher->discipline }}</span>
-                        <p><?= str_replace(["<em>"], [""],  (Str::words($teacher->description, '10'))) ?></p>
+                        <a href="{{ route('teacher.singleshow', $teacher1[0]->id) }}"><h4>{{ $teacher1[0]->nom }}</h4></a>
+                        <span>{{ $teacher1[0]->discipline }}</span>
+                        <p><?= str_replace(["<em>"], [""],  (Str::words($teacher1[0]->description, '10'))) ?></p>
                     </div>
                 </div>
             </div>
-            @endforeach
 
+            <div class="col-md-3 col-sm-6">
+                <div class="teacher-item">
+                    <div class="thumb-holder">
+                        <a href="single-teacher.html"><img src="{{ asset("/images/". $teacher2->photo) }}" alt=""></a>
+                        <div class="hover-content">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="down-content">
+                        <a href="{{ route('teacher.singleshow', $teacher2->id) }}"><h4>{{ $teacher2->nom }}</h4></a>
+                        <span>{{ $teacher2->discipline }}</span>
+                        <p><?= str_replace(["<em>"], [""],  (Str::words($teacher2->description, '10'))) ?></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="teacher-item">
+                    <div class="thumb-holder">
+
+                        <a href="single-teacher.html"><img src="{{ asset("/images/". $teacher3->photo) }}" alt=""></a>
+                        <div class="hover-content">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="down-content">
+                        <a href="{{ route('teacher.singleshow', $teacher3->id) }}"><h4>{{ $teacher3->nom }}</h4></a>
+                        <span>{{ $teacher3->discipline }}</span>
+                        <p><?= str_replace(["<em>"], [""],  (Str::words($teacher3->description, '10'))) ?></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="teacher-item">
+                    <div class="thumb-holder">
+                        <a href="single-teacher.html"><img src="{{ asset("/images/". $teacher4[0]->photo) }}" alt=""></a>
+                        <div class="hover-content">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="down-content">
+                        <a href="{{ route('teacher.singleshow', $teacher4[0]->id) }}"><h4>{{ $teacher4[0]->nom }}</h4></a>
+                        <span>{{ $teacher4[0]->discipline }}</span>
+                        <p><?= str_replace(["<em>"], [""],  (Str::words($teacher4[0]->description, '10'))) ?></p>
+                    </div>
+                </div>
+            </div>
             
         </div>
     </div>

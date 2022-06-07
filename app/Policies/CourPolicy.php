@@ -30,7 +30,7 @@ class CourPolicy
      */
     public function view(User $user, Cour $cour)
     {
-        //
+        return true;
     }
 
     /**

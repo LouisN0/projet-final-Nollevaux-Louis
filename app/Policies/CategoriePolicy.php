@@ -18,7 +18,7 @@ class CategoriePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**

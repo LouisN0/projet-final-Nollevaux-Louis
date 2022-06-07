@@ -30,7 +30,7 @@ class BannerPolicy
      */
     public function view(User $user, Banner $banner)
     {
-        //
+        return true;
     }
 
     /**
