@@ -12,14 +12,14 @@
                             <div class="item">
                                 <i class="fa fa-quote-right"></i>
                                 <p>Stumptown polaroid skateboard single-origin coffee. Farm-to-table Vice authentic Truffaut put a bird on it, pug ethical tousled photo booth gluten-free cliche bicycle rights four dollar toast single-origin coffee taxidermy.</p>
-                                <img src="http://placehold.it/66x66" alt="">
+                                <img src="{{ asset('/images/teacher1.jpg') }}" alt="">
                                 <h4>Caroll m. davis</h4>
                                 <span>Web Designer</span>
                             </div>
                             <div class="item">
                                 <i class="fa fa-quote-right"></i>
                                 <p>Stumptown polaroid skateboard single-origin coffee. Farm-to-table Vice authentic Truffaut put a bird on it, pug ethical tousled photo booth gluten-free cliche bicycle rights four dollar toast single-origin coffee taxidermy.</p>
-                                <img src="http://placehold.it/66x66" alt="">
+                                <img src="{{ asset('/images/teacher2.jpg') }}" alt="">
                                 <h4>Peter j. smith</h4>
                                 <span>Web Designer</span>
                             </div>
@@ -39,8 +39,8 @@
                             <a href="{{ route('singlepost', $post->id) }}"><img style="width: 40%" src="{{ asset('/images/'. $post->image) }}" alt=""></a>
                             <ul>
                                 <li>{{ $post->date }}</li>
-                                <li>By Admin</li>
-                                <li>2 Comments</li>
+                                <li>By {{ $post->user->nom }}</li>
+                                <li>{{ $post->comments->count() }} Comments</li>
                             </ul>
                             <a href="{{ route('singlepost', $post->id) }}"><h4>{{ $post->titre }}</h4></a>
                             <p>{!! (Str::words($post->texte, '12')) !!}</p>

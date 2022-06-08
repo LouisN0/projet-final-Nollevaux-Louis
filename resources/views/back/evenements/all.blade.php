@@ -16,7 +16,7 @@
                 </ul>
             </div>
         @endif
-        <table class='table'>
+        <table class='table table-striped'>
             <thead>
                 <tr>
                     <th scope='col'>#</th>
@@ -44,11 +44,11 @@
                                 @can ('delete', $evenement)
                                 <form action='{{ route('evenement.destroy', $evenement->id) }}' method='post'>
                                     @csrf
-                                    <button class=btn btn-danger type=submit>Delete</button>
+                                    <button class="btn btn-outline-dark" type=submit>Delete</button>
                                 </form>
                                 @endcan
                                 @can ('update', $evenement)
-                                <a class='btn btn-primary' href='{{ route('evenement.edit', $evenement->id) }}' role='button'>Edit</a>
+                                <a class='btn btn-outline-dark' href='{{ route('evenement.edit', $evenement->id) }}' role='button'>Edit</a>
                                 @endcan
                             </div>
                         </td>

@@ -6,6 +6,7 @@ use App\Mail\Event;
 use App\Models\Conversation;
 use App\Models\Evenement;
 use App\Models\Subscriber;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
@@ -25,9 +26,9 @@ class EvenementController extends Controller
         if(! Gate::allows('create-evenement')){
             abort(403);
         }
-        
+        $teachers = Teacher::all();
         $conversations = Conversation::all();
-        return view("/back/evenements/create" , compact("conversations"));
+        return view("/back/evenements/create" , compact("conversations", "teachers"));
     }
     public function store(Request $request)
     {
@@ -46,6 +47,7 @@ class EvenementController extends Controller
         $evenement->start = $request->start;
         $evenement->titre = $request->titre;
         $evenement->description = $request->description;
+        $evenement->teacher_id = $request->teacher_id;
         $evenement->image = $request->file("image")->hashName();
         $evenement->save(); // store_anchor
         $request->file('image')->storePublicly('images/', 'public');
@@ -56,11 +58,11 @@ class EvenementController extends Controller
     }
     public function edit($id)
     {
-        if(! Gate::allows('update-evenement')){
+        $evenement = Evenement::find($id);
+        if(! Gate::allows('update-evenement', $evenement)){
             abort(403);
         }
         $conversations = Conversation::all();
-        $evenement = Evenement::find($id);
         return view("/back/evenements/edit",compact("evenement" , "conversations"));
     }
     public function update($id, Request $request)

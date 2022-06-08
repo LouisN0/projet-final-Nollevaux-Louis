@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('prix');
             $table->string('titre');
             $table->longText('description');
-            $table->foreignId('slide_id')->constrained('slides', 'id');
+            $table->foreignId('slide_id')->constrained('slides', 'id')->onDelete('cascade');
             $table->string('start');
             $table->string('temps');
             $table->string('niveau');

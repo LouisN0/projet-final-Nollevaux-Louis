@@ -18,7 +18,7 @@ class TeacherPolicy
      */
     public function viewAny(User $user)
     {
-        return true;
+        return in_array($user->role_id, [1, 2]);
     }
 
     /**
@@ -51,9 +51,12 @@ class TeacherPolicy
      * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user)
+    public function update(User $user, Teacher $teacher)
     {
-        return $user->role_id == 1;
+        if($user->id == $teacher->user->id || $user->role_id == 1){
+            return true;
+        }
+        return false;
     }
 
     /**

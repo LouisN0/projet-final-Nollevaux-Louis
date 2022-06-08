@@ -51,7 +51,7 @@
 										<div class="date">
 											<p>{!! $evenement->start !!}</span></p>
 										</div>
-										<a href=""><h4>{!! $evenement->titre !!}</h4></a>
+										<a href="{{ route('teacher.singleshow', $evenement->teacher->id) }}"><h4>{!! $evenement->titre !!}</h4></a>
 										<p>{!! $evenement->description !!}</p>
 									</div>
 								</div>

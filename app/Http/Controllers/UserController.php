@@ -15,8 +15,12 @@ class UserController extends Controller
     //
     public function index()
     {
+
         $conversations = Conversation::all();
         $users = User::all();
+        if(! Gate::allows('viewAny-user', $users)){
+            abort(403);
+        }
         return view("/back/users/all",compact("users" , "conversations"));
     }
     public function create()

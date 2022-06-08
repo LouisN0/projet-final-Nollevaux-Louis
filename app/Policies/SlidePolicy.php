@@ -41,7 +41,7 @@ class SlidePolicy
      */
     public function create(User $user)
     {
-        return $user->role_id == 1;
+        return in_array($user->role_id, [1, 2]);
     }
 
     /**
@@ -53,7 +53,7 @@ class SlidePolicy
      */
     public function update(User $user, Slide $slide)
     {
-        return $user->role_id == 1;
+        return in_array($user->role_id, [1, 2]);
     }
 
     /**

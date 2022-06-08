@@ -16,6 +16,9 @@ class TeacherController extends Controller
     {
         $conversations = Conversation::all();
         $teachers = Teacher::all();
+        if(! Gate::allows('viewAny-teacher', $teachers)){
+            abort(403);
+        }
         return view("/back/teachers/all",compact("teachers" , "conversations"));
     }
     public function create()
@@ -80,11 +83,11 @@ class TeacherController extends Controller
     }
     public function edit($id)
     {
-        if(! Gate::allows('update-teacher')){
+        $teacher = Teacher::find($id);
+        if(! Gate::allows('update-teacher', $teacher)){
             abort(403);
         }
         $conversations = Conversation::all();
-        $teacher = Teacher::find($id);
         return view("/back/teachers/edit",compact("teacher" , "conversations"));
     }
     public function update($id, Request $request)

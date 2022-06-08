@@ -21,6 +21,16 @@ class CategorieSeeder extends Seeder
         DB::table('categories')->insert([
             'nom' => 'learning',
         ]);
+        DB::table('categories')->insert([
+            'nom' => 'math',
+        ]);
+        DB::table('categories')->insert([
+            'nom' => 'natation',
+        ]);
+        DB::table('categories')->insert([
+            'nom' => 'sport',
+        ]);
+        
         //
     }
 }

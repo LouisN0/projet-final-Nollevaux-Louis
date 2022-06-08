@@ -13,7 +13,7 @@
         @endif
         <form action='{{ route('evenement.store') }}' method='post' enctype="multipart/form-data">
             @csrf
-            {{-- @if(Auth::user()->role_id == 1)
+            @if(Auth::user()->role_id == 1)
             <div class="mb-3">
                 <label for="">Teacher</label>
                 <select class="form-control" name="teacher_id" id="about">
@@ -23,8 +23,8 @@
                 </select>
             </div>
             @else
-            <input class='form-control' type='hidden' name='teacher_id' value={{ Auth::user()->teacher->id }}> --}}
-            {{-- @endif --}}
+            <input class='form-control' type='hidden' name='teacher_id' value={{ Auth::user()->teacher->id }}> 
+            @endif 
             <div class="mb-3">
                 <label for="formFile" class="form-label">image</label>
                 <input class="form-control" id="formFile" type='file' name='image'>
@@ -50,7 +50,7 @@
                 <input class="form-control"  type='text' name='description'>
             </div>
             
-            <button class='btn btn-primary' type='submit'>Create</button> {{-- create_blade_anchor --}} hp
+            <button class='btn btn-primary' type='submit'>Create</button> {{-- create_blade_anchor --}} 
         </form>
     </div>
 @endsection

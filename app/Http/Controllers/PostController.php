@@ -15,8 +15,11 @@ class PostController extends Controller
     //
     public function index()
     {
-        $conversations = Conversation::all();
         $posts = Post::all();
+        if(! Gate::allows('viewAny-post', $posts)){
+            abort(403);
+        }
+        $conversations = Conversation::all();
         return view("/back/posts/all",compact("posts", "conversations"));
     }
     public function create()

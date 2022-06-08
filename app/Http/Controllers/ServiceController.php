@@ -14,6 +14,9 @@ class ServiceController extends Controller
     {
         $conversations = Conversation::all();
         $services = Service::all();
+        if(! Gate::allows('viewAny-service', $services)){
+            abort(403);
+        }
         return view("/back/services/all",compact("services" , "conversations"));
     }
     public function create()
@@ -48,11 +51,11 @@ class ServiceController extends Controller
     }
     public function edit($id)
     {
-        if(! Gate::allows('update-service')){
+        $service = Service::find($id);
+        if(! Gate::allows('update-service', $service)){
             abort(403);
         }
         $conversations = Conversation::all();
-        $service = Service::find($id);
         return view("/back/services/edit",compact("service" , "conversations"));
     }
     public function update($id, Request $request)

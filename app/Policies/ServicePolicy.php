@@ -18,7 +18,7 @@ class ServicePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->role_id == 1;
     }
 
     /**
@@ -41,7 +41,7 @@ class ServicePolicy
      */
     public function create(User $user)
     {
-        return $user->role_id == 1;
+        return in_array($user->role_id, [1, 2]);
     }
 
     /**
@@ -53,7 +53,7 @@ class ServicePolicy
      */
     public function update(User $user, Service $service)
     {
-        return $user->role_id == 1;
+        return in_array($user->role_id, [1, 2]);
     }
 
     /**

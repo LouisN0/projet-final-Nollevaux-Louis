@@ -21,7 +21,6 @@
                 <tr>
                     <th scope='col'>#</th>
                     <th scope='col'>image</th>
-                    <th scope='col'>prof_id</th>
                     <th scope='col'>prix</th>
                     <th scope='col'>titre</th>
                     <th scope='col'>description</th>
@@ -41,7 +40,6 @@
                     <tr>
                         <th scope='row'>{{ $cour->id }}</th>
                         <td><img src="{{ asset('/images/'.$cour->image)  }}" class="img-thumbnail" style="width: " alt=""></td>
-                        <td>{{ $cour->prof_id }}</td>
                         <td>{{ $cour->prix }}</td>
                         <td>{{ $cour->titre }}</td>
                         <td>{!! (Str::words($cour->description, '12')) !!}</td>

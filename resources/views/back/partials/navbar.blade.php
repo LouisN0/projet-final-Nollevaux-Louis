@@ -52,8 +52,9 @@
           </a>
           
         </li>
-        @if (Auth::user()->role_id != 4)
         <li class="nav-header">DATA</li>
+            
+        @can('viewAny', App\User::class)
         <li class="nav-item ">
           <a href="{{ route('user.index') }}" class="nav-link {{ request()->routeIs("user.index") ? "active" : "" }}">
             <i class="nav-icon fas fa-th"></i>
@@ -62,6 +63,8 @@
             </p>
           </a>
         </li>
+        @endcan
+        @if(Auth::user()->role_id == '1')
         <li class="nav-item ">
           <a href="{{ route('subscriber') }}" class="nav-link {{ request()->routeIs("subscriber") ? "active" : "" }}">
             <i class="nav-icon fas fa-th"></i>
@@ -70,6 +73,8 @@
             </p>
           </a>
         </li>
+        @endif
+        @can('viewAny', App\Teacher::class)
         <li class="nav-item {{ request()->routeIs("teacher.index")||request()->routeIs("teacher.create")  ? "menu-open" : "" }}">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-chart-pie"></i>
@@ -85,16 +90,19 @@
                 <p>Database</p>
               </a>
             </li>
+            @can('create', App\Teacher::class)
             <li class="nav-item">
               <a href="{{ route('teacher.create') }}" class="nav-link {{ request()->routeIs("teacher.create") ? "active" : "" }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Create</p>
               </a>
             </li>
-            
+            @endcan
           </ul>
         </li>
+        @endcan
         <li class="nav-header">OTHER</li>
+        @can('viewAny', App\Role::class)
         <li class="nav-item {{ request()->routeIs("role.index")||request()->routeIs("role.create")  ? "menu-open" : "" }}">
           <a href="" class="nav-link">
             <i class="nav-icon fas fa-copy"></i>
@@ -119,6 +127,8 @@
             
           </ul>
         </li>
+        @endcan
+        @can('viewAny', App\Tag::class)
         <li class="nav-item {{ request()->routeIs("tag.index")||request()->routeIs("tag.create")  ? "menu-open" : "" }}">
           <a href="" class="nav-link">
             <i class="nav-icon fas fa-copy"></i>
@@ -143,6 +153,8 @@
             
           </ul>
         </li>
+        @endcan
+        @can('viewAny', App\Category::class)
         <li class="nav-item {{ request()->routeIs("categorie.index")||request()->routeIs("categorie.create")  ? "menu-open" : "" }}">
           <a href="" class="nav-link">
             <i class="nav-icon fas fa-copy"></i>
@@ -167,8 +179,9 @@
             
           </ul>
         </li> 
-        
+        @endcan
         <li class="nav-header">FRONT</li>
+        @can('viewAny', App\Banner::class)
         <li class="nav-item {{ request()->routeIs("banner.index")||request()->routeIs("banner.create")  ? "menu-open" : "" }}">
           <a href="#" class="nav-link">
             <i class="nav-icon far fa-envelope"></i>
@@ -193,6 +206,8 @@
             
           </ul>
         </li>
+        @endcan
+        @can('viewAny', App\Service::class)
         <li class="nav-item {{ request()->routeIs("service.index")||request()->routeIs("service.create")  ? "menu-open" : "" }}">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-book"></i>
@@ -217,6 +232,8 @@
             
           </ul>
         </li>
+        @endcan
+        @can('viewAny', App\Evenement::class)
         <li class="nav-item {{ request()->routeIs("evenement.index")||request()->routeIs("evenement.create")  ? "menu-open" : "" }}">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-book"></i>
@@ -241,6 +258,8 @@
             
           </ul>
         </li>
+        @endcan
+        @can('viewAny', App\Post::class)
         <li class="nav-item {{ request()->routeIs("post.index")||request()->routeIs("post.create")  ? "menu-open" : "" }}">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-book"></i>
@@ -265,6 +284,8 @@
             
           </ul>
         </li>
+        @endcan
+        @can('viewAny', App\Contact::class)
         <li class="nav-item {{ request()->routeIs("contact.index")||request()->routeIs("contact.create")  ? "menu-open" : "" }}">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-book"></i>
@@ -283,6 +304,8 @@
             
           </ul>
         </li>
+        @endcan
+        @can('viewAny', App\Cour::class)
         <li class="nav-item {{ request()->routeIs("cour.index")||request()->routeIs("cour.create")  ? "menu-open" : "" }}">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-book"></i>
@@ -308,7 +331,7 @@
             
           </ul>
         </li>
-        @endif
+        @endcan
         <li class="nav-header">CONTROLS</li>
         <li class="nav-item {{ request()->routeIs("logout") ? "active" : "" }}">
           <a href="" class="nav-link ">

@@ -13,7 +13,7 @@ class SlideController extends Controller
     {
         $conversations = Conversation::all();
         $slides = Slide::all();
-        return view("/back/slides/all",compact("slides " , "conversations"));
+        return view("/back/slides/all",compact("slides" , "conversations"));
     }
     public function create()
     {

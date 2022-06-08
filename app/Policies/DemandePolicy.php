@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Post;
+use App\Models\Demande;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class PostPolicy
+class DemandePolicy
 {
     use HandlesAuthorization;
 
@@ -18,17 +18,17 @@ class PostPolicy
      */
     public function viewAny(User $user)
     {
-        return in_array($user->role_id, [1, 3]);
+        return in_array($user->role_id, [1, 2, 4]);
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Demande  $demande
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Post $post)
+    public function view(User $user, Demande $demande)
     {
         //
     }
@@ -41,47 +41,41 @@ class PostPolicy
      */
     public function create(User $user)
     {
-        return in_array($user->role_id, [1, 3]);
+        //
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Demande  $demande
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Post $post)
+    public function update(User $user, Demande $demande)
     {
-        if($user->id == $post->user->id || $user->role_id == 1){
-            return true;
-        }
-        return false;
+        //
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Demande  $demande
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Post $post)
+    public function delete(User $user, Demande $demande)
     {
-        if($user->id == $post->user->id || $user->role_id == 1){
-            return true;
-        }
-        return false;
+        //
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Demande  $demande
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Post $post)
+    public function restore(User $user, Demande $demande)
     {
         //
     }
@@ -90,10 +84,10 @@ class PostPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Demande  $demande
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Post $post)
+    public function forceDelete(User $user, Demande $demande)
     {
         //
     }

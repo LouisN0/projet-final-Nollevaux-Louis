@@ -18,7 +18,7 @@ class ContactPolicy
      */
     public function viewAny(User $user)
     {
-        return true;
+        return $user->role_id == 1;
     }
 
     /**

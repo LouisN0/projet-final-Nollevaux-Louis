@@ -91,12 +91,12 @@ class CourController extends Controller
     {
         $conversations = Conversation::all();
         $cour = Cour::find($id);
-        $categories = Categorie::all();
-        if(Auth::user()->id === $cour->teacher->user->id || Auth::user()->role_id === 1){
-            
-            return view("/back/cours/edit",compact("cour" , "conversations", "categories"));
+        if(! Gate::allows('update-cour', $cour)){
+            abort(403);
         }
-        abort(403);
+        $categories = Categorie::all();
+        
+        return view("/back/cours/edit",compact("cour" , "conversations", "categories"));
     }
     public function update($id, Request $request)
     {

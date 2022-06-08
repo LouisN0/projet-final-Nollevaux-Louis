@@ -14,6 +14,9 @@ class RoleController extends Controller
     {
         $conversations = Conversation::all();
         $roles = Role::all();
+        if(! Gate::allows('viewAny-role', $roles)){
+            abort(403);
+        }
         return view("/back/roles/all",compact("roles", "conversations"));
     }
     public function create()

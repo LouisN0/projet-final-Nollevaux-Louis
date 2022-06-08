@@ -18,7 +18,7 @@ class CourPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return in_array($user->role_id, [1, 2]);
     }
 
     /**
@@ -53,7 +53,10 @@ class CourPolicy
      */
     public function update(User $user, Cour $cour)
     {
-        return in_array($user->role_id, [1, 2]);
+        if($user->teacher->id == $cour->teacher->id || $user->role_id == 1){
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -65,7 +68,10 @@ class CourPolicy
      */
     public function delete(User $user, Cour $cour)
     {
-        return in_array($user->role_id, [1, 2]);
+        if($user->teacher->id == $cour->teacher->id || $user->role_id == 1){
+            return true;
+        }
+        return false;
     }
 
     /**

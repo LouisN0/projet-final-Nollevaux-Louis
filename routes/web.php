@@ -15,6 +15,8 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ConversationController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\NewslettreController;
 use App\Http\Controllers\RoleController;
@@ -42,29 +44,13 @@ use App\Models\Teacher;
 |
 */
 
-Route::get('/', function () {
-    $slides = Slide::all();
-    $cours = Cour::orderBy('views', 'desc')->take(8)->get();
-    $services = Service::all();
-    $banners = Banner::all();
-    $teachers = Teacher::all();
-    
-    $teacher2 = Teacher::find('2') ;
-    $teacher3 = Teacher::find('3') ;
-    $teacher1 = Teacher::where('id', '!=', 3)->where('id', '!=', 2)->get()->random(1);
-    $teacher4 = Teacher::where('id', '!=', $teacher1[0]->id)->where('id', '!=', 3)->where('id', '!=', 2)->get()->random(1);
-    $posts = Post::orderBy('created_at', 'DESC')->paginate(2);
-    return view('welcome', compact('banners' , 'services', 'cours', 'teachers', 'posts', "slides", "teacher1", "teacher2", "teacher3", "teacher4"));
-})->name('home');
 
 
+Route::get('/', [welcomeController::class, 'index'])->name('home');; 
 
 Route::get('/courses', [CourController::class, 'allcour'])->name('courses');
 
-Route::get('/contact', function () {
-    $contact = Contact::first();
-    return view('front/pages/contact', compact('contact'));
-})->name('contact');
+Route::get('/contact', [ContactController::class,'view'])->name('contact');
 
 Route::get('/events', [EvenementController::class, 'allevent'])->name('events');
 
@@ -89,10 +75,7 @@ Route::get('/teacher', function () {
     return view('front.pages.teacher');
 })->name('teacher');
 
-Route::get('/back/dashboard', function () {
-    $conversations = Conversation::all();
-    return view('back.dashboard', compact('conversations'));
-})->middleware(['auth'], )->name('dashboard');
+Route::get('/back/dashboard', [DashboardController::class, 'index'])->middleware(['auth'], )->name('dashboard');
 
 require __DIR__.'/auth.php';
 

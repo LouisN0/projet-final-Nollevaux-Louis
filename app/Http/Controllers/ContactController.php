@@ -52,6 +52,11 @@ class ContactController extends Controller
         $nom = $request->all()['nom'];
         $message = $request->all()['message'];
         Mail::to('lounol.co@gmail.com')->send(new ContactMail($email,$nom,$message));
+        
         return redirect()->back()->with('message', "Successful send !");
+    }
+    public function view(){
+        $contact = Contact::first();
+        return view('front/pages/contact', compact('contact'));
     }
 }

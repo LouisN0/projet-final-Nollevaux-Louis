@@ -18,7 +18,7 @@ class EvenementPolicy
      */
     public function viewAny(User $user)
     {
-        return true;
+        return in_array($user->role_id, [1, 2]);
     }
 
     /**
@@ -41,7 +41,7 @@ class EvenementPolicy
      */
     public function create(User $user)
     {
-        return $user->role_id == 1;
+        return in_array($user->role_id, [1, 2]);
     }
 
     /**
@@ -53,7 +53,10 @@ class EvenementPolicy
      */
     public function update(User $user, Evenement $evenement)
     {
-        return $user->role_id == 1;
+        if($user->id == $evenement->teacher->user->id || $user->role_id == 1){
+            return true;
+        }
+        return false;
     }
 
     /**
