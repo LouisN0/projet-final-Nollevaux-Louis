@@ -32,6 +32,7 @@
                     <th scope='col'>discipline</th>
                     <th scope='col'>date</th>
                     <th scope='col'>status</th>
+                    <th scope='col'>views</th>
                     <th scope='col'>Action</th>
                 </tr> {{-- all_tr_anchor --}}
             </thead>
@@ -95,6 +96,7 @@
                             
                         @endif
                         </td>
+                        <td><span class='badge badge-primary'>{{ $cour->views }}</span></td>
                         <td> {{-- all_td_anchor --}}
                             <div class='d-flex'>
                                 @can ('delete', $cour)

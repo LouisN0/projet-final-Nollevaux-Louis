@@ -10,6 +10,7 @@ use App\Models\Teacher;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
 
@@ -155,6 +156,7 @@ class CourController extends Controller
     {
         $slides = Slide::all();
         $cour = Cour::find($id);
+        DB::table('cours')->where('id', $id)->increment('views', 1);
         return view("/front/pages/coursesShow",compact("cour", "slides"));
     }
     public function allcour(){

@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('discipline');
             $table->string('date');
             $table->string('status') ;
+            $table->integer('views')->default(0);
             $table->timestamps();
         });
     }

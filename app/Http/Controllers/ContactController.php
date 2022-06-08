@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactMail;
 
 class ContactController extends Controller
 {
@@ -44,5 +46,12 @@ class ContactController extends Controller
         $this->authorize('delete', \App\Model\Contact::class);
         $contact->delete();
         return redirect()->back()->with('message', "Successful delete !");
+    }
+    public function contact(Request $request){
+        $email = $request->all()['email'];
+        $nom = $request->all()['nom'];
+        $message = $request->all()['message'];
+        Mail::to('lounol.co@gmail.com')->send(new ContactMail($email,$nom,$message));
+        return redirect()->back()->with('message', "Successful send !");
     }
 }

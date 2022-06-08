@@ -15,10 +15,12 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ConversationController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\NewslettreController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\UserController;
+use App\Mail\ContactMail;
 use App\Models\Banner;
 use App\Models\Contact;
 use App\Models\Conversation;
@@ -42,7 +44,7 @@ use App\Models\Teacher;
 
 Route::get('/', function () {
     $slides = Slide::all();
-    $cours = Cour::all();
+    $cours = Cour::orderBy('views', 'desc')->take(8)->get();
     $services = Service::all();
     $banners = Banner::all();
     $teachers = Teacher::all();
@@ -97,7 +99,7 @@ require __DIR__.'/auth.php';
 
 //mail
 Route::get('/back/subscriber', [SubscriberController::class, 'index'])->name('subscriber');
-
+Route::post('/contact-form', [ContactController::class, 'contact'])->name('contactMail');
 
 
 // User
