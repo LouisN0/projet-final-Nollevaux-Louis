@@ -8,24 +8,24 @@
         <h1> page admin</h1>
         <div class="bg-light">
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+                <div class="font-medium text-base text-gray-800">{{ Auth::user()->nom }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
             </div>
-
+            <div class='mt-5'>
+            @if(Auth::user()->role_id == 4)
+                <h1>My courses</h1>
+                <ul>
+                    @foreach($usercour as $cour)
+                    <li>{{ $cour->titre }}</li>
+                @endforeach
+                </ul>
+                
+                
+            @endif
+            </div>
             
 
-            {{-- <div class="mt-3 space-y-1">
-                <!-- Authentication -->
-                <form class='btn btn-warning' method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <div :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </div>
-                </form>
-                <a href="{{ route("logout") }}">Log out</a>
-            </div> --}}
+            
         </div>
     </div>
 

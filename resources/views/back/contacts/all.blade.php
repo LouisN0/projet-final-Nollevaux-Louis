@@ -35,12 +35,6 @@
                         <td>{{ $contact->phone }}</td>
                         <td> {{-- all_td_anchor --}}
                             <div class='d-flex'>
-                                @can ('delete', $contact)
-                                <form action='{{ route('contact.destroy', $contact->id) }}' method='post'>
-                                    @csrf
-                                    <button class="btn btn-outline-dark" type="submit">Delete</button>
-                                </form>
-                                @endcan
                                 @can ('update', $contact)
                                 <a class='btn btn-outline-dark' href='{{ route('contact.edit', $contact->id) }}' role='button'>Edit</a>
                                 @endcan

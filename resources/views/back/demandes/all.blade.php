@@ -16,7 +16,7 @@
                 </ul>
             </div>
         @endif
-        @if (auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
+        @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
         @endif
         <table class='table table-striped'>
             <thead>
@@ -31,8 +31,8 @@
                 </tr> {{-- all_tr_anchor --}}
             </thead>
             <tbody>
-                @if (auth()->user()->role_id == '2')
-                    @foreach ($demandes->where('to', '==', auth()->user()->nom) as $demande)
+                @if (Auth::user()->role_id == '2')
+                    @foreach ($demandes->where('to', '==', Auth::user()->nom) as $demande)
                         <tr>
                             <th scope='row'>{{ $demande->id }}</th>
                             <td>
@@ -51,7 +51,7 @@
                             </td>
                             <td>{{ $demande->from }}</td>
                             <td>{{ $demande->to }}</td>
-                            <td>{{ $demande->contenu }}</td>
+                            <td>{{ $demande->cours }}</td>
                             <td> {{-- all_td_anchor --}}
                                 <div class='d-flex'>
                                     <form action='{{ route('demande.destroy', $demande->id) }}' method='post'>
@@ -66,8 +66,8 @@
                             </td>
                         </tr>
                     @endforeach
-                @elseif (auth()->user())
-                    @foreach ($demandes->where('from', '==', auth()->user()->nom) as $demande)
+                @elseif (Auth::user())
+                    @foreach ($demandes->where('from', '==', Auth::user()->nom) as $demande)
                         <tr>
                             <th scope='row'>{{ $demande->id }}</th>
                             <td>
@@ -86,7 +86,7 @@
                             </td>
                             <td>{{ $demande->from }}</td>
                             <td>{{ $demande->to }}</td>
-                            <td>{{ $demande->contenu }}</td>
+                            <td>{{ $demande->cours }}</td>
                             <td class="d-flex"> {{-- all_td_anchor --}}
                                 <form action='{{ route('demande.destroy', $demande->id) }}' method='post'>
                                     @csrf

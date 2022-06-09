@@ -51,7 +51,7 @@ class RolePolicy
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Role $role)
+    public function update(User $user)
     {
         return $user->role_id == 1;
     }
@@ -63,7 +63,7 @@ class RolePolicy
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Role $role)
+    public function delete(User $user)
     {
         return $user->role_id == 1;
     }

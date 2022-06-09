@@ -4,13 +4,13 @@ namespace App\Providers;
 
 use App\Policies\BannerPolicy;
 use App\Policies\CategoriePolicy;
+use App\Policies\ContactPolicy;
 use App\Policies\CourPolicy;
 use App\Policies\EvenementPolicy;
 use App\Policies\PostPolicy;
 use App\Policies\RolePolicy;
 use App\Policies\ServicePolicy;
 use App\Policies\SlidePolicy;
-use App\Policies\SocialPolicy;
 use App\Policies\TagPolicy;
 use App\Policies\TeacherPolicy;
 use App\Policies\UserPolicy;
@@ -49,7 +49,6 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('delete-categorie', [CategoriePolicy::class, 'delete']);
         //contact
         Gate::define('update-contact', [ContactPolicy::class, 'update']);
-        Gate::define('delete-contact', [ContactPolicy::class, 'delete']);
         Gate::define('viewAny-contact', [ContactPolicy::class, 'viewAny']);
 
         //cour
@@ -81,10 +80,6 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('create-slide', [SlidePolicy::class, 'create']);
         Gate::define('update-slide', [SlidePolicy::class, 'update']);
         Gate::define('delete-slide', [SlidePolicy::class, 'delete']);
-        //social
-        Gate::define('create-social', [SocialPolicy::class, 'create']);
-        Gate::define('update-social', [SocialPolicy::class, 'update']);
-        Gate::define('delete-social', [SocialPolicy::class, 'delete']);
         //tag
         Gate::define('create-tag', [TagPolicy::class, 'create']);
         Gate::define('update-tag', [TagPolicy::class, 'update']);

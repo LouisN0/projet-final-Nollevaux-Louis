@@ -17,9 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('from');
             $table->string('to');
-            $table->string('contenu')->nullable();
+            $table->string('cours')->nullable();
             $table->boolean('status')->default(false);
             $table->date('date')->nullable();
+            $table->string('user_id')->nullable();
             $table->string('email');
             $table->timestamps();
         });

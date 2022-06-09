@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Mail\Demand;
+use App\Models\Cour;
 use App\Models\Demande;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -19,21 +21,18 @@ class DemandeController extends Controller
     {
         return view("/back/demandes/create");
     }
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
+        
         $demande = new Demande;
-        // $request->validate([
-        //     'from'=> 'required',
-        //     'to'=> 'required',
-        //     'contenu'=> 'required',
-        //     'status'=> 'required',
-        // ]); // store_validated_anchor;
         $demande->from = $request->from;
         $demande->to = $request->to;
-        $demande->contenu = $request->contenu;
+        $demande->cours = $request->cours;
         $demande->email = $request->email;
+        $demande->user_id = $id;
         $demande->status = false;
         $demande->save(); // store_anchor
+        
         return redirect()->route("demande.index")->with('message', "Successful storage !");
     }
     public function read($id)
@@ -47,25 +46,33 @@ class DemandeController extends Controller
         return view("/back/demandes/edit",compact("demande"));
     }
     public function update($id, Request $request)
-    {
+    {   
         $demande = Demande::find($id);
+        $user = User::find($demande->user_id);
         $request->validate([
          'from'=> 'required',
          'to'=> 'required',
-         'contenu'=> 'required',
+         'cours'=> 'required',
          'status'=> 'required',
          'date'=> 'required',
         ]); // update_validated_anchor;
         $demande->from = $request->from;
         $demande->to = $request->to;
-        $demande->contenu = $request->contenu;
+        $demande->cours = $request->cours;
         $demande->date = $request->date;
         $demande->status = $request->status;
         $demande->email = $request->email;
+        $destinataireCour = Cour::where('id', $demande->cours)->get();
         if($demande->status == true){
             Mail::to($demande->email)->send(new Demand($demande->email));
+            
         }
-        $demande->status = $request->status;
+        $user->save();
+        $user->cours()->attach($destinataireCour, [
+                'user_id' => $user->id
+            ]);
+        
+        
         $demande->save(); // update_anchor
         return redirect()->route("demande.index")->with('message', "Successful update !");
     }

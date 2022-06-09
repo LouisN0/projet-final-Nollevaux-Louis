@@ -29,8 +29,8 @@ class DatabaseSeeder extends Seeder
             PostTagSeeder::class,
             TeacherSeeder::class,
             EvenementSeeder::class,
-            SocialSeeder::class,
             CourSeeder::class,
+            CourUserSeeder::class,
             CategoriecourSeeder::class,
             
             

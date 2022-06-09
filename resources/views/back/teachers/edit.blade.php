@@ -42,36 +42,7 @@
                 <label class="form-label" for=>mail</label>
                 <input class="form-control" type='text' name='mail' value='{{ $teacher->mail }}'>
             </div>
-            <label class="form-label" for="">social media</label>
-            <div>
-                <ul>
-                    <li>
-                        <label class="form-label" for=>facebook</label>
-                        <input class="form-control" type='text' name='facebook' value='{{ $teacher->social->facebook }}'>
-                    </li>
-                    <li>
-                        <label class="form-label" for=>twitter</label>
-                        <input class="form-control" type='text' name='twitter' value='{{ $teacher->social->twitter }}'>
-                    </li>
-                    <li>
-                        <label class="form-label" for=>instagram</label>
-                        <input class="form-control" type='text' name='insta' value='{{ $teacher->social->insta }}'>
-                    </li>
-                    <li>
-                        <label class="form-label" for=>dribble</label>
-                        <input class="form-control" type='text' name='dribble' value='{{ $teacher->social->dribble }}'>
-                    </li>
-                    <li>
-                        <label class="form-label" for=>skype</label>
-                        <input class="form-control" type='text' name='skype' value='{{ $teacher->social->skype }}'>
-                    </li>
-                    <li>
-                        <label class="form-label" for=>linkedink</label>
-                        <input class="form-control" type='text' name='linkedink' value='{{ $teacher->social->linkedink }}'>
-                    </li>
-                </ul>
-
-            </div>
+            
             <button class="btn btn-primary mb-3" type='submit'>Update</button> {{-- update_blade_anchor --}}
         </form>
     </div>

@@ -76,13 +76,12 @@ class EvenementController extends Controller
          'titre'=> 'required',
          'description'=> 'required',
         ]); // update_validated_anchor;
-        $evenement->image = $request->image;
         $evenement->lieu = $request->lieu;
         $evenement->date = $request->date;
         $evenement->start = $request->start;
         $evenement->titre = $request->titre;
         $evenement->description = $request->description;
-        $evenement->teacher_id = $request->teacher_id;
+        $evenement->teacher_id = $evenement->teacher_id;
         if ($request->file('image') == "") {
             $evenement->image = $evenement->image;
             $evenement->save(); // update_anchor

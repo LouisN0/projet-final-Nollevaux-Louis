@@ -66,7 +66,7 @@ class TeacherPolicy
      * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Teacher $teacher)
+    public function delete(User $user)
     {
         return $user->role_id == 1;
     }

@@ -34,30 +34,19 @@
                         @if (Route::has('login'))
                         @auth
                         <div class="search-form">
-                            <form action="{{ route('demande.store') }}" method='POST'>
+                            <form action="{{ route('demande.store', Auth::user()->id) }}" method='POST'>
                                 @csrf
                                 <div class="search-form">
-                                    @if (session()->has('message'))
-                                        <div class='alert alert-success'
-                                            style='display:flex !important; align-items:center !important; justify-content:center !important;'>
-                                            {{ session()->get('message') }}
-                                        </div>
-                                    @endif
-                                    @if (session()->has('error'))
-                                        <div class='alert alert-danger'
-                                            style='display:flex !important; align-items:center !important; justify-content:center !important;'>
-                                            {{ session()->get('error') }}
-                                        </div>
-                                    @endif
+                                   
                                     <input style='margin-bottom: 10px !important;' type="text" name="from" placeholder="Full Name"
                                         value="{{ Auth::user()->nom }}">
                                     <input type="text" id="address" name="email" placeholder="E-mail Address"
                                         value="{{ Auth::user()->email }}">
                                     <div class="select" style='margin-bottom: 10px !important;' >
-                                        <select name="contenu" id="about">
+                                        <select name="cours" id="about">
                                             <option value="-1">Cours</option>
                                             @foreach ($cours as $cour)
-                                                <option value="{{ $cour->titre }}">{{ $cour->titre }}</option>
+                                                <option value="{{ $cour->id }}">{{ $cour->titre }}</option>
                                             @endforeach
                                         </select>
                                     </div>

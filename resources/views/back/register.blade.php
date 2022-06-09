@@ -16,13 +16,15 @@
     <link rel="stylesheet" href="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/bootstrap-icons/bootstrap-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('css/back-app.css') }}">
+    
+    <link rel="stylesheet" href="{{ asset('dashboard/css/bootstrap.min.css') }}">
     <link rel="shortcut icon" href="{{ asset('images/favicon.svg') }}" type="image/x-icon">
 
     {{-- css pour le login --}}
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 
 </head>
-<body>
+<body style="background-color:#a12c2f">
     <section class="vh-100 gradient-custom">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">

@@ -51,7 +51,7 @@ class BannerPolicy
      * @param  \App\Models\Banner  $banner
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Banner $banner)
+    public function update(User $user)
     {
         return $user->role_id == 1;
     }
@@ -63,7 +63,7 @@ class BannerPolicy
      * @param  \App\Models\Banner  $banner
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Banner $banner)
+    public function delete(User $user)
     {
         return $user->role_id == 1;
     }

@@ -102,11 +102,16 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $this->authorize('delete', $user);
-        $destination = "images/". $user->image;
+        if($user->image != "default.jpg"){
+            
+            $destination = "images/". $user->image;
+
         if (File::exists($destination)) 
         {
             File::delete($destination);
         }
+        }
+        
 
         $user->delete();
         return redirect()->back()->with('message', "Successful delete !");

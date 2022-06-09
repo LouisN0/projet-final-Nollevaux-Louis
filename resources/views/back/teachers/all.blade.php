@@ -27,7 +27,6 @@
                     <th scope='col'>biographie</th>
                     <th scope='col'>telephone</th>
                     <th scope='col'>mail</th>
-                    <th scope='col'>social</th>
                     <th scope='col'>Action</th>
                 </tr> {{-- all_tr_anchor --}}
             </thead>
@@ -43,46 +42,7 @@
                         <td>{!! Str::words($teacher->biographie, '15') !!}</td>
                         <td>{{ $teacher->telephone }}</td>
                         <td>{{ $teacher->mail }}</td>
-                        <td>
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-outline-dark w-100" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal{{ $teacher->id }}">
-                                all 
-                            </button>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal{{ $teacher->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Social media</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>fb: {{ $teacher->social->facebook }}</p>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>twitter: {{ $teacher->social->twitter }}</p>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>dribble: {{ $teacher->social->dribble }}</p>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>insta: {{ $teacher->social->insta }}</p>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>skype: {{ $teacher->social->skype }}</p>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>linkedink :{{ $teacher->social->linkedink }}</p>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
+                        
                         <td> {{-- all_td_anchor --}}
                             <div class='d-flex'>
                                 @can ('delete', $teacher)

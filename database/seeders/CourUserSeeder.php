@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class DemandeSeeder extends Seeder
+class CourUserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,14 +15,9 @@ class DemandeSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('demandes')->insert([
-            'from' => '',
-            'to' => '',
-            'cours' => '',
-            'status' => '',
-            'date' => '',
-            'user_id' => '',
+        DB::table('cour_user')->insert([
+            'user_id' => 1,
+            'cour_id' => 1,
         ]);
-        //
     }
 }

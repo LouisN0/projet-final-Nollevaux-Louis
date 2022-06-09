@@ -25,11 +25,7 @@ class Teacher extends Model
      
     protected $table = 'teachers';
 
-    public function social()
-    {
-        return $this->hasOne(Social::class);
     
-    }
     public function cours()
     {
         return $this->hasMany(Cour::class);

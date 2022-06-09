@@ -35,7 +35,6 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $post = new Post;
-        $this->authorize('create', \App\Model\Post::class);
         $request->validate([
          'titre'=> 'required',
          'texte'=> 'required',
@@ -65,17 +64,16 @@ class PostController extends Controller
     }
     public function edit($id)
     {
-        if(! Gate::allows('update-post')){
+        $post = Post::find($id);
+        if(! Gate::allows('update-post', $post)){
             abort(403);
         }
         $conversations = Conversation::all();
-        $post = Post::find($id);
         return view("/back/posts/edit",compact("post" , "conversations"));
     }
     public function update($id, Request $request)
     {
         $post = Post::find($id);
-        $this->authorize('update', \App\Model\Post::class);
         $request->validate([
          'image'=> 'required',
          'titre'=> 'required',
@@ -92,7 +90,6 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
-        $this->authorize('delete', \App\Model\Post::class);
         $post->delete();
         return redirect()->back()->with('message', "Successful delete !");
     }

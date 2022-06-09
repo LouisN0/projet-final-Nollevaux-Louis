@@ -40,13 +40,7 @@ class ContactController extends Controller
         $contact->save(); // update_anchor
         return redirect()->route("contact.index")->with('message', "Successful update !");
     }
-    public function destroy($id)
-    {
-        $contact = Contact::find($id);
-        $this->authorize('delete', \App\Model\Contact::class);
-        $contact->delete();
-        return redirect()->back()->with('message', "Successful delete !");
-    }
+    
     public function contact(Request $request){
         $email = $request->all()['email'];
         $nom = $request->all()['nom'];

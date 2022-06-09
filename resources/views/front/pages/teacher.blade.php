@@ -49,13 +49,13 @@
                                     </div>
                                     <div class="icons">
                                         <ul>
-                                            <li><a href="{{ $teacher->social->facebook }}"><i
+                                            <li><a href=""><i
                                                         class="fa fa-facebook"></i></a></li>
-                                            <li><a href="{{ $teacher->social->twitter }}"><i
+                                            <li><a href=""><i
                                                         class="fa fa-twitter"></i></a></li>
-                                            <li><a href="{{ $teacher->social->dribble }}"><i
+                                            <li><a href=""><i
                                                         class="fa fa-dribbble"></i></a></li>
-                                            <li><a href="{{ $teacher->social->linkedink }}"><i
+                                            <li><a href=""><i
                                                         class="fa fa-linkedin"></i></a></li>
                                         </ul>
                                     </div>
@@ -67,7 +67,7 @@
                                             <li><i class="fa fa-phone"></i>{{ $teacher->telephone }}</li>
                                             <li><i class="fa fa-envelope"></i><a href="#">{{ $teacher->mail }}</a></li>
                                             <li><i class="fa fa-skype"></i><a
-                                                    href="#">{{ $teacher->social->skype }}</a></li>
+                                                    href="#"></a></li>
                                         </ul>
                                     </div>
                                 </div>

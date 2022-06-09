@@ -21,7 +21,7 @@
             
             
                 
-                <input class="form-control"  type='hidden' name='contenu' value='{{ $demande->contenu }}'>
+                <input class="form-control"  type='hidden' name='cours' value='{{ $demande->cours }}'>
             
             <div class="mb-3">
                 <label class="form-label"  for=>status</label>

@@ -192,13 +192,12 @@ Route::post('/back/categories/{id}/delete', [CategorieController::class, 'destro
 Route::get('/back/contacts', [ContactController::class, 'index'])->name('contact.index');
 Route::get('/back/contacts/{id}/edit', [ContactController::class, 'edit'])->name('contact.edit');
 Route::post('/back/contacts/{id}/update', [ContactController::class, 'update'])->name('contact.update');
-Route::post('/back/contacts/{id}/delete', [ContactController::class, 'destroy'])->name('contact.destroy');
 
 
 // Demande
 Route::get('/back/demandes', [DemandeController::class, 'index'])->name('demande.index');
 Route::get('/back/demandes/create', [DemandeController::class, 'create'])->name('demande.create');
-Route::post('/back/demandes/store', [DemandeController::class, 'store'])->name('demande.store');
+Route::post('/back/demandes/{id}/store', [DemandeController::class, 'store'])->name('demande.store');
 Route::get('/back/demandes/{id}/read', [DemandeController::class, 'read'])->name('demande.read');
 Route::get('/back/demandes/{id}/edit', [DemandeController::class, 'edit'])->name('demande.edit');
 Route::post('/back/demandes/{id}/update', [DemandeController::class, 'update'])->name('demande.update');

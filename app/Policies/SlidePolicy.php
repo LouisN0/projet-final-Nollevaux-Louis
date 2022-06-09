@@ -51,7 +51,7 @@ class SlidePolicy
      * @param  \App\Models\Slide  $slide
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Slide $slide)
+    public function update(User $user)
     {
         return in_array($user->role_id, [1, 2]);
     }
@@ -63,7 +63,7 @@ class SlidePolicy
      * @param  \App\Models\Slide  $slide
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Slide $slide)
+    public function delete(User $user)
     {
         return $user->role_id == 1;
     }

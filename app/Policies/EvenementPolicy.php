@@ -66,7 +66,7 @@ class EvenementPolicy
      * @param  \App\Models\Evenement  $evenement
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Evenement $evenement)
+    public function delete(User $user)
     {
         return $user->role_id == 1;
     }
