@@ -18,6 +18,7 @@
                 <input class="form-control" id="formFile" type='file' name='image'>
             </div>
             @if (Auth::user()->role_id == 1)
+            @auth
                 <div class="mb-3">
                     <label for="">Teacher</label>
                     <select class="form-control" name="teacher_id" id="about">
@@ -27,7 +28,8 @@
                     </select>
                 </div>
             @else
-                <input class='form-control' type='hidden' name='prof_id' value={{ Auth::user()->teacher->id }}>
+                <input class='form-control' type='hidden' name='teacher_id' value="{{ Auth::user()->teacher->id }}">
+            @endauth
             @endif
             <div>
                 <label class='form-label' for=>prix</label>

@@ -20,8 +20,8 @@ class WelcomeController extends Controller
     $banners = Banner::all();
     $teachers = Teacher::all();
     
-    $teacher2 = Teacher::find('2') ;
-    $teacher3 = Teacher::find('3') ;
+    $teacher2 = Teacher::find(2) ;
+    $teacher3 = Teacher::find(3) ;
     $teacher1 = Teacher::where('id', '!=', 3)->where('id', '!=', 2)->get()->random(1);
     $teacher4 = Teacher::where('id', '!=', $teacher1[0]->id)->where('id', '!=', 3)->where('id', '!=', 2)->get()->random(1);
     $posts = Post::orderBy('created_at', 'DESC')->paginate(2);

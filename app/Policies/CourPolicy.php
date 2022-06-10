@@ -53,10 +53,7 @@ class CourPolicy
      */
     public function update(User $user, Cour $cour)
     {
-        if($user->teacher->id == $cour->teacher->id || $user->role_id == 1){
-            return true;
-        }
-        return false;
+        
     }
 
     /**
@@ -68,10 +65,7 @@ class CourPolicy
      */
     public function delete(User $user, Cour $cour)
     {
-        if($user->teacher->id == $cour->teacher->id || $user->role_id == 1){
-            return true;
-        }
-        return false;
+        
     }
 
     /**
